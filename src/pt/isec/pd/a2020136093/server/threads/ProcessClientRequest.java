@@ -8,10 +8,7 @@ import pt.isec.pd.a2020136093.utils.REQUEST_CLIENT_TO_SERVER;
 import pt.isec.pd.a2020136093.utils.REQUEST_ADMIN_TO_SERVER;
 import pt.isec.pd.a2020136093.utils.RESPONSE_SERVER_TO_CLIENT_OR_ADMIN;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -134,12 +131,11 @@ public class ProcessClientRequest extends Thread {
                             }
                         }
                         case REQUESTS.ADMIN_REQUEST_CHECK_PRESENCES_EVENT -> {
-                            ArrayList<ArrayList<String>> list = manageDB.checkPresencesEventID(requestClientServerAdmin.id);
+                            ArrayList<ArrayList<String>> presencesList = manageDB.checkPresencesEventID(requestClientServerAdmin.id);    // ID DO EVENTO
 
                             response.response = "LISTA DE PRESENÇAS NO EVENTO [ID]: "+ requestClientServerAdmin.id;
-                            response.presencesADMIN = list;
+                            response.presencesADMIN = presencesList;
 
-                            //generateCSV(list);
 
                             oout.writeObject(response);
                         }
@@ -174,6 +170,16 @@ public class ProcessClientRequest extends Thread {
                                 response.resultado = false;
                                 oout.writeObject(response);
                             }
+                        }
+                        case REQUESTS.ADMIN_REQUEST_GENERATE_CSV_EVENT -> {
+                            ArrayList<ArrayList<String>> presencesList = manageDB.checkPresencesEventID(requestClientServerAdmin.id);    // ID DO EVENTO
+                            ArrayList<String> eventInfo = manageDB.checkEvent(requestClientServerAdmin.id);
+
+                            generateCSV(presencesList, eventInfo);
+
+                            response.response = "CSV gerado com sucesso!";
+                            response.resultado = true;
+                            oout.writeObject(response);
                         }
                     }
                 }
@@ -318,6 +324,37 @@ public class ProcessClientRequest extends Thread {
 
             datagramSocket.send(dpSend);
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void generateCSV(ArrayList<ArrayList<String>> presencesList, ArrayList<String> eventInfo){
+        // GENERATE ONLY ONE CSV FILE WITH THE RECEIVED INFO WITH THIS FORMAT:
+        // “Designação”;" PD 2023/24 – TP1 – Aula 1"
+        //“Local”:”DEIS/ISEC – L1.7, Coimbra”
+        //“Data”;"12";"10”;”2023"
+        //“Hora início”;"14”;”30"
+        //“Hora fim”;”17”;”30”
+        //“Nome”;“Número identificação”;"Email”
+        //“João Silva”;”202011111”;”joao.silva@isec.pt”
+        //“Joana Sila”;”202011122”;”joana.sila@isec.pt”
+
+        String csvFile = CSV_FILES_PATH + "/" + eventInfo.get(0) + ".csv";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
+            bw.write("\"Designação\";\"" + eventInfo.get(0) + "\"\n");
+            bw.write("\"Local\";\"" + eventInfo.get(1) + "\"\n");
+            bw.write("\"Data\";\"" + eventInfo.get(2) + "\"\n");
+            bw.write("\"Hora início\";\"" + eventInfo.get(3) + "\"\n");
+            bw.write("\"Hora fim\";\"" + eventInfo.get(4) + "\"\n");
+            bw.write("\"Nome\";\"Número identificação\";\"Email\"\n");
+
+            for (ArrayList<String> l : presencesList) {
+                bw.write("\"" + l.get(0) + "\";\"" + l.get(2) + "\";\"" + l.get(3) + "\"\n");
+            }
+
+            bw.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

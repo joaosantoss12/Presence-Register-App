@@ -202,7 +202,8 @@ public class ClientUI {
     }
 
     private void gerarFicheiroCSVEvento() {
-        
+        String idEvento = PAInput.readString("ID do evento: ", true);
+        manageConnections.generateCSV_event(idEvento);
     }
 
     private void consultarPresencasPorAluno() {

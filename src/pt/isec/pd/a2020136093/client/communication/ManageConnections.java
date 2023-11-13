@@ -444,6 +444,22 @@ public class ManageConnections {
         }
     }
 
+    public void generateCSV_event(String idEvento){
+        REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
+
+        msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CSV_EVENT;
+        msg.id = Integer.parseInt(idEvento);
+
+        try {
+
+            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            oout.writeObject(msg);
+            oout.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 

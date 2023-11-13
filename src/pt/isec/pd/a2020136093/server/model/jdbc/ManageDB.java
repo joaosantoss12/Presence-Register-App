@@ -477,4 +477,29 @@ public class ManageDB {
 
 
 
+
+    // NOT A REQUEST, ONLY GETTING INFO FOR CSV
+    public ArrayList<String> checkEvent(int idEvent) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+             Statement statement = connection.createStatement()) {
+
+            String checkEvents = "SELECT * FROM events WHERE id = '" + idEvent + "'";
+            ResultSet resultSet = statement.executeQuery(checkEvents);
+
+            ArrayList<String> event = new ArrayList<>();
+
+            while (resultSet.next()) {
+                event.add(resultSet.getString("name"));
+                event.add(resultSet.getString("local"));
+                event.add(resultSet.getString("date"));
+                event.add(resultSet.getString("timeStart"));
+                event.add(resultSet.getString("timeEnd"));
+            }
+
+            return event;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

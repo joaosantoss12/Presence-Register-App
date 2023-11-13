@@ -17,6 +17,7 @@ public class REQUESTS {
     public final static int ADMIN_REQUEST_CHECK_PRESENCES_EVENT = 26;
     public final static int ADMIN_REQUEST_DELETE_PRESENCE = 27;
     public final static int ADMIN_REQUEST_ADD_PRESENCE = 28;
+    public final static int ADMIN_REQUEST_GENERATE_CSV_EVENT = 29;
 
 
     // ALUNO
