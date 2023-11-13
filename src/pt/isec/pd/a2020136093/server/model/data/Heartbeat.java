@@ -1,0 +1,44 @@
+package pt.isec.pd.a2020136093.server.model.data;
+
+import java.io.Serializable;
+
+public class Heartbeat implements Serializable {
+    private final String serverIP;
+    private final int serverPort;
+    private int serverDBVersion;
+    private final String RMI_NAME;
+    private final int RMI_PORT;
+
+    public Heartbeat(String serverIP, int serverPort, int serverDBVersion, String RMI_NAME, int RMI_PORT) {
+        this.serverIP = serverIP;
+        this.serverPort = serverPort;
+        this.serverDBVersion = serverDBVersion;
+        this.RMI_NAME = RMI_NAME;
+        this.RMI_PORT = RMI_PORT;
+    }
+
+    public String getServerIP() {
+        return serverIP;
+    }
+
+    public int getServerPort() {
+        return serverPort;
+    }
+
+    public int getServerDBVersion() {
+        return serverDBVersion;
+    }
+
+    public String getRMI_NAME() {
+        return RMI_NAME;
+    }
+
+    public int getRMI_PORT() {
+        return RMI_PORT;
+    }
+
+
+    public void updateServerDBVersion(int version){
+        serverDBVersion = version;
+    }
+}
