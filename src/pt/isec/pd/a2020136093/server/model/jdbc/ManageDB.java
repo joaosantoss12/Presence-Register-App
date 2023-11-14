@@ -502,4 +502,26 @@ public class ManageDB {
             throw new RuntimeException(e);
         }
     }
+
+    public ArrayList<String> checkStudent(String email){
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+             Statement statement = connection.createStatement()) {
+
+            String checkStudent = "SELECT * FROM accounts WHERE email = '" + email + "'";
+            ResultSet resultSet = statement.executeQuery(checkStudent);
+
+            ArrayList<String> student = new ArrayList<>();
+
+            while (resultSet.next()) {
+                student.add(resultSet.getString("name"));
+                student.add(resultSet.getString("email"));
+                student.add(resultSet.getString("nIdentificacao"));
+            }
+
+            return student;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

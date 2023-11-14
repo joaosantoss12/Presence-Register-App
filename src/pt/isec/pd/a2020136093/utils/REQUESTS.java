@@ -18,10 +18,12 @@ public class REQUESTS {
     public final static int ADMIN_REQUEST_DELETE_PRESENCE = 27;
     public final static int ADMIN_REQUEST_ADD_PRESENCE = 28;
     public final static int ADMIN_REQUEST_GENERATE_CSV_EVENT = 29;
+    public final static int ADMIN_REQUEST_GENERATE_CSV_STUDENT = 30;
 
 
     // ALUNO
     public final static int CLIENT_REQUEST_EDIT_DATA = 13;
     public final static int CLIENT_REQUEST_SUBMIT_CODE = 14;
     public final static int CLIENT_REQUEST_CHECK_PRESENCES = 15;
+    public final static int CLIENT_REQUEST_GENERATE_CSV_STUDENT = 16;
 }

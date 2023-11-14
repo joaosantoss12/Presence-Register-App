@@ -14,9 +14,10 @@ public class RootPane extends BorderPane {
     }
 
     private void createViews(){
-        CSSManager.applyCSS(this,"styles.css");
+        //CSSManager.applyCSS(this,"styles.css");
 
         StackPane stackPane = new StackPane(
+                new MainMenuUI()
                 //new MainMenuUI(tinyPacmanManager),
                 //new TopFiveUI(tinyPacmanManager),
                 //new CreditsUI(tinyPacmanManager),

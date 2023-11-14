@@ -444,7 +444,7 @@ public class ManageConnections {
         }
     }
 
-    public void generateCSV_event(String idEvento){
+    public String generateCSV_event(String idEvento){
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
 
         msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CSV_EVENT;
@@ -455,7 +455,69 @@ public class ManageConnections {
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
             oout.writeObject(msg);
             oout.flush();
-        } catch (IOException e) {
+
+            //Deserializa a resposta recebida em socket
+            RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
+
+            if (response == null) {
+                System.out.println("O servidor nao enviou qualquer respota antes de"
+                        + " fechar aligacao TCP!");
+            }
+
+            return response.response;
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String generateCSV_student(String email){
+        REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
+
+        msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CSV_STUDENT;
+        msg.emailToManagePresence = email;
+
+        try {
+
+            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            oout.writeObject(msg);
+            oout.flush();
+
+            //Deserializa a resposta recebida em socket
+            RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
+
+            if (response == null) {
+                System.out.println("O servidor nao enviou qualquer respota antes de"
+                        + " fechar aligacao TCP!");
+            }
+
+            return response.response;
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String generateCSV_student_own(){
+        REQUEST_CLIENT_TO_SERVER msg = new REQUEST_CLIENT_TO_SERVER();
+
+        msg.msgCode = REQUESTS.CLIENT_REQUEST_GENERATE_CSV_STUDENT;
+        msg.email = clientData.getEmail();
+
+        try {
+
+            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            oout.writeObject(msg);
+            oout.flush();
+
+            //Deserializa a resposta recebida em socket
+            RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
+
+            if (response == null) {
+                System.out.println("O servidor nao enviou qualquer respota antes de"
+                        + " fechar aligacao TCP!");
+            }
+
+            return response.response;
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

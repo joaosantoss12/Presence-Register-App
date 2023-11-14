@@ -203,7 +203,7 @@ public class ClientUI {
 
     private void gerarFicheiroCSVEvento() {
         String idEvento = PAInput.readString("ID do evento: ", true);
-        manageConnections.generateCSV_event(idEvento);
+        System.out.println(manageConnections.generateCSV_event(idEvento));
     }
 
     private void consultarPresencasPorAluno() {
@@ -230,7 +230,8 @@ public class ClientUI {
     }
 
     private void gerarFicheiroCSVPresencas() {
-        
+        String email = PAInput.readString("Email do aluno: ", true);
+        System.out.println(manageConnections.generateCSV_student(email));
     }
 
     private void eliminarPresencasEvento() {
@@ -309,6 +310,7 @@ public class ClientUI {
     }
 
     private void gerarFicheiroCSV() {
+        System.out.println(manageConnections.generateCSV_student_own());
     }
 
 

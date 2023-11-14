@@ -181,6 +181,16 @@ public class ProcessClientRequest extends Thread {
                             response.resultado = true;
                             oout.writeObject(response);
                         }
+                        case REQUESTS.ADMIN_REQUEST_GENERATE_CSV_STUDENT -> {
+                            ArrayList<ArrayList<String>> presencesList = manageDB.checkPresences(requestClientServerAdmin.emailToManagePresence);    // ID DO EVENTO
+                            ArrayList<String> studentInfo = manageDB.checkStudent(requestClientServerAdmin.emailToManagePresence);
+
+                            generateCSV2(presencesList, studentInfo);
+
+                            response.response = "CSV gerado com sucesso!";
+                            response.resultado = true;
+                            oout.writeObject(response);
+                        }
                     }
                 }
 
@@ -286,6 +296,16 @@ public class ProcessClientRequest extends Thread {
 
                             oout.writeObject(response);
                         }
+                        case REQUESTS.CLIENT_REQUEST_GENERATE_CSV_STUDENT -> {
+                            ArrayList<ArrayList<String>> presencesList = manageDB.checkPresences(requestClientServer.email);    // ID DO EVENTO
+                            ArrayList<String> studentInfo = manageDB.checkStudent(requestClientServer.email);
+
+                            generateCSV2(presencesList, studentInfo);
+
+                            response.response = "CSV gerado com sucesso!";
+                            response.resultado = true;
+                            oout.writeObject(response);
+                        }
                     }
                 }
             }
@@ -329,16 +349,9 @@ public class ProcessClientRequest extends Thread {
         }
     }
 
+
+
     public void generateCSV(ArrayList<ArrayList<String>> presencesList, ArrayList<String> eventInfo){
-        // GENERATE ONLY ONE CSV FILE WITH THE RECEIVED INFO WITH THIS FORMAT:
-        // “Designação”;" PD 2023/24 – TP1 – Aula 1"
-        //“Local”:”DEIS/ISEC – L1.7, Coimbra”
-        //“Data”;"12";"10”;”2023"
-        //“Hora início”;"14”;”30"
-        //“Hora fim”;”17”;”30”
-        //“Nome”;“Número identificação”;"Email”
-        //“João Silva”;”202011111”;”joao.silva@isec.pt”
-        //“Joana Sila”;”202011122”;”joana.sila@isec.pt”
 
         String csvFile = CSV_FILES_PATH + "/" + eventInfo.get(0) + ".csv";
 
@@ -351,8 +364,30 @@ public class ProcessClientRequest extends Thread {
             bw.write("\"Nome\";\"Número identificação\";\"Email\"\n");
 
             for (ArrayList<String> l : presencesList) {
-                bw.write("\"" + l.get(0) + "\";\"" + l.get(2) + "\";\"" + l.get(3) + "\"\n");
+                bw.write("\"" + l.get(0) + "\";\"" + l.get(1) + "\";\"" + l.get(2) + "\"\n");
             }
+
+            bw.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void generateCSV2(ArrayList<ArrayList<String>> presencesList, ArrayList<String> studentInfo){
+
+        String csvFile = CSV_FILES_PATH + "/" + studentInfo.get(0) + ".csv";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
+            bw.write("\"Nome\";\"Número identificação\";\"Email\"\n");
+
+            bw.write("\"" + studentInfo.get(0) + "\";\"" + studentInfo.get(2) + "\";\"" + studentInfo.get(1) + "\"\n");
+
+
+            bw.write("\"Designação\";\"Local\";\"Data\";\"Hora início\"\n");
+            for (ArrayList<String> l : presencesList) {
+                bw.write("\"" + l.get(1) + "\";\"" + l.get(2) + "\";\"" + l.get(3) + "\";\"" + l.get(4) + "\"\n");
+            }
+
 
             bw.flush();
         } catch (IOException e) {

@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="UPDATES">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/CSSManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" afterDir="false" />
+    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="started GUI code">
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/FontManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ImageManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TP_v2.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TP_v2.0.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/ManageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/ManageDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/REQUESTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/REQUESTS.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,25 +37,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Program Files/Java/javafx-sdk-20.0.1/lib",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Java/javafx-sdk-20.0.1/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src\pt\isec\pd\a2020136093\server\model\jdbc" />
@@ -60,7 +64,7 @@
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainJFX">
+  <component name="RunManager" selected="Application.ServerMain">
     <configuration name="ClientMain (1)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.client.ClientMain" />
       <module name="TP_v2.0" />
@@ -125,9 +129,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainJFX" />
         <item itemvalue="Application.ClientMain" />
         <item itemvalue="Application.ServerMain" />
+        <item itemvalue="Application.MainJFX" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +167,8 @@
       <workItem from="1699543556269" duration="56000" />
       <workItem from="1699897381637" duration="338000" />
       <workItem from="1699906752552" duration="6866000" />
-      <workItem from="1699977386914" duration="900000" />
+      <workItem from="1699977386914" duration="985000" />
+      <workItem from="1699983737858" duration="2991000" />
     </task>
     <task id="LOCAL-00001" summary="added features + updated old ones">
       <created>1698669978617</created>
@@ -179,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699913607149</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="started GUI code">
+      <created>1699978337145</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699978337146</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +200,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added features + updated old ones" />
     <MESSAGE value="UPDATES" />
-    <option name="LAST_COMMIT_MESSAGE" value="UPDATES" />
+    <MESSAGE value="started GUI code" />
+    <option name="LAST_COMMIT_MESSAGE" value="started GUI code" />
   </component>
 </project>
