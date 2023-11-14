@@ -45,7 +45,7 @@ public class Multicast_SendHeartbeat extends Thread {
 
                 datagramSocket.send(dpSend);
 
-                Thread.sleep(TIMEOUT_HEARTBEAT_MILLISECONDS);
+                Thread.sleep(TIMEOUT_HEARTBEAT);
             } catch (InterruptedException | IOException e) {
                 throw new RuntimeException(e);
             }

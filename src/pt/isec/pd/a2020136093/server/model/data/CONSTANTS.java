@@ -8,8 +8,9 @@ public class CONSTANTS {
 
     public static final String MULTICAST_IP = "230.44.44.44";
     public static final int MULTICAST_PORT = 4444;
-    public final static int TIMEOUT_HEARTBEAT_MILLISECONDS = 10 * 1000;
+    public final static int TIMEOUT_HEARTBEAT = 10 * 1000;
     public final static String NETWORK_INTERFACE_NAME = "lan";
+    public final static int TIMETOUT_SERVER_BACKUP = 30;
 
 
 }

@@ -8,12 +8,35 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
 
+import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.TIMETOUT_SERVER_BACKUP;
+
 public class Multicast_ReadHearbeat extends Thread {
     public static int MAX_SIZE = 1000;
     protected MulticastSocket s;
 
+    boolean timeout = false;
+    int timeout_current_seconds = 0;
+
     public Multicast_ReadHearbeat(MulticastSocket s) {
         this.s = s;
+
+        Thread timerThread = new Thread(() -> {
+            while (!timeout) {
+                try {
+                    ++timeout_current_seconds;
+                    System.out.println("SECONDS: " + timeout_current_seconds);
+
+                    if (timeout_current_seconds >= TIMETOUT_SERVER_BACKUP / 3)
+                        timeout = true;
+
+
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        timerThread.start();
     }
 
     @Override
@@ -26,8 +49,7 @@ public class Multicast_ReadHearbeat extends Thread {
             return;
 
         try {
-
-            while (true) {
+            while (!timeout) {
 
                 pkt = new DatagramPacket(new byte[MAX_SIZE], MAX_SIZE);
                 s.receive(pkt);
@@ -44,11 +66,9 @@ public class Multicast_ReadHearbeat extends Thread {
                         System.out.print("RECEIVED HEARTBEAT FROM " + serverData.getServerIP() + ":" + serverData.getServerPort());
                         System.out.println("\n[INFO]\n-> DatabaseVersion: " + serverData.getServerDBVersion() + " RMI_NAME: " + serverData.getRMI_NAME() + " RMI_PORT: " + serverData.getRMI_PORT());
 
+                        timeout_current_seconds = 0;
                     }
-                    else if (obj instanceof String) {
 
-                        System.out.println((String) obj + " (" + obj.getClass() + ")");
-                    }
 
                 } catch (ClassNotFoundException e) {
                     System.out.println();
@@ -60,9 +80,15 @@ public class Multicast_ReadHearbeat extends Thread {
                     System.out.println();
                     System.out.println("Excepcao: " + e);
                 }
-            }
-        } catch(IOException e) {
 
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+
+        System.out.println("Não foi recebido nenhum 'HEARBEAT' do servidor principal em 30 segundos!");
+        System.exit(-1);
+
     }
 }

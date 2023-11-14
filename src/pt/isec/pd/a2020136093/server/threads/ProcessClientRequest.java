@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
-import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.TIMEOUT_HEARTBEAT_MILLISECONDS;
 
 public class ProcessClientRequest extends Thread {
     private Socket nextClient;
