@@ -4,9 +4,25 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.TextInputDialog;
 
-public class ExitAlertUI {
+public class PopUpCreator {
+
+    public static String editName() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Update Name");
+        dialog.setHeaderText("Enter the new name:");
+        dialog.setContentText("Name:");
+
+        // Traditional way to get the response value.
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("New name: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
 
     public static void exitAlert(Button btnExit) {
 

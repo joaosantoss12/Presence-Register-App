@@ -2,24 +2,22 @@ package pt.isec.pd.a2020136093.client.ui.gui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
+import javafx.stage.Popup;
 
 public class MainMenuUI extends BorderPane {
 
     Font titleFont, buttonsFont;
-
+Popup p1;
     Label lblTitle;
     Button btnLogin,btnRegister,btnExit;
 
     public MainMenuUI() {
+        p1 = new Popup();
 
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
@@ -66,8 +64,9 @@ public class MainMenuUI extends BorderPane {
         RootPane.addPropertyChangeListener("SHOWREGISTER", evt -> { update(); });
 
         btnLogin.setOnAction( event -> {
-            RootPane.setShowMainMenu(false);
-            RootPane.setShowLogin(true);
+            //RootPane.setShowMainMenu(false);
+            //RootPane.setShowLogin(true);
+            PopUpCreator.editName();
         });
 
         btnRegister.setOnAction( event -> {
@@ -80,7 +79,7 @@ public class MainMenuUI extends BorderPane {
         });
 
 
-        ExitAlertUI.exitAlert(btnExit);
+        PopUpCreator.exitAlert(btnExit);
     }
 
 
