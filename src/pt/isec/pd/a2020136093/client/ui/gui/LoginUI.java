@@ -83,7 +83,6 @@ public class LoginUI extends BorderPane {
             RootPane.setShowLogin(true);
             RootPane.setShowMainMenu(false);
 
-            update();
         });
 
         btnBack.setOnAction( event -> {
