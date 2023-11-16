@@ -2,24 +2,21 @@ package pt.isec.pd.a2020136093.client.ui.gui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
-public class MainMenuUI extends BorderPane {
+public class LoginUI extends BorderPane {
 
-    Font titleFont, buttonsFont;
+    VBox vbox1, vbox2;
+    TextField emailField;
+    TextField passwordField;
 
-    Label lblTitle;
-    Button btnLogin,btnRegister,btnExit;
+    Label lblTitle, lblEmail, lblPassword;
+    Button btnLogin,btnBack;
 
-    public MainMenuUI() {
+    public LoginUI() {
 
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
@@ -33,17 +30,33 @@ public class MainMenuUI extends BorderPane {
     private void createViews() {
         this.setBackground(new Background(new BackgroundFill(Color.rgb(240, 240, 240), null, null)));
 
-        lblTitle = new Label("PRESENCE REGISTER");
+        lblTitle = new Label("LOGIN");
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
+
+        vbox1 = new VBox();
+        emailField = new TextField();
+        //emailField.setPromptText("Email");
+        emailField.setMaxWidth(690);
+        lblEmail = new Label("Email");
+        vbox1.getChildren().addAll(lblEmail, emailField);
+        vbox1.alignmentProperty().setValue(Pos.CENTER);
+
+        vbox2 = new VBox();
+        passwordField = new TextField();
+        //passwordField.setPromptText("Password");
+        passwordField.setMaxWidth(690);
+        lblPassword = new Label("Password");
+        vbox2.getChildren().addAll(lblPassword, passwordField);
+        vbox2.alignmentProperty().setValue(Pos.CENTER);
+
 
         btnLogin = createStyledButton("LOGIN");
         btnLogin.setMinWidth(120);
-        btnRegister = createStyledButton("REGISTAR");
-        btnRegister.setMinWidth(120);
-        btnExit = createStyledButton("SAIR");
-        btnExit.setMinWidth(120);
+        btnBack = createStyledButton("VOLTAR");
+        btnBack.setMinWidth(120);
 
-        VBox vBox = new VBox(lblTitle, btnLogin, btnRegister, btnExit);
+
+        VBox vBox = new VBox(lblTitle, vbox1, vbox2, btnLogin, btnBack);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
         VBox.setMargin(btnLogin, new Insets(25, 0, 0, 0)); // Set top margin for the button
@@ -53,7 +66,7 @@ public class MainMenuUI extends BorderPane {
 
     private Button createStyledButton(String text) {
         Button button = new Button(text);
-        button.setStyle("-fx-text-fill: black; -fx-font-size: 16px; ");
+        button.setStyle(" -fx-text-fill: black; -fx-font-size: 16px; ");
         return button;
     }
 
@@ -64,18 +77,20 @@ public class MainMenuUI extends BorderPane {
         RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
         RootPane.addPropertyChangeListener("SHOWLOGIN", evt -> { update(); });
 
+
         btnLogin.setOnAction( event -> {
-            RootPane.setShowMainMenu(false);
+
             RootPane.setShowLogin(true);
+            RootPane.setShowMainMenu(false);
+
+            update();
         });
 
-        btnRegister.setOnAction( event -> {
-            //tinyPacmanManager.setShowTopFive(true);
+        btnBack.setOnAction( event -> {
+            RootPane.setShowLogin(false);
+            RootPane.setShowMainMenu(true);
         });
 
-        btnExit.setOnAction( event -> {
-            //tinyPacmanManager.setShowCredits(true);
-        });
 
 
         //ExitAlertUI.exitAlert(btnExit);
@@ -83,7 +98,7 @@ public class MainMenuUI extends BorderPane {
 
 
     private void update(){
-        if(RootPane.showMainMenu){
+        if(RootPane.showLogin){
             this.setVisible(true);
         }else{
             this.setVisible(false);
