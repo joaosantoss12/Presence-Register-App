@@ -10,19 +10,86 @@ public class PopUpCreator {
 
     public static String editName() {
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Update Name");
-        dialog.setHeaderText("Enter the new name:");
-        dialog.setContentText("Name:");
+        dialog.setTitle("Atualizar Nome");
+        dialog.setHeaderText("Introduza o novo nome:");
+        dialog.setContentText("Nome:");
 
         // Traditional way to get the response value.
         return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("New name: " + result);
+                    System.out.println("Novo Nome: " + result);
 
                     return result;
                 })
                 .orElse(null);
     }
+
+    public static String editEmail() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Atualizar Email");
+        dialog.setHeaderText("Introduza o novo email:");
+        dialog.setContentText("Email:");
+
+        // Traditional way to get the response value.
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Novo email: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static String editPassword() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Atualizar Password");
+        dialog.setHeaderText("Introduza a nova password:");
+        dialog.setContentText("Password:");
+
+        // Traditional way to get the response value.
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Nova password: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static String editIDNumber() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Atualizar Numero de Identificacao");
+        dialog.setHeaderText("Introduza o novo numero de identificacao:");
+        dialog.setContentText("Numero de Identificacao:");
+
+        // Traditional way to get the response value.
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Novo numero de identificacao: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static String enterPresCode() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Submeter codigo de presenca");
+        dialog.setHeaderText("Introduza o codigo de presenca:");
+        dialog.setContentText("Codigo de presenca:");
+
+        // Traditional way to get the response value.
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Codigo de presenca: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+
+
 
     public static void exitAlert(Button btnExit) {
 
