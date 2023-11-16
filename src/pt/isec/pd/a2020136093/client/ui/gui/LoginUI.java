@@ -1,11 +1,14 @@
 package pt.isec.pd.a2020136093.client.ui.gui;
 
+import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 
 public class LoginUI extends BorderPane {
     ManageConnections mc;
