@@ -1,4 +1,4 @@
-package pt.isec.pd.a2020136093.client.ui.gui.ADMIN;
+package pt.isec.pd.a2020136093.client.ui.gui.STUDENT;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,15 +10,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import pt.isec.pd.a2020136093.client.ui.gui.PopUpCreator;
 import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
 
-public class MenuAdminUI extends BorderPane {
+public class MenuStudentUI extends BorderPane {
     Font titleFont, buttonsFont;
 
     Label lblTitle;
-    Button btnCreateNewEvent, btnEditEvent,btnExit;
+    Button btnLogin, btnEnterPresCode,btnExit;
 
-    public MenuAdminUI() {
+    public MenuStudentUI() {
 
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
@@ -32,40 +33,25 @@ public class MenuAdminUI extends BorderPane {
     private void createViews() {
         this.setBackground(new Background(new BackgroundFill(Color.rgb(240, 240, 240), null, null)));
 
-        lblTitle = new Label("Bem-vindo admin");
+        lblTitle = new Label("Bem-vindo user");
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
 
-        btnCreateNewEvent = createStyledButton("Criar novo evento");
-        btnCreateNewEvent.setMinWidth(120);
-        btnEditEvent = createStyledButton("Editar evento");
-        btnEditEvent.setMinWidth(120);
-        btnExit = createStyledButton("Eliminar evento");
+        btnLogin = createStyledButton("Editar dados de registo");
+        btnLogin.setMinWidth(120);
+        btnEnterPresCode = createStyledButton("Submeter codigo de presenca");
+        btnEnterPresCode.setMinWidth(120);
+        btnExit = createStyledButton("Consultar presencas");
         btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Consultar eventos");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Gerar codigo para evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Consultar presencas em evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Gerar ficheiro CSV(presencas em evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Consultar presencas em eventos (por aluno");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Gerar ficheiro CSV (presencas por aluno");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Eliminar presencas de um evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Inserir presenca em evento");
+        btnExit = createStyledButton("Gerar fiheiro CSV (registo de presencas)");
         btnExit.setMinWidth(120);
         btnExit = createStyledButton("Logout");
         btnExit.setMinWidth(120);
 
 
-
-        VBox vBox = new VBox(lblTitle, btnCreateNewEvent, btnEditEvent, btnExit);
+        VBox vBox = new VBox(lblTitle, btnLogin, btnEnterPresCode, btnExit);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
-        VBox.setMargin(btnCreateNewEvent, new Insets(25, 0, 0, 0)); // Set top margin for the button
+        VBox.setMargin(btnLogin, new Insets(25, 0, 0, 0)); // Set top margin for the button
 
         this.setCenter(vBox);
     }
@@ -83,12 +69,13 @@ public class MenuAdminUI extends BorderPane {
         RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
         RootPane.addPropertyChangeListener("SHOWLOGIN", evt -> { update(); });
 
-        btnCreateNewEvent.setOnAction(event -> {
-        //ligar AO CreateNewEventUI
+        btnLogin.setOnAction( event -> {
+            RootPane.setShowMainMenu(false);
+            RootPane.setShowLogin(true);
         });
 
-        btnEditEvent.setOnAction(event -> {
-            //tinyPacmanManager.setShowTopFive(true);
+        btnEnterPresCode.setOnAction(event -> {
+            PopUpCreator.enterPresCode();
         });
 
         btnExit.setOnAction( event -> {
@@ -107,4 +94,5 @@ public class MenuAdminUI extends BorderPane {
             this.setVisible(false);
         }
     }
+
 }
