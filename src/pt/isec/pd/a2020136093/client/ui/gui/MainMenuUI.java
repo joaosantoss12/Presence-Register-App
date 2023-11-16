@@ -8,16 +8,17 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 
 public class MainMenuUI extends BorderPane {
+    ManageConnections mc;
 
     Font titleFont, buttonsFont;
-Popup p1;
     Label lblTitle;
     Button btnLogin,btnRegister,btnExit;
 
-    public MainMenuUI() {
-        p1 = new Popup();
+    public MainMenuUI(ManageConnections mc) {
+        this.mc = mc;
 
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
@@ -64,9 +65,8 @@ Popup p1;
         RootPane.addPropertyChangeListener("SHOWREGISTER", evt -> { update(); });
 
         btnLogin.setOnAction( event -> {
-            //RootPane.setShowMainMenu(false);
-            //RootPane.setShowLogin(true);
-            PopUpCreator.editName();
+            RootPane.setShowMainMenu(false);
+            RootPane.setShowLogin(true);
         });
 
         btnRegister.setOnAction( event -> {

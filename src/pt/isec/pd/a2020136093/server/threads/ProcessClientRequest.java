@@ -26,7 +26,7 @@ public class ProcessClientRequest extends Thread {
         this.serverData = serverData;
 
         try {
-            nextClient.setSoTimeout(TIMEOUT_CLIENT_MILLISECONDS);
+            nextClient.setSoTimeout(TIMEOUT_CLIENT_MILLISECONDS);   // TIMEOUT PARA DESCONECTAR CLIENTE INATIVO
         } catch (SocketException e) {
             throw new RuntimeException(e);
         }

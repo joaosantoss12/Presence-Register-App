@@ -8,15 +8,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class LoginUI extends BorderPane {
+    ManageConnections mc;
 
     VBox vbox1, vbox2;
     TextField emailField;
     TextField passwordField;
 
-    Label lblTitle, lblEmail, lblPassword;
+    Label lblRetorno, lblTitle, lblEmail, lblPassword;
     Button btnLogin,btnBack;
 
-    public LoginUI() {
+    public LoginUI(ManageConnections mc) {
+        this.mc = mc;
 
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
@@ -49,6 +51,9 @@ public class LoginUI extends BorderPane {
         vbox2.getChildren().addAll(lblPassword, passwordField);
         vbox2.alignmentProperty().setValue(Pos.CENTER);
 
+        lblRetorno = new Label("");
+        lblRetorno.setVisible(false);
+
 
         btnLogin = createStyledButton("LOGIN");
         btnLogin.setMinWidth(120);
@@ -56,7 +61,7 @@ public class LoginUI extends BorderPane {
         btnBack.setMinWidth(120);
 
 
-        VBox vBox = new VBox(lblTitle, vbox1, vbox2, btnLogin, btnBack);
+        VBox vBox = new VBox(lblTitle, vbox1, vbox2, lblRetorno, btnLogin, btnBack);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
         VBox.setMargin(btnLogin, new Insets(25, 0, 0, 0)); // Set top margin for the button
@@ -79,9 +84,28 @@ public class LoginUI extends BorderPane {
 
 
         btnLogin.setOnAction( event -> {
+            if (mc != null) {
+                if (mc.login(emailField.getText(), passwordField.getText())) {
+                    lblRetorno.setVisible(true);
+                    lblRetorno.setText("Login efetuado com sucesso!");
+                    lblRetorno.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
 
-            RootPane.setShowLogin(true);
-            RootPane.setShowMainMenu(false);
+                    PauseTransition delay = new PauseTransition(Duration.seconds(2));
+
+                    delay.setOnFinished(e -> {
+                        RootPane.setShowLogin(false);
+                        RootPane.setShowMainMenu(true);
+                    });
+
+                } else {
+                    lblRetorno.setVisible(true);
+                    lblRetorno.setText("Credenciais erradas!");
+                    lblRetorno.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
+                }
+            }
+            else{
+                System.out.println("ManageConnections is null");
+            }
 
         });
 

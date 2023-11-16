@@ -3,19 +3,26 @@ package pt.isec.pd.a2020136093.client.ui.gui;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.layout.*;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 
 public class RootPane extends BorderPane {
+    ManageConnections mc;
     static PropertyChangeSupport pcs;
     public static boolean showMainMenu = true;
     public static boolean showLogin = false;
     public static boolean showRegister = false;
 
 
-    public RootPane(){
+    public RootPane(ManageConnections manageConnections){
+        this.mc = manageConnections;
+
+        if(this.mc == null)
+            System.out.println("NULO NO ROOTPANE");
+
         pcs = new PropertyChangeSupport(this);
 
         createViews();
@@ -27,9 +34,9 @@ public class RootPane extends BorderPane {
         //CSSManager.applyCSS(this,"styles.css");
 
         StackPane stackPane = new StackPane(
-                new MainMenuUI(),
-                new LoginUI(),
-                new RegisterUI()
+                new MainMenuUI(mc),
+                new LoginUI(mc),
+                new RegisterUI(mc)
                 //new MainMenuUI(tinyPacmanManager),
                 //new TopFiveUI(tinyPacmanManager),
                 //new CreditsUI(tinyPacmanManager),

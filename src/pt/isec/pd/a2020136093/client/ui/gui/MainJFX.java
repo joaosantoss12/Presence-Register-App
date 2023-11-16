@@ -1,10 +1,15 @@
 package pt.isec.pd.a2020136093.client.ui.gui;
 
+import com.sun.tools.javac.Main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pt.isec.pd.a2020136093.client.ClientMain;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 
 public class MainJFX extends Application {
+
+    ManageConnections mc;
 
     @Override
     public void init() throws Exception{
@@ -16,8 +21,10 @@ public class MainJFX extends Application {
         initGUI(new Stage(), "Presence Register");
     }
 
-    private void initGUI(Stage stage, String title){
-        RootPane rootPane = new RootPane();
+    public void initGUI(Stage stage,String title){
+        this.mc = ClientMain.mc;
+
+        RootPane rootPane = new RootPane(mc);
         Scene scene = new Scene(rootPane,900,725);
         //stage.getIcons().add(ImageManager.getImage("pacman-icon.png"));
         stage.setScene(scene);

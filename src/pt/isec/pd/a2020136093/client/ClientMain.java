@@ -1,6 +1,8 @@
 package pt.isec.pd.a2020136093.client;
 
+import javafx.application.Application;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.ui.gui.MainJFX;
 import pt.isec.pd.a2020136093.client.ui.text.ClientUI;
 
 import java.io.IOException;
@@ -9,9 +11,10 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ClientMain {
-    private static final Boolean useGUI = false;
-
+    public static ManageConnections mc;
     public static void main(String[] args) {
+        boolean useGUI = true;
+
 
         if(args.length != 2){
             System.err.println("Invalid number of arguments");
@@ -21,12 +24,12 @@ public class ClientMain {
         final String SERVER_IP = args[0];
         final int SERVER_PORT = Integer.parseInt(args[1]);
 
+        mc = new ManageConnections(SERVER_IP, SERVER_PORT);
 
         if(useGUI) {
-
+            Application.launch(MainJFX.class, args);
         }
         else {
-            ManageConnections mc = new ManageConnections(SERVER_IP, SERVER_PORT);
             ClientUI ui = new ClientUI(mc);
             ui.start();
         }

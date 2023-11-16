@@ -6,8 +6,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 
 public class RegisterUI extends BorderPane {
+    ManageConnections mc;
 
     VBox vbox1, vbox2, vbox3, vbox4;
     TextField nameField, emailField, passwordField, nIdentificacaoField;
@@ -15,8 +17,9 @@ public class RegisterUI extends BorderPane {
     Label lblTitle, lblName, lblEmail, lblPassword, lblNIdentificacao;
     Button btnRegister,btnBack;
 
-    public RegisterUI() {
+    public RegisterUI(ManageConnections mc) {
 
+        this.mc = mc;
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
 

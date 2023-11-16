@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updated packages">
+    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="popup creator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ExitAlertUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/PopUpCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RegisterUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RegisterUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" afterDir="false" />
+    </list>
+    <list id="ca9b34a4-0cae-460e-9431-52e8c24e91fb" name="Changes by joaom" comment="">
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +32,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="ca9b34a4-0cae-460e-9431-52e8c24e91fb" />
+        <range start1="8" end1="8" start2="9" end2="11" changelist="ca9b34a4-0cae-460e-9431-52e8c24e91fb" />
+        <range start1="10" end1="10" start2="13" end2="14" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="15" end1="16" start2="19" end2="20" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="18" end1="19" start2="22" end2="24" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="50" end1="50" start2="55" end2="58" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="58" end1="59" start2="66" end2="67" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="81" end1="81" start2="89" end2="96" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="82" end1="84" start2="97" end2="111" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -39,6 +62,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "last_opened_file_path": "C:/Program Files/Java/javafx-sdk-20.0.1/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -60,7 +84,7 @@
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainJFX">
+  <component name="RunManager" selected="Application.ClientMain">
     <configuration name="ClientMain (1)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.client.ClientMain" />
       <module name="TP_v2.0" />
@@ -140,9 +164,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainJFX" />
         <item itemvalue="Application.ClientMain" />
         <item itemvalue="Application.ServerMain" />
+        <item itemvalue="Application.MainJFX" />
         <item itemvalue="Application.ServerMain_Backup" />
       </list>
     </recent_temporary>
@@ -217,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700147165710</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="popup creator">
+      <created>1700148704568</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700148704568</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +260,7 @@
     <MESSAGE value="started GUI code" />
     <MESSAGE value="updates" />
     <MESSAGE value="updated packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated packages" />
+    <MESSAGE value="popup creator" />
+    <option name="LAST_COMMIT_MESSAGE" value="popup creator" />
   </component>
 </project>
