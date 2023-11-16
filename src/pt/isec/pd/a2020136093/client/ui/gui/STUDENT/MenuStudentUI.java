@@ -10,17 +10,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 import pt.isec.pd.a2020136093.client.ui.gui.PopUpCreator;
 import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
 
 public class MenuStudentUI extends BorderPane {
+    ManageConnections mc;
     Font titleFont, buttonsFont;
 
     Label lblTitle;
-    Button btnLogin, btnEnterPresCode,btnExit;
+    Button btnEditData, btnSubmitCode, btnPresences, btnCSV, btnLogout;
 
-    public MenuStudentUI() {
-
+    public MenuStudentUI(ManageConnections mc) {
+        this.mc = mc;
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
 
@@ -36,22 +38,22 @@ public class MenuStudentUI extends BorderPane {
         lblTitle = new Label("Bem-vindo user");
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
 
-        btnLogin = createStyledButton("Editar dados de registo");
-        btnLogin.setMinWidth(120);
-        btnEnterPresCode = createStyledButton("Submeter codigo de presenca");
-        btnEnterPresCode.setMinWidth(120);
-        btnExit = createStyledButton("Consultar presencas");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Gerar fiheiro CSV (registo de presencas)");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Logout");
-        btnExit.setMinWidth(120);
+        btnEditData = createStyledButton("Editar dados de registo");
+        btnEditData.setMinWidth(120);
+        btnSubmitCode = createStyledButton("Submeter codigo de presenca");
+        btnSubmitCode.setMinWidth(120);
+        btnPresences = createStyledButton("Consultar presencas");
+        btnPresences.setMinWidth(120);
+        btnCSV = createStyledButton("Gerar fiheiro CSV (registo de presencas)");
+        btnCSV.setMinWidth(120);
+        btnLogout = createStyledButton("Logout");
+        btnLogout.setMinWidth(120);
 
 
-        VBox vBox = new VBox(lblTitle, btnLogin, btnEnterPresCode, btnExit);
+        VBox vBox = new VBox(lblTitle, btnEditData, btnSubmitCode, btnPresences, btnCSV, btnLogout);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
-        VBox.setMargin(btnLogin, new Insets(25, 0, 0, 0)); // Set top margin for the button
+        VBox.setMargin(btnEditData, new Insets(25, 0, 0, 0)); // Set top margin for the button
 
         this.setCenter(vBox);
     }
@@ -63,22 +65,19 @@ public class MenuStudentUI extends BorderPane {
     }
 
 
-
-
     private void registerHandlers() {
         RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
-        RootPane.addPropertyChangeListener("SHOWLOGIN", evt -> { update(); });
+        RootPane.addPropertyChangeListener("SHOWSTUDENTMENU", evt -> { update(); });
 
-        btnLogin.setOnAction( event -> {
-            RootPane.setShowMainMenu(false);
-            RootPane.setShowLogin(true);
+        btnEditData.setOnAction(event -> {
+
         });
 
-        btnEnterPresCode.setOnAction(event -> {
+        btnSubmitCode.setOnAction(event -> {
             PopUpCreator.enterPresCode();
         });
 
-        btnExit.setOnAction( event -> {
+        btnPresences.setOnAction(event -> {
             //tinyPacmanManager.setShowCredits(true);
         });
 
@@ -88,7 +87,7 @@ public class MenuStudentUI extends BorderPane {
 
 
     private void update(){
-        if(RootPane.showMainMenu){
+        if(RootPane.showStudentMenu){
             this.setVisible(true);
         }else{
             this.setVisible(false);

@@ -10,15 +10,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
 
 public class MenuAdminUI extends BorderPane {
+    ManageConnections mc;
     Font titleFont, buttonsFont;
 
     Label lblTitle;
     Button btnCreateNewEvent, btnEditEvent,btnExit;
 
-    public MenuAdminUI() {
+    public MenuAdminUI(ManageConnections mc) {
+
+        this.mc = mc;
 
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
@@ -81,7 +85,7 @@ public class MenuAdminUI extends BorderPane {
 
     private void registerHandlers() {
         RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
-        RootPane.addPropertyChangeListener("SHOWLOGIN", evt -> { update(); });
+        RootPane.addPropertyChangeListener("SHOWADMINMENU", evt -> { update(); });
 
         btnCreateNewEvent.setOnAction(event -> {
         //ligar AO CreateNewEventUI
@@ -101,7 +105,7 @@ public class MenuAdminUI extends BorderPane {
 
 
     private void update(){
-        if(RootPane.showMainMenu){
+        if(RootPane.showAdminMenu){
             this.setVisible(true);
         }else{
             this.setVisible(false);

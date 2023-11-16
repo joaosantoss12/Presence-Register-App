@@ -87,28 +87,26 @@ public class LoginUI extends BorderPane {
 
 
         btnLogin.setOnAction( event -> {
-            if (mc != null) {
-                if (mc.login(emailField.getText(), passwordField.getText())) {
-                    lblRetorno.setVisible(true);
-                    lblRetorno.setText("Login efetuado com sucesso!");
-                    lblRetorno.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
 
-                    PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            if (mc.login(emailField.getText(), passwordField.getText())) {
+                /*lblRetorno.setVisible(true);
+                lblRetorno.setText("Login efetuado com sucesso!");
+                lblRetorno.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");*/
 
-                    delay.setOnFinished(e -> {
-                        RootPane.setShowLogin(false);
-                        RootPane.setShowMainMenu(true);
-                    });
+                RootPane.setShowLogin(false);
 
-                } else {
-                    lblRetorno.setVisible(true);
-                    lblRetorno.setText("Credenciais erradas!");
-                    lblRetorno.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
-                }
+                if(mc.isAdmin())
+                    RootPane.setShowAdminMenu(true);
+                else
+                    RootPane.setShowStudentMenu(true);
+
             }
-            else{
-                System.out.println("ManageConnections is null");
+            else {
+                lblRetorno.setVisible(true);
+                lblRetorno.setText("Credenciais erradas ou Conexão com servidor perdida!");
+                lblRetorno.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
             }
+
 
         });
 

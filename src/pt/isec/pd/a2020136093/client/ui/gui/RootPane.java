@@ -1,9 +1,9 @@
 package pt.isec.pd.a2020136093.client.ui.gui;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.layout.*;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.ui.gui.ADMIN.MenuAdminUI;
+import pt.isec.pd.a2020136093.client.ui.gui.STUDENT.MenuStudentUI;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -15,6 +15,8 @@ public class RootPane extends BorderPane {
     public static boolean showMainMenu = true;
     public static boolean showLogin = false;
     public static boolean showRegister = false;
+    public static boolean showStudentMenu = false;
+    public static boolean showAdminMenu = false;
 
 
     public RootPane(ManageConnections manageConnections){
@@ -36,13 +38,9 @@ public class RootPane extends BorderPane {
         StackPane stackPane = new StackPane(
                 new MainMenuUI(mc),
                 new LoginUI(mc),
-                new RegisterUI(mc)
-                //new MainMenuUI(tinyPacmanManager),
-                //new TopFiveUI(tinyPacmanManager),
-                //new CreditsUI(tinyPacmanManager),
-                //new GameUI(tinyPacmanManager),
-                //new PacmanWonUI(tinyPacmanManager),
-                //new PacmanLostUI(tinyPacmanManager)
+                new RegisterUI(mc),
+                new MenuStudentUI(mc),
+                new MenuAdminUI(mc)
         );
 
         this.setCenter(stackPane);
@@ -71,6 +69,14 @@ public class RootPane extends BorderPane {
     public static void setShowRegister(boolean b){
         showRegister = b;
         pcs.firePropertyChange("SHOWREGISTER", null, null);
+    }
+    public static void setShowStudentMenu(boolean b){
+        showStudentMenu = b;
+        pcs.firePropertyChange("SHOWSTUDENTMENU", null, null);
+    }
+    public static void setShowAdminMenu(boolean b){
+        showAdminMenu = b;
+        pcs.firePropertyChange("SHOWADMINMENU", null, null);
     }
 
 
