@@ -12,6 +12,7 @@ public class RootPane extends BorderPane {
     static PropertyChangeSupport pcs;
     public static boolean showMainMenu = true;
     public static boolean showLogin = false;
+    public static boolean showRegister = false;
 
 
     public RootPane(){
@@ -27,7 +28,8 @@ public class RootPane extends BorderPane {
 
         StackPane stackPane = new StackPane(
                 new MainMenuUI(),
-                new LoginUI()
+                new LoginUI(),
+                new RegisterUI()
                 //new MainMenuUI(tinyPacmanManager),
                 //new TopFiveUI(tinyPacmanManager),
                 //new CreditsUI(tinyPacmanManager),
@@ -50,6 +52,7 @@ public class RootPane extends BorderPane {
         pcs.addPropertyChangeListener(property, listener);
     }
 
+
     public static void setShowMainMenu(boolean b){
         showMainMenu = b;
         pcs.firePropertyChange("SHOWMENU", null, null);
@@ -57,6 +60,10 @@ public class RootPane extends BorderPane {
     public static void setShowLogin(boolean b){
         showLogin = b;
         pcs.firePropertyChange("SHOWLOGIN", null, null);
+    }
+    public static void setShowRegister(boolean b){
+        showRegister = b;
+        pcs.firePropertyChange("SHOWREGISTER", null, null);
     }
 
 

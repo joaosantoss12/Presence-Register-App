@@ -63,6 +63,7 @@ public class MainMenuUI extends BorderPane {
     private void registerHandlers() {
         RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
         RootPane.addPropertyChangeListener("SHOWLOGIN", evt -> { update(); });
+        RootPane.addPropertyChangeListener("SHOWREGISTER", evt -> { update(); });
 
         btnLogin.setOnAction( event -> {
             RootPane.setShowMainMenu(false);
@@ -70,15 +71,16 @@ public class MainMenuUI extends BorderPane {
         });
 
         btnRegister.setOnAction( event -> {
-            //tinyPacmanManager.setShowTopFive(true);
+            RootPane.setShowMainMenu(false);
+            RootPane.setShowRegister(true);
         });
 
         btnExit.setOnAction( event -> {
-            //tinyPacmanManager.setShowCredits(true);
+
         });
 
 
-        //ExitAlertUI.exitAlert(btnExit);
+        ExitAlertUI.exitAlert(btnExit);
     }
 
 
