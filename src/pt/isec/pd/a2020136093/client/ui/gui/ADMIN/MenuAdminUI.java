@@ -1,4 +1,4 @@
-package pt.isec.pd.a2020136093.client.ui.gui;
+package pt.isec.pd.a2020136093.client.ui.gui.ADMIN;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
 
 public class MenuAdminUI extends BorderPane {
     Font titleFont, buttonsFont;

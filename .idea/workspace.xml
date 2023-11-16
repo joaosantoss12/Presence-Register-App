@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updates">
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MenuAdminUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MenuStudentUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TP_v2.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TP_v2.0.iml" afterDir="false" />
-    </list>
+    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updates" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +91,7 @@
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-20.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pt.isec.pd.a2020136093.client.ui.gui.*" />
+          <option name="PATTERN" value="pt.isec.pd.a2020136093.client.ui.gui.ADMIN.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

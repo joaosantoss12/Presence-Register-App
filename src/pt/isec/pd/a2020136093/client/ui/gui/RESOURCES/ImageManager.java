@@ -1,4 +1,4 @@
-package pt.isec.pd.a2020136093.client.ui.gui;
+package pt.isec.pd.a2020136093.client.ui.gui.RESOURCES;
 
 import javafx.scene.image.Image;
 
