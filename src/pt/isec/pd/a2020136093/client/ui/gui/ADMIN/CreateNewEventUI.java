@@ -33,7 +33,7 @@ public class CreateNewEventUI extends BorderPane {
     private void createViews() {
         this.setBackground(new Background(new BackgroundFill(Color.rgb(240, 240, 240), null, null)));
 
-        lblTitle = new Label("Editar Evento");
+        lblTitle = new Label("Criar Evento");
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
 
 

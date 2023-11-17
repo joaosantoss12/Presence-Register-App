@@ -42,19 +42,24 @@ public class EditDataEventUI extends BorderPane {
 
         btnEditName = createStyledButton("Editar nome");
         btnEditName.setMinWidth(120);
+
         btnEditLocal = createStyledButton("Editar local");
         btnEditLocal.setMinWidth(120);
+
         btnEditData = createStyledButton("Editar data");
         btnEditData.setMinWidth(120);
+
         btnEditHourStart = createStyledButton("Editar hora de inicio");
         btnEditHourStart.setMinWidth(120);
+
         btnEditHourEnd = createStyledButton("Editar hora de fim");
         btnEditHourEnd.setMinWidth(120);
+
         btnBack = createStyledButton("Voltar");
         btnBack.setMinWidth(120);
 
 
-        VBox vBox = new VBox(lblTitle, btnEditName, btnEditLocal, btnEditData, btnEditHourStart, btnEditHourEnd);
+        VBox vBox = new VBox(lblTitle, btnEditName, btnEditLocal, btnEditData, btnEditHourStart, btnEditHourEnd,btnBack);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
         VBox.setMargin(btnEditName, new Insets(25, 0, 0, 0)); // Set top margin for the button

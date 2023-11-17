@@ -294,7 +294,7 @@ public class ManageConnections {
         return null;
     }
 
-    public void generateEventCode(String eventoID){
+    public boolean generateEventCode(String eventoID){
         Random random = new Random();
         int code = random.nextInt(999999-100000+1)+100000;
 
@@ -330,6 +330,8 @@ public class ManageConnections {
                 return false;
             }
         }while(!done);
+
+        return true;
     }
     public ArrayList<ArrayList<String>> checkPresencesEvent(String id){
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();

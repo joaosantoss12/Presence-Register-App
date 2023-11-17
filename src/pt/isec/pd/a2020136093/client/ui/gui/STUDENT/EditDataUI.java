@@ -57,7 +57,7 @@ public class EditDataUI extends BorderPane {
         btnBack.setMinWidth(120);
 
 
-        VBox vBox = new VBox(lblTitle, btnEditName, btnEditEmail, btnEditPassword);
+        VBox vBox = new VBox(lblTitle, btnEditName, btnEditEmail, btnEditPassword, btnEditIDNumber, btnBack, lblResultado);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
         VBox.setMargin(btnEditName, new Insets(25, 0, 0, 0)); // Set top margin for the button
