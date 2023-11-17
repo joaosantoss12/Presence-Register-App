@@ -118,4 +118,68 @@ public class PopUpCreator {
             });
         });
     }
+
+    public static void editLocal() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Atualizar Local");
+        dialog.setHeaderText("Introduza o novo local:");
+        dialog.setContentText("Local:");
+
+        // Traditional way to get the response value.
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Novo local: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static void editData() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Atualizar Data");
+        dialog.setHeaderText("Introduza a nova data:");
+        dialog.setContentText("Data:");
+
+        // Traditional way to get the response value.
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Nova data: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static void editHourStart() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Atualizar Hora de Inicio");
+        dialog.setHeaderText("Introduza a nova hora de inicio:");
+        dialog.setContentText("Hora de Inicio:");
+
+        // Traditional way to get the response value.
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Nova hora de inicio: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static void editHourEnd() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Atualizar Hora de Fim");
+        dialog.setHeaderText("Introduza a nova hora de fim:");
+        dialog.setContentText("Hora de Fim:");
+
+        // Traditional way to get the response value.
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Nova hora de fim: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
 }

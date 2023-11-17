@@ -76,19 +76,19 @@ public class EditDataEventUI extends BorderPane {
         });
 
         btnEditLocal.setOnAction(event -> {
-           // PopUpCreator.editEmail();
+            PopUpCreator.editLocal();
         });
 
         btnEditData.setOnAction(event -> {
-            //PopUpCreator.editPassword();
+            PopUpCreator.editData();
         });
 
         btnEditHourStart.setOnAction(event -> {
-           // PopUpCreator.editIDNumber();
+            PopUpCreator.editHourStart();
         });
 
         btnEditHourEnd.setOnAction(event -> {
-           // PopUpCreator.editIDNumber();
+            PopUpCreator.editHourEnd();
         });
 
 

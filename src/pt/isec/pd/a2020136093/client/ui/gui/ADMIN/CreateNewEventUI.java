@@ -13,10 +13,10 @@ import javafx.scene.paint.Color;
 import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
 
 public class CreateNewEventUI extends BorderPane {
-    VBox vbox1, vbox2, vbox3, vbox4;
+    VBox vbox1, vbox2;
     TextField nameField, EventField, Event2Field, nIdentificacaoField;
 
-    Label lblTitle, lblName, lblNameEvent, lblLocalEvent, lblNIdentificacao, lblDateEvent, lblHourEventStart, lblHourEventEnd;
+    Label lblTitle, lblNameEvent, lblLocalEvent, lblDateEvent, lblHourEventStart, lblHourEventEnd;
     Button btnCreateEvent,btnBack;
 
     public CreateNewEventUI() {
@@ -60,7 +60,7 @@ public class CreateNewEventUI extends BorderPane {
         btnCreateEvent.setMinWidth(120);
 
 
-        VBox vBox = new VBox(lblTitle, vbox1, vbox2, vbox3, vbox4, btnCreateEvent);
+        VBox vBox = new VBox(lblTitle, vbox1, vbox2, btnCreateEvent);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
         VBox.setMargin(btnCreateEvent, new Insets(25, 0, 0, 0)); // Set top margin for the button

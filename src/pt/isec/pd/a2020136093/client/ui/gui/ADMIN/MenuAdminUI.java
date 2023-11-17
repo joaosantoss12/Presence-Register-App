@@ -88,15 +88,15 @@ public class MenuAdminUI extends BorderPane {
         RootPane.addPropertyChangeListener("SHOWADMINMENU", evt -> { update(); });
 
         btnCreateNewEvent.setOnAction(event -> {
-        //ligar AO CreateNewEventUI
+        //ligar ao CreateNewEventUI
         });
 
         btnEditEvent.setOnAction(event -> {
-            //tinyPacmanManager.setShowTopFive(true);
+            //ligar
         });
 
         btnExit.setOnAction( event -> {
-            //tinyPacmanManager.setShowCredits(true);
+            //ligar
         });
 
 
