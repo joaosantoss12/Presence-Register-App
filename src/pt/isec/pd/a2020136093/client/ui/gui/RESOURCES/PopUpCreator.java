@@ -1,10 +1,11 @@
 package pt.isec.pd.a2020136093.client.ui.gui;
 
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+
+import java.util.ArrayList;
 
 public class PopUpCreator {
 
@@ -72,16 +73,16 @@ public class PopUpCreator {
                 .orElse(null);
     }
 
-    public static String enterPresCode() {
+    public static String sendPresenceCode() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Submeter codigo de presenca");
-        dialog.setHeaderText("Introduza o codigo de presenca:");
+        //dialog.setHeaderText("Introduza o codigo de presenca:");
         dialog.setContentText("Codigo de presenca:");
 
         // Traditional way to get the response value.
         return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("Codigo de presenca: " + result);
+                    //System.out.println("Codigo de presenca: " + result);
 
                     return result;
                 })
@@ -181,5 +182,133 @@ public class PopUpCreator {
                     return result;
                 })
                 .orElse(null);
+    }
+
+    public static void deleteEventPopUp() {
+        // SET A FIELD SO THE ADMIN WRITES AN EVENT ID
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Apagar Evento");
+        dialog.setHeaderText("Introduza o ID do evento a apagar:");
+        dialog.setContentText("ID:");
+
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("ID DO EVENTO A APAGAR: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+
+    }
+
+    public static void checkEventsPopUp() {
+    }
+
+    public static void generateCodePopUp() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Gerar Codigo");
+        dialog.setHeaderText("Introduza o ID do evento:");
+        dialog.setContentText("ID:");
+
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("ID DO EVENTO: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static void checkEventPresencesPopUp() {
+    }
+
+    public static void generateCSV1PopUp() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Gerar CSV");
+        dialog.setHeaderText("Introduza o ID do evento:");
+        dialog.setContentText("ID:");
+
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("ID DO EVENTO: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static void checkStudentPresencesPopUp() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Consultar Presencas do Aluno");
+        dialog.setHeaderText("Introduza o email:");
+        dialog.setContentText("EMAIL:");
+
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("Email: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+
+
+    public static void checkPresencesPopUp(ArrayList<ArrayList<String>> listaPresencas) {
+        StringBuilder content = new StringBuilder();
+        content.append("REGISTO DE PRESENÇAS\n");
+        content.append(String.format("%-3s | %-15s | %-15s | %-15s | %-15s | %s\n", "ID", "Nome", "Local", "Data", "Hora de inicio", "Hora de fim"));
+        content.append("--------------------------------------------------------------------------------------\n");
+
+        for (int i = 0; i < listaPresencas.size(); i++) {
+            content.append(String.format("%-3s | %-15s | %-15s | %-15s | %-15s | %s\n",
+                    listaPresencas.get(i).get(0), listaPresencas.get(i).get(1), listaPresencas.get(i).get(2),
+                    listaPresencas.get(i).get(3), listaPresencas.get(i).get(4), listaPresencas.get(i).get(5)));
+        }
+
+        content.append("---------------------------------------------------------------------------------------\n");
+
+        // Create an alert with information type
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Presences Information");
+        alert.setHeaderText(null);
+
+        // Create a TextArea to display the content
+        TextArea textArea = new TextArea(content.toString());
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+
+        // Set the content of the alert to the TextArea
+        alert.getDialogPane().setContent(textArea);
+
+        // Expand the TextArea to fill the available space
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        // Show the alert
+        alert.showAndWait();
+    }
+
+    public static void generateSCV2PopUp() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Gerar CSV");
+        dialog.setHeaderText("Introduza o email do aluno::");
+        dialog.setContentText("EMAIL:");
+
+        dialog.showAndWait()
+                .map(result -> {
+                    System.out.println("EMAIL: " + result);
+
+                    return result;
+                })
+                .orElse(null);
+    }
+
+    public static void deletePresencePopUp() {
+
+    }
+
+    public static void addPresencePopUp() {
+
     }
 }
