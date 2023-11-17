@@ -10,16 +10,18 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
 
 public class CreateNewEventUI extends BorderPane {
-    VBox vbox1, vbox2;
-    TextField nameField, EventField, Event2Field, nIdentificacaoField;
+    ManageConnections mc;
+    VBox vbox1;
+    TextField EventNameField, EventLocalField, EventDateField, EventStartHourField, EventFinishHourField;
 
     Label lblTitle, lblNameEvent, lblLocalEvent, lblDateEvent, lblHourEventStart, lblHourEventEnd;
     Button btnCreateEvent,btnBack;
 
-    public CreateNewEventUI() {
+    public CreateNewEventUI(ManageConnections mc) {
 
 
         createViews();
@@ -35,32 +37,32 @@ public class CreateNewEventUI extends BorderPane {
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
 
 
-        vbox2 = new VBox();
-        EventField = new TextField();
-        EventField.setMaxWidth(690);
         lblNameEvent = new Label("Nome do Evento");
-        Event2Field = new TextField();
-        Event2Field.setMaxWidth(690);
-        lblLocalEvent = new Label("Local do Evento");
-        Event2Field = new TextField();
-        Event2Field.setMaxWidth(690);
-        lblDateEvent = new Label("Data do Evento");
-        Event2Field = new TextField();
-        Event2Field.setMaxWidth(690);
-        lblHourEventStart = new Label("Hora de inicio do Evento");
-        Event2Field = new TextField();
-        Event2Field.setMaxWidth(690);
-        lblHourEventEnd = new Label("Hora de fim do Evento");
-        vbox2.getChildren().addAll(lblNameEvent,lblLocalEvent,lblDateEvent, EventField);
-        vbox2.alignmentProperty().setValue(Pos.CENTER);
+        EventNameField = new TextField();
+        EventNameField.setMaxWidth(690);
 
+        lblLocalEvent = new Label("Local do Evento");
+        EventLocalField = new TextField();
+        EventLocalField.setMaxWidth(690);
+
+        lblDateEvent = new Label("Data do Evento [DD-MM-YYYY]");
+        EventDateField = new TextField();
+        EventDateField.setMaxWidth(690);
+
+        lblHourEventStart = new Label("Hora de inicio do Evento [HH:SS]");
+        EventStartHourField = new TextField();
+        EventStartHourField.setMaxWidth(690);
+
+        lblHourEventEnd = new Label("Hora de fim do Evento [HH:SS]");
+        EventFinishHourField = new TextField();
+        EventFinishHourField.setMaxWidth(690);
 
 
         btnCreateEvent = createStyledButton("CRIAR EVENTO");
         btnCreateEvent.setMinWidth(120);
 
 
-        VBox vBox = new VBox(lblTitle, vbox1, vbox2, btnCreateEvent);
+        VBox vBox = new VBox(lblTitle, lblNameEvent, EventNameField, lblLocalEvent, EventLocalField, lblDateEvent, EventDateField, lblHourEventStart, EventStartHourField, lblHourEventEnd, EventFinishHourField, btnCreateEvent);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
         VBox.setMargin(btnCreateEvent, new Insets(25, 0, 0, 0)); // Set top margin for the button
@@ -78,34 +80,27 @@ public class CreateNewEventUI extends BorderPane {
 
 
     private void registerHandlers() {
-        RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
-        RootPane.addPropertyChangeListener("SHOWREGISTER", evt -> { update(); });
+        //RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
+        //RootPane.addPropertyChangeListener("SHOWREGISTER", evt -> { update(); });
 
 
         btnCreateEvent.setOnAction(event -> {
 
-            RootPane.setShowRegister(false);
-            RootPane.setShowMainMenu(true);
 
-        });
 
-        btnBack.setOnAction( event -> {
-            RootPane.setShowRegister(false);
-            RootPane.setShowMainMenu(true);
         });
 
 
 
-        //ExitAlertUI.exitAlert(btnExit);
     }
 
 
     private void update(){
-        if(RootPane.showRegister){
+        /*if(RootPane.showRegister){
             this.setVisible(true);
         }else{
             this.setVisible(false);
-        }
+        }*/
     }
 
 

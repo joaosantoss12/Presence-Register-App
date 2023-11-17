@@ -10,16 +10,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import pt.isec.pd.a2020136093.client.ui.gui.PopUpCreator;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.PopUpCreator;
 import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
 
 public class EditDataEventUI extends BorderPane {
+    ManageConnections mc;
     Font titleFont, buttonsFont;
+
+    String id;
 
     Label lblTitle;
     Button btnEditName, btnEditLocal, btnEditData, btnEditHourStart, btnBack,btnEditHourEnd;
 
-    public EditDataEventUI() {
+    public EditDataEventUI(ManageConnections mc, String id) {
 
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
@@ -68,8 +72,8 @@ public class EditDataEventUI extends BorderPane {
 
 
     private void registerHandlers() {
-        RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
-        RootPane.addPropertyChangeListener("SHOWLOGIN", evt -> { update(); });
+        //RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
+        //RootPane.addPropertyChangeListener("SHOWLOGIN", evt -> { update(); });
 
         btnEditName.setOnAction(event -> {
             PopUpCreator.editName();
@@ -97,11 +101,11 @@ public class EditDataEventUI extends BorderPane {
 
 
     private void update(){
-        if(RootPane.showMainMenu){
+        /*if(RootPane.showMainMenu){
             this.setVisible(true);
         }else{
             this.setVisible(false);
-        }
+        }*/
     }
 
 }

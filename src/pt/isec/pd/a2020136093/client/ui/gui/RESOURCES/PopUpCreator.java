@@ -1,4 +1,4 @@
-package pt.isec.pd.a2020136093.client.ui.gui;
+package pt.isec.pd.a2020136093.client.ui.gui.RESOURCES;
 
 import javafx.application.Platform;
 import javafx.scene.control.*;
@@ -18,7 +18,7 @@ public class PopUpCreator {
         // Traditional way to get the response value.
         return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("Novo Nome: " + result);
+                    System.out.println();
 
                     return result;
                 })
@@ -34,7 +34,7 @@ public class PopUpCreator {
         // Traditional way to get the response value.
         return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("Novo email: " + result);
+                    System.out.println();
 
                     return result;
                 })
@@ -50,7 +50,7 @@ public class PopUpCreator {
         // Traditional way to get the response value.
         return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("Nova password: " + result);
+                    System.out.println();
 
                     return result;
                 })
@@ -66,7 +66,6 @@ public class PopUpCreator {
         // Traditional way to get the response value.
         return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("Novo numero de identificacao: " + result);
 
                     return result;
                 })
@@ -82,7 +81,7 @@ public class PopUpCreator {
         // Traditional way to get the response value.
         return dialog.showAndWait()
                 .map(result -> {
-                    //System.out.println("Codigo de presenca: " + result);
+                    System.out.println();
 
                     return result;
                 })
@@ -184,16 +183,16 @@ public class PopUpCreator {
                 .orElse(null);
     }
 
-    public static void deleteEventPopUp() {
+    public static String deleteEventPopUp() {
         // SET A FIELD SO THE ADMIN WRITES AN EVENT ID
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Apagar Evento");
         dialog.setHeaderText("Introduza o ID do evento a apagar:");
         dialog.setContentText("ID:");
 
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("ID DO EVENTO A APAGAR: " + result);
+                    System.out.println();
 
                     return result;
                 })
@@ -201,25 +200,103 @@ public class PopUpCreator {
 
     }
 
-    public static void checkEventsPopUp() {
+    public static void checkEventsPopUp(ArrayList<ArrayList<String>> listaEventos ) {
+        StringBuilder content = new StringBuilder();
+        content.append("Lista de Eventos\n");
+        content.append(String.format("%-3s | %-15s | %-15s | %-15s | %-15s | %s\n", "ID", "Nome", "Local", "Data", "Hora de inicio", "Hora de fim"));
+        content.append("--------------------------------------------------------------------------------------\n");
+
+        for (int i = 0; i < listaEventos.size(); i++) {
+            content.append(String.format("%-3s | %-15s | %-15s | %-15s | %-15s | %s\n",
+                    listaEventos.get(i).get(0), listaEventos.get(i).get(1), listaEventos.get(i).get(2),
+                    listaEventos.get(i).get(3), listaEventos.get(i).get(4), listaEventos.get(i).get(5)));
+        }
+
+        content.append("--------------------------------------------------------------------------------------\n");
+
+        // Create an alert with information type
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Lista de Eventos");
+        alert.setHeaderText(null);
+
+        // Create a TextArea to display the content
+        TextArea textArea = new TextArea(content.toString());
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+
+        // Set the content of the alert to the TextArea
+        alert.getDialogPane().setContent(textArea);
+
+        // Expand the TextArea to fill the available space
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        // Show the alert
+        alert.showAndWait();
     }
 
-    public static void generateCodePopUp() {
+    public static void checkEventsPresencesPopUp(ArrayList<ArrayList<String>> listaPresencas ) {
+        StringBuilder content = new StringBuilder();
+        content.append("Lista de Presencas\n");
+
+        content.append(String.format("%-15s | %-20s | %s\n","Nome","Email","nIdentificacao"));
+        content.append("--------------------------------------------------------------------------------------\n");
+
+        for(int i=0; i<listaPresencas.size(); i++){
+            content.append(String.format("%-15s | %-20s | %s\n",listaPresencas.get(i).get(0),listaPresencas.get(i).get(1),listaPresencas.get(i).get(2)));
+        }
+        content.append("--------------------------------------------------------------------------------------\n");
+
+
+        // Create an alert with information type
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Lista de Presenças");
+        alert.setHeaderText(null);
+
+        // Create a TextArea to display the content
+        TextArea textArea = new TextArea(content.toString());
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+
+        // Set the content of the alert to the TextArea
+        alert.getDialogPane().setContent(textArea);
+
+        // Expand the TextArea to fill the available space
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        // Show the alert
+        alert.showAndWait();
+    }
+
+    public static String generateCodePopUp() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Gerar Codigo");
         dialog.setHeaderText("Introduza o ID do evento:");
         dialog.setContentText("ID:");
 
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("ID DO EVENTO: " + result);
+                    System.out.println();
 
                     return result;
                 })
                 .orElse(null);
     }
 
-    public static void checkEventPresencesPopUp() {
+    public static String checkEventPresencesPopUp() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Consultar presenças do evento");
+        dialog.setHeaderText("Introduza o ID do evento:");
+        dialog.setContentText("ID:");
+
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println();
+
+                    return result;
+                })
+                .orElse(null);
     }
 
     public static void generateCSV1PopUp() {
@@ -266,11 +343,11 @@ public class PopUpCreator {
                     listaPresencas.get(i).get(3), listaPresencas.get(i).get(4), listaPresencas.get(i).get(5)));
         }
 
-        content.append("---------------------------------------------------------------------------------------\n");
+        content.append("--------------------------------------------------------------------------------------\n");
 
         // Create an alert with information type
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Presences Information");
+        alert.setTitle("Registo de Presenças");
         alert.setHeaderText(null);
 
         // Create a TextArea to display the content
@@ -310,5 +387,20 @@ public class PopUpCreator {
 
     public static void addPresencePopUp() {
 
+    }
+
+    public static String editEventPopUp() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Editar Evento");
+        dialog.setHeaderText("Introduza o ID do evento a editar:");
+        dialog.setContentText("ID:");
+
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println();
+
+                    return result;
+                })
+                .orElse(null);
     }
 }

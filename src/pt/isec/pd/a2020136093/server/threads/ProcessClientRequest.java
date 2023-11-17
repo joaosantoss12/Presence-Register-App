@@ -299,11 +299,17 @@ public class ProcessClientRequest extends Thread {
                             ArrayList<ArrayList<String>> presencesList = manageDB.checkPresences(requestClientServer.email);    // ID DO EVENTO
                             ArrayList<String> studentInfo = manageDB.checkStudent(requestClientServer.email);
 
-                            generateCSV2(presencesList, studentInfo);
+                            if(generateCSV2(presencesList, studentInfo)) {
 
-                            response.response = "CSV gerado com sucesso!";
-                            response.resultado = true;
-                            oout.writeObject(response);
+                                response.response = "CSV gerado com sucesso!";
+                                response.resultado = true;
+                                oout.writeObject(response);
+                            }
+                            else{
+                                response.response = "Houve um erro ao gerar o ficheiro CSV!";
+                                response.resultado = false;
+                                oout.writeObject(response);
+                            }
                         }
                     }
                 }
@@ -372,7 +378,7 @@ public class ProcessClientRequest extends Thread {
         }
     }
 
-    public void generateCSV2(ArrayList<ArrayList<String>> presencesList, ArrayList<String> studentInfo){
+    public boolean generateCSV2(ArrayList<ArrayList<String>> presencesList, ArrayList<String> studentInfo){
 
         String csvFile = CSV_FILES_PATH + "/" + studentInfo.get(0) + ".csv";
 
@@ -389,8 +395,10 @@ public class ProcessClientRequest extends Thread {
 
 
             bw.flush();
+
+            return true;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 }

@@ -1,13 +1,12 @@
 package pt.isec.pd.a2020136093.client.ui.gui.ADMIN;
 
+import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
@@ -17,8 +16,8 @@ public class MenuAdminUI extends BorderPane {
     ManageConnections mc;
     Font titleFont, buttonsFont;
 
-    Label lblTitle;
-    Button btnCreateNewEvent, btnEditEvent,btnExit;
+    Label lblTitle, lblResultado;
+    Button btnCreateNewEvent, btnEditEvent, btnDeleteEvent, btnCheckEvents, btnGenerateCode, btnCheckEventPresences, btnGenerateCSV1, btnCheckStudentPresences, btnGenerateCSV2, btnDeletePresence, btnAddPresence, btnLogout;
 
     public MenuAdminUI(ManageConnections mc) {
 
@@ -39,37 +38,58 @@ public class MenuAdminUI extends BorderPane {
         lblTitle = new Label("Bem-vindo admin");
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
 
+        lblResultado = new Label("");
+        lblResultado.setVisible(false);
+
         btnCreateNewEvent = createStyledButton("Criar novo evento");
         btnCreateNewEvent.setMinWidth(120);
+
         btnEditEvent = createStyledButton("Editar evento");
         btnEditEvent.setMinWidth(120);
-        btnExit = createStyledButton("Eliminar evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Consultar eventos");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Gerar codigo para evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Consultar presencas em evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Gerar ficheiro CSV(presencas em evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Consultar presencas em eventos (por aluno");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Gerar ficheiro CSV (presencas por aluno");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Eliminar presencas de um evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Inserir presenca em evento");
-        btnExit.setMinWidth(120);
-        btnExit = createStyledButton("Logout");
-        btnExit.setMinWidth(120);
+
+        btnDeleteEvent = createStyledButton("Eliminar evento");
+        btnDeleteEvent.setMinWidth(120);
+
+        btnCheckEvents = createStyledButton("Consultar eventos");
+        btnCheckEvents.setMinWidth(120);
+
+        btnGenerateCode = createStyledButton("Gerar codigo para evento");
+        btnGenerateCode.setMinWidth(120);
+
+        btnCheckEventPresences = createStyledButton("Consultar presencas em evento");
+        btnCheckEventPresences.setMinWidth(120);
+
+        btnGenerateCSV1 = createStyledButton("Gerar ficheiro CSV (presencas em evento)");
+        btnGenerateCSV1.setMinWidth(120);
+
+        btnCheckStudentPresences = createStyledButton("Consultar presencas em eventos (por aluno)");
+        btnCheckStudentPresences.setMinWidth(120);
+
+        btnGenerateCSV2 = createStyledButton("Gerar ficheiro CSV (presencas por aluno)");
+        btnGenerateCSV2.setMinWidth(120);
+
+        btnDeletePresence = createStyledButton("Eliminar presencas de um evento");
+        btnDeletePresence.setMinWidth(120);
+
+        btnAddPresence = createStyledButton("Inserir presenca em evento");
+        btnAddPresence.setMinWidth(120);
+
+        btnLogout = createStyledButton("Logout");
+        btnLogout.setMinWidth(120);
+
+        VBox vBox1 = new VBox(btnCreateNewEvent, btnEditEvent, btnDeleteEvent, btnCheckEvents, btnGenerateCode, btnLogout);
+        VBox vBox2 = new VBox(btnCheckEventPresences, btnGenerateCSV1, btnCheckStudentPresences, btnGenerateCSV2, btnDeletePresence, btnAddPresence);
+
+        HBox hbox = new HBox(vBox1, vBox2);
+        HBox.setMargin(vBox1, new Insets(0, 35, 0, 0));
+        hbox.setAlignment(Pos.CENTER);
 
 
-
-        VBox vBox = new VBox(lblTitle, btnCreateNewEvent, btnEditEvent, btnExit);
+        VBox vBox = new VBox(lblTitle, hbox, lblResultado);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
-        VBox.setMargin(btnCreateNewEvent, new Insets(25, 0, 0, 0)); // Set top margin for the button
+        VBox.setMargin(hbox, new Insets(15, 0, 0, 0)); // Set top margin
+        VBox.setMargin(hbox, new Insets(35, 0, 0, 0)); // Set top margin
 
         this.setCenter(vBox);
     }
@@ -88,19 +108,124 @@ public class MenuAdminUI extends BorderPane {
         RootPane.addPropertyChangeListener("SHOWADMINMENU", evt -> { update(); });
 
         btnCreateNewEvent.setOnAction(event -> {
-        //ligar ao CreateNewEventUI
+            Stage stage = new Stage();
+            Scene scene = new Scene(new CreateNewEventUI(mc), 900, 725);
+            //stage.getIcons().add(ImageManager.getImage("pacman-icon.png"));
+            stage.setScene(scene);
+            stage.setTitle("Criar novo evento");
+
+            stage.setMinWidth(1000);
+            stage.setMinHeight(700);
+
+            stage.show();
         });
 
         btnEditEvent.setOnAction(event -> {
-            //ligar
+
+            String id = PopUpCreator.editEventPopUp();
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(new EditDataEventUI(mc, id), 900, 725);
+            //stage.getIcons().add(ImageManager.getImage("pacman-icon.png"));
+            stage.setScene(scene);
+            stage.setTitle("Editar dados do evento");
+
+            stage.setMinWidth(1000);
+            stage.setMinHeight(700);
+
+            stage.show();
         });
 
-        btnExit.setOnAction( event -> {
-            //ligar
+        btnDeleteEvent.setOnAction(event -> {
+            if(mc.deleteEvent(PopUpCreator.deleteEventPopUp())){
+                lblResultado.setText("Evento apagado com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+            else{
+                lblResultado.setText("Houve um erro ao apagar o evento!\n[Verifique se o evento tem presenças registadas]");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
         });
 
+        btnCheckEvents.setOnAction(event->{
+            ArrayList<ArrayList<String>> listaEventos = mc.checkEvents();
 
-        //ExitAlertUI.exitAlert(btnExit);
+            PopUpCreator.checkEventsPopUp(listaEventos);
+        });
+
+        btnGenerateCode.setOnAction(event->{
+            if(mc.generateEventCode(PopUpCreator.generateCodePopUp())){
+                lblResultado.setText("Codigo gerado com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+            else{
+                lblResultado.setText("Houve um erro ao gerar o código do evento!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+        });
+
+        btnCheckEventPresences.setOnAction(event->{
+            String id = PopUpCreator.checkEventPresencesPopUp();
+
+            ArrayList<ArrayList<String>> listaPresencas = mc.checkPresencesEvent(id);
+
+            PopUpCreator.checkEventsPresencesPopUp(listaPresencas);
+        });
+
+        btnGenerateCSV1.setOnAction(event->{
+            PopUpCreator.generateCSV1PopUp();
+        });
+
+        btnCheckStudentPresences.setOnAction(event->{
+            PopUpCreator.checkStudentPresencesPopUp();
+        });
+
+        btnGenerateCSV2.setOnAction(event->{
+            PopUpCreator.generateSCV2PopUp();
+        });
+
+        btnDeletePresence.setOnAction(event->{
+            PopUpCreator.deletePresencePopUp();
+        });
+
+       btnAddPresence.setOnAction(event->{
+           PopUpCreator.addPresencePopUp();
+        });
+
+        btnLogout.setOnAction(event -> {
+            mc.logout();
+            RootPane.setShowAdminMenu(false);
+            RootPane.setShowLogin(true);
+        });
+
     }
 
 

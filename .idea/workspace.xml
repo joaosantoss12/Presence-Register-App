@@ -4,12 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updates">
+    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updates on UI and manage connections">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PD-2023-24-TP.db" beforeDir="false" afterPath="$PROJECT_DIR$/PD-2023-24-TP.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/PopUpCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/PopUpCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/PopUpCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/PopUpCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/MenuStudentUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/MenuStudentUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" afterDir="false" />
+    </list>
+    <list id="6885a97c-d08f-4871-87ab-73b4fdf8244c" name="Changes by biama" comment="">
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +41,104 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java">
+      <ranges>
+        <range start1="96" end1="97" start2="96" end2="98" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="214" end1="215" start2="215" end2="216" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="235" end1="236" start2="236" end2="237" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="241" end1="242" start2="242" end2="243" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="295" end1="296" start2="296" end2="297" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="328" end1="328" start2="329" end2="330" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="330" end1="330" start2="332" end2="334" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="498" end1="499" start2="502" end2="503" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="518" end1="519" start2="522" end2="523" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="590" end1="591" start2="594" end2="595" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="611" end1="612" start2="615" end2="616" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="617" end1="618" start2="621" end2="622" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="4" end1="4" start2="5" end2="6" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="6" end1="10" start2="8" end2="9" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="12" end1="12" start2="11" end2="13" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="13" end1="13" start2="14" end2="15" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="14" end1="14" start2="16" end2="19" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="19" end1="21" start2="24" end2="26" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="40" end1="40" start2="45" end2="48" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="43" end1="43" start2="51" end2="52" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="45" end1="65" start2="54" end2="66" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="66" end1="66" start2="67" end2="69" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="67" end1="67" start2="70" end2="72" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="68" end1="69" start2="73" end2="94" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="71" end1="72" start2="96" end2="98" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="90" end1="91" start2="116" end2="126" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="94" end1="95" start2="129" end2="142" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="97" end1="99" start2="144" end2="167" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="101" end1="101" start2="169" end2="191" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="102" end1="103" start2="192" end2="234" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java">
+      <ranges>
+        <range start1="12" end1="13" start2="12" end2="14" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="16" end1="16" start2="17" end2="18" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="17" end1="17" start2="19" end2="21" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="21" end1="22" start2="25" end2="26" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="40" end1="40" start2="44" end2="45" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="42" end1="42" start2="47" end2="48" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="44" end1="44" start2="50" end2="51" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="46" end1="46" start2="53" end2="54" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="48" end1="48" start2="56" end2="57" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="52" end1="53" start2="61" end2="62" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="70" end1="72" start2="79" end2="81" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="99" end1="100" start2="108" end2="109" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="103" end1="104" start2="112" end2="113" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="12" end1="14" start2="13" end2="17" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="16" end1="16" start2="19" end2="20" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="18" end1="19" start2="22" end2="23" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="21" end1="22" start2="25" end2="27" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="37" end1="37" start2="42" end2="45" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="46" end1="46" start2="54" end2="55" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="50" end1="51" start2="59" end2="60" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="54" end1="54" start2="63" end2="64" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="68" end1="70" start2="78" end2="80" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="72" end1="73" start2="82" end2="104" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="76" end1="77" start2="107" end2="129" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="80" end1="81" start2="132" end2="154" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="84" end1="85" start2="157" end2="179" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="88" end1="89" start2="182" end2="186" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="93" end1="94" start2="190" end2="191" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="97" end1="98" start2="194" end2="195" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java">
+      <ranges>
+        <range start1="12" end1="12" start2="12" end2="13" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="15" end1="17" start2="16" end2="19" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="21" end1="22" start2="23" end2="24" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="33" end1="34" start2="35" end2="36" changelist="6885a97c-d08f-4871-87ab-73b4fdf8244c" />
+        <range start1="37" end1="40" start2="39" end2="39" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="41" end1="43" start2="40" end2="43" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="44" end1="55" start2="44" end2="50" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="56" end1="56" start2="51" end2="58" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="62" end1="63" start2="64" end2="65" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="80" end1="82" start2="82" end2="84" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="86" end1="88" start2="88" end2="89" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="91" end1="95" start2="92" end2="92" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="97" end1="99" start2="94" end2="94" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="103" end1="104" start2="98" end2="99" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+        <range start1="107" end1="108" start2="102" end2="103" changelist="ac147293-9815-4a92-a8c1-5ccb3bfc00be" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -41,6 +154,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "last_opened_file_path": "C:/Program Files/Java/javafx-sdk-20.0.1/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -62,7 +176,7 @@
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainJFX">
+  <component name="RunManager" selected="Application.ClientMain">
     <configuration name="ClientMain (1)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.client.ClientMain" />
       <module name="TP_v2.0" />
@@ -142,9 +256,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainJFX" />
         <item itemvalue="Application.ClientMain" />
         <item itemvalue="Application.ServerMain" />
+        <item itemvalue="Application.MainJFX" />
         <item itemvalue="Application.ServerMain_Backup" />
       </list>
     </recent_temporary>
@@ -183,6 +297,7 @@
       <workItem from="1699906752552" duration="6866000" />
       <workItem from="1699977386914" duration="985000" />
       <workItem from="1699983737858" duration="6780000" />
+      <workItem from="1700254902013" duration="9174000" />
     </task>
     <task id="LOCAL-00001" summary="added features + updated old ones">
       <created>1698669978617</created>
@@ -218,12 +333,24 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added features + updated old ones" />
     <MESSAGE value="UPDATES" />
     <MESSAGE value="started GUI code" />
     <MESSAGE value="updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates" />
+    <MESSAGE value="updates on UI and manage connections" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates on UI and manage connections" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -94,7 +94,8 @@ public class ManageConnections {
             if (response == null) {
                 System.out.println("O servidor nao enviou qualquer respota antes de"
                         + " fechar aligacao TCP!");
-            } else {
+            }
+            else {
                 System.out.println(response.response);
             }
 
@@ -212,7 +213,7 @@ public class ManageConnections {
         //return null;
     }
 
-    public void deleteEvent(String idEvento) {
+    public boolean deleteEvent(String idEvento) {
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
         msg.msgCode = REQUESTS.ADMIN_REQUEST_DELETE_EVENT;
         msg.id = Integer.parseInt(idEvento);
@@ -233,13 +234,13 @@ public class ManageConnections {
                 System.out.println(response.response);
             }
 
-            //return response.clientData;
+            return response.resultado;
 
         } catch (Exception e) {
             System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
         }
 
-        //return null;
+        return false;
     }
 
     public ArrayList<ArrayList<String>> checkEvents() {
@@ -326,6 +327,7 @@ public class ManageConnections {
 
             } catch(Exception e){
                 System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
+                return false;
             }
         }while(!done);
     }
@@ -496,7 +498,7 @@ public class ManageConnections {
         }
     }
 
-    public String generateCSV_student_own(){
+    public boolean generateCSV_student_own(){
         REQUEST_CLIENT_TO_SERVER msg = new REQUEST_CLIENT_TO_SERVER();
 
         msg.msgCode = REQUESTS.CLIENT_REQUEST_GENERATE_CSV_STUDENT;
@@ -516,7 +518,7 @@ public class ManageConnections {
                         + " fechar aligacao TCP!");
             }
 
-            return response.response;
+            return response.resultado;
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -588,7 +590,7 @@ public class ManageConnections {
         return false;
     }
 
-    public String submitCode(String code){
+    public boolean submitCode(String code){
         REQUEST_CLIENT_TO_SERVER msg = new REQUEST_CLIENT_TO_SERVER();
 
         msg.msgCode = REQUESTS.CLIENT_REQUEST_SUBMIT_CODE;
@@ -609,13 +611,13 @@ public class ManageConnections {
                         + " fechar aligacao TCP!");
             }
 
-            return response.response;
+            return response.resultado;
 
         } catch (Exception e) {
             System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
         }
 
-        return "ERRO";
+        return false;
     }
 
 

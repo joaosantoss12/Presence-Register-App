@@ -29,8 +29,11 @@ public class MainJFX extends Application {
         //stage.getIcons().add(ImageManager.getImage("pacman-icon.png"));
         stage.setScene(scene);
         stage.setTitle(title);
-        stage.setMinWidth(1000);
-        stage.setMinHeight(700);
+
+        stage.setMinWidth(1200);
+        stage.setMinHeight(900);
+        //stage.setFullScreen(true);
+
         stage.show();
     }
 

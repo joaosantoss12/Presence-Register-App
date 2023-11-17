@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 
@@ -15,7 +14,7 @@ public class LoginUI extends BorderPane {
 
     VBox vbox1, vbox2;
     TextField emailField;
-    TextField passwordField;
+    PasswordField passwordField;
 
     Label lblRetorno, lblTitle, lblEmail, lblPassword;
     Button btnLogin,btnBack;
@@ -47,7 +46,7 @@ public class LoginUI extends BorderPane {
         vbox1.alignmentProperty().setValue(Pos.CENTER);
 
         vbox2 = new VBox();
-        passwordField = new TextField();
+        passwordField = new PasswordField();
         //passwordField.setPromptText("Password");
         passwordField.setMaxWidth(690);
         lblPassword = new Label("Password");
@@ -93,12 +92,23 @@ public class LoginUI extends BorderPane {
                 lblRetorno.setText("Login efetuado com sucesso!");
                 lblRetorno.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");*/
 
-                RootPane.setShowLogin(false);
+                lblRetorno.setVisible(true);
+                lblRetorno.setText("Login efetuado com sucesso! Entrando...");
+                lblRetorno.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
 
-                if(mc.isAdmin())
-                    RootPane.setShowAdminMenu(true);
-                else
-                    RootPane.setShowStudentMenu(true);
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> {
+                    lblRetorno.setVisible(false);
+                    RootPane.setShowLogin(false);
+
+                    if(mc.isAdmin())
+                        RootPane.setShowAdminMenu(true);
+
+                    else
+                        RootPane.setShowStudentMenu(true);
+                });
+                pause.play();
+
 
             }
             else {
