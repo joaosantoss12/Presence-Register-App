@@ -13,21 +13,25 @@ import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.TIMETOUT_SERVER
 public class Multicast_ReadHearbeat extends Thread {
     public static int MAX_SIZE = 1000;
     protected MulticastSocket s;
+    protected Heartbeat serverData;
 
     boolean timeout = false;
     int timeout_current_seconds = 0;
 
-    public Multicast_ReadHearbeat(MulticastSocket s) {
+    public Multicast_ReadHearbeat(MulticastSocket s, Heartbeat serverData) {
         this.s = s;
+        this.serverData = serverData;
 
         Thread timerThread = new Thread(() -> {
-            while (!timeout) {
+            while (true) {
                 try {
                     ++timeout_current_seconds;
                     System.out.println("SECONDS: " + timeout_current_seconds);
 
-                    if (timeout_current_seconds >= TIMETOUT_SERVER_BACKUP / 3)
-                        timeout = true;
+                    if (timeout_current_seconds >= TIMETOUT_SERVER_BACKUP) {
+                        System.out.println("Não foi recebido nenhum 'HEARBEAT' do servidor principal em 30 segundos!");
+                        System.exit(-1);
+                    }
 
 
                     Thread.sleep(1000);
@@ -66,6 +70,9 @@ public class Multicast_ReadHearbeat extends Thread {
                         System.out.print("RECEIVED HEARTBEAT FROM " + serverData.getServerIP() + ":" + serverData.getServerPort());
                         System.out.println("\n[INFO]\n-> DatabaseVersion: " + serverData.getServerDBVersion() + " RMI_NAME: " + serverData.getRMI_NAME() + " RMI_PORT: " + serverData.getRMI_PORT());
 
+                        serverData.setRMI_NAME(serverData.getRMI_NAME());
+                        serverData.setRMI_PORT(serverData.getRMI_PORT());
+
                         timeout_current_seconds = 0;
                     }
 
@@ -86,9 +93,6 @@ public class Multicast_ReadHearbeat extends Thread {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println("Não foi recebido nenhum 'HEARBEAT' do servidor principal em 30 segundos!");
-        System.exit(-1);
 
     }
 }
