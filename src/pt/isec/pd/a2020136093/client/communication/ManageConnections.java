@@ -118,7 +118,7 @@ public class ManageConnections {
 
 
     // ADMIN
-    public void criarEvento(String name, String local, String date, String timeStart, String timeEnd) {
+    public boolean criarEvento(String name, String local, String date, String timeStart, String timeEnd) {
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
         msg.msgCode = REQUESTS.ADMIN_REQUEST_CREATE_EVENT;
         msg.name = name;
@@ -143,22 +143,21 @@ public class ManageConnections {
                 System.out.println(response.response);
             }
 
-            //return response.clientData;
+            return response.resultado;
 
         } catch (Exception e) {
-            System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
+            return false;
         }
-
-        //return null;
 
     }
 
-    public void editEvent(String idEvento, int index, String alteracao) {
+    public boolean editEvent(String idEvento, int index, String alteracao) {
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
-
 
         msg.msgCode = REQUESTS.ADMIN_REQUEST_EDIT_EVENT;
         msg.id = Integer.parseInt(idEvento);
+
+        checkEvents();
 
         for (int i = 0; i < eventsList.getSize(); i++) {
             if (eventsList.getEvent(i).getId().equals(idEvento)) {
@@ -204,13 +203,12 @@ public class ManageConnections {
                 System.out.println(response.response);
             }
 
-            //return response.clientData;
+            return response.resultado;
 
         } catch (Exception e) {
-            System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
+            return false;
         }
 
-        //return null;
     }
 
     public boolean deleteEvent(String idEvento) {
@@ -393,7 +391,7 @@ public class ManageConnections {
         }
     }
 
-    public String deletePresence(String idEvento, String emailAluno){
+    public boolean deletePresence(String idEvento, String emailAluno){
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
         msg.msgCode = REQUESTS.ADMIN_REQUEST_DELETE_PRESENCE;
         msg.id = Integer.parseInt(idEvento);
@@ -413,10 +411,10 @@ public class ManageConnections {
                         + " fechar aligacao TCP!");
             }
 
-            return response.response;
+            return response.resultado;
 
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 
@@ -441,14 +439,14 @@ public class ManageConnections {
                         + " fechar aligacao TCP!");
             }
 
-            return response.response;
+            return response.resultado;
 
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public String generateCSV_event(String idEvento){
+    public boolean generateCSV_event(String idEvento){
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
 
         msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CSV_EVENT;
@@ -468,13 +466,13 @@ public class ManageConnections {
                         + " fechar aligacao TCP!");
             }
 
-            return response.response;
+            return response.resultado;
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public String generateCSV_student(String email){
+    public boolean generateCSV_student(String email){
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
 
         msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CSV_STUDENT;
@@ -494,9 +492,9 @@ public class ManageConnections {
                         + " fechar aligacao TCP!");
             }
 
-            return response.response;
+            return response.resultado;
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 

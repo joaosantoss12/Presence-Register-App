@@ -56,7 +56,7 @@ public class MenuStudentUI extends BorderPane {
         btnPresences = createStyledButton("Consultar presencas");
         btnPresences.setMinWidth(120);
 
-        btnCSV = createStyledButton("Gerar fiheiro CSV (registo de presencas)");
+        btnCSV = createStyledButton("Gerar ficheiro CSV (registo de presencas)");
         btnCSV.setMinWidth(120);
 
         btnLogout = createStyledButton("Logout");

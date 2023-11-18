@@ -365,7 +365,6 @@ public class ManageDB {
                 return null;
 
 
-
             ArrayList<String> clientData = new ArrayList<>();
 
             clientData.add(resultSet.getString("admin"));

@@ -17,8 +17,6 @@ import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.NETWORK_INTERFA
 public class ServerBackup {
 
     private final String DB_BACKUP_PATH;
-
-
     Heartbeat serverData;
 
     public ServerBackup(String dbPath) {
@@ -28,7 +26,7 @@ public class ServerBackup {
 
     public void start() {
         File db_directory = new File(DB_BACKUP_PATH.trim());
-        serverData = new Heartbeat(null, 0, 0, "", 0);
+        serverData = new Heartbeat(null, 0, 0, null, 0);
 
 
         if(!db_directory.isDirectory() || !db_directory.exists()){
@@ -63,24 +61,30 @@ public class ServerBackup {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        new Multicast_ReadHearbeat(multicastSocket, serverData).start();     // TESTE PARA LER MULTICAST
+        new Multicast_ReadHearbeat(multicastSocket, serverData).start();
 
 
 
         // ================================= RMI =================================
-        try{
-            String registration = "rmi://" + "localhost" + "/" + serverData.getRMI_NAME();
-            RMI_SERVER_INTERFACE rmiServerInterface = (RMI_SERVER_INTERFACE) Naming.lookup(registration);
+        do {
+            try {
+                Thread.sleep(1000);
+                System.out.println("RMI_NAME: " + serverData.getRMI_NAME());
 
-            rmiServerInterface.printHello();
-        }
-        catch (NotBoundException e) {
-            System.out.println("No remoteTime service available!");
-        } catch (RemoteException e) {
-            System.out.println("RMI Error - " + e);
-        } catch (Exception e) {
-            System.out.println("Error - " + e);
-        }
+                String registration = "rmi://" + "localhost" + "/" + serverData.getRMI_NAME();
+                RMI_SERVER_INTERFACE rmiServerInterface = (RMI_SERVER_INTERFACE) Naming.lookup(registration);
+
+                rmiServerInterface.printHello();
+
+            }catch (NotBoundException e) {
+                System.out.println("No remoteTime service available!");
+            } catch (RemoteException e) {
+                System.out.println("RMI Error - " + e);
+            } catch (Exception e) {
+                System.out.println("Error - " + e);
+            }
+
+        }while(serverData.getRMI_NAME() == null);
 
     }
 

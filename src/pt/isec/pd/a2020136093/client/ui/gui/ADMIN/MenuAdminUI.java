@@ -203,28 +203,110 @@ public class MenuAdminUI extends BorderPane {
 
             ArrayList<ArrayList<String>> listaPresencas = mc.checkPresencesEvent(id);
 
-            PopUpCreator.checkEventsPresencesPopUp(listaPresencas);
+            PopUpCreator.checkEventPresencesPopUp_list(listaPresencas);
         });
 
         btnGenerateCSV1.setOnAction(event->{
             PopUpCreator.generateCSV1PopUp();
         });
 
-        btnCheckStudentPresences.setOnAction(event->{
-            PopUpCreator.checkStudentPresencesPopUp();
-        });
 
+        btnCheckStudentPresences.setOnAction(event->{
+
+            String email = PopUpCreator.checkStudentPresencesPopUp();
+
+            ArrayList<ArrayList<String>> listaPresencas_doAluno = mc.checkPresences2(email);
+
+            PopUpCreator.checkStudentPresencesPopUp_list(listaPresencas_doAluno);
+
+
+        });
         btnGenerateCSV2.setOnAction(event->{
-            PopUpCreator.generateSCV2PopUp();
+            String email = PopUpCreator.generateSCV2PopUp();
+
+            if(mc.generateCSV_student(email)){
+                lblResultado.setText("Ficheiro CSV gerado com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+
+                pause.play();
+            }
+            else{
+                lblResultado.setText("Houve um erro ao gerar o ficheiro CSV!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
         });
 
         btnDeletePresence.setOnAction(event->{
-            PopUpCreator.deletePresencePopUp();
+            String id = PopUpCreator.presencePopUp_idEvento();
+            String email = PopUpCreator.presencePopUp_email();
+
+            if(mc.deletePresence(id,email)){
+                lblResultado.setText("Presença apagada com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+            else{
+                lblResultado.setText("Houve um erro ao apagar a presença!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
         });
 
        btnAddPresence.setOnAction(event->{
-           PopUpCreator.addPresencePopUp();
+           String id= PopUpCreator.presencePopUp_idEvento();
+           String email= PopUpCreator.presencePopUp_email();
+
+           if(mc.addPresence(id,email)){
+                lblResultado.setText("Presença adicionada com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                     lblResultado.setVisible(false);
+                });
+                pause.play();
+              }
+              else{
+                lblResultado.setText("Houve um erro ao adicionar a presença!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                     lblResultado.setVisible(false);
+                });
+                pause.play();
+              }
         });
+
+
+
 
         btnLogout.setOnAction(event -> {
             mc.logout();

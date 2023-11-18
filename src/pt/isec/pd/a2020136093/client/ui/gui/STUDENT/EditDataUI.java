@@ -57,7 +57,7 @@ public class EditDataUI extends BorderPane {
         btnBack.setMinWidth(120);
 
 
-        VBox vBox = new VBox(lblTitle, btnEditName, btnEditEmail, btnEditPassword, btnEditIDNumber, btnBack, lblResultado);
+        VBox vBox = new VBox(lblTitle, btnEditName, btnEditEmail, btnEditPassword, btnEditIDNumber, lblResultado, btnBack );
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
         VBox.setMargin(btnEditName, new Insets(25, 0, 0, 0)); // Set top margin for the button
@@ -76,8 +76,6 @@ public class EditDataUI extends BorderPane {
 
 
     private void registerHandlers() {
-        //RootPane.addPropertyChangeListener("SHOWMENU", evt -> { update(); });
-        //RootPane.addPropertyChangeListener("SHOWLOGIN", evt -> { update(); });
 
         btnEditName.setOnAction(event -> {
             if(mc.editData( 1, PopUpCreator.editName())){
@@ -155,7 +153,7 @@ public class EditDataUI extends BorderPane {
         });
 
         btnEditIDNumber.setOnAction(event -> {
-            if(mc.editData( 1, PopUpCreator.editIDNumber())){
+            if(mc.editData( 4, PopUpCreator.editIDNumber())){
                 lblResultado.setText("Número de Indentificação alterado com sucesso!");
                 lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
                 lblResultado.setVisible(true);

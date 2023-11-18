@@ -119,14 +119,14 @@ public class PopUpCreator {
         });
     }
 
-    public static void editLocal() {
+    public static String editLocal() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Atualizar Local");
         dialog.setHeaderText("Introduza o novo local:");
         dialog.setContentText("Local:");
 
         // Traditional way to get the response value.
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
                     System.out.println("Novo local: " + result);
 
@@ -135,14 +135,14 @@ public class PopUpCreator {
                 .orElse(null);
     }
 
-    public static void editData() {
+    public static String editData() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Atualizar Data");
         dialog.setHeaderText("Introduza a nova data:");
         dialog.setContentText("Data:");
 
         // Traditional way to get the response value.
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
                     System.out.println("Nova data: " + result);
 
@@ -167,14 +167,14 @@ public class PopUpCreator {
                 .orElse(null);
     }
 
-    public static void editHourEnd() {
+    public static String editHourEnd() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Atualizar Hora de Fim");
         dialog.setHeaderText("Introduza a nova hora de fim:");
         dialog.setContentText("Hora de Fim:");
 
         // Traditional way to get the response value.
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
                     System.out.println("Nova hora de fim: " + result);
 
@@ -235,7 +235,44 @@ public class PopUpCreator {
         alert.showAndWait();
     }
 
-    public static void checkEventsPresencesPopUp(ArrayList<ArrayList<String>> listaPresencas ) {
+
+    public static void checkStudentPresencesPopUp_list(ArrayList<ArrayList<String>> listaPresencas){
+        StringBuilder content = new StringBuilder();
+        content.append("Lista de Presencas\n");
+
+        content.append(String.format("%-3s | %-15s | %-15s | %-15s | %-15s | %s\n", "ID", "Nome", "Local", "Data", "Hora de inicio", "Hora de fim"));
+        content.append("-------------------------------------------------------------------------------------------\n");
+
+        for(int i=0; i<listaPresencas.size(); i++){
+            content.append(String.format("%-3s | %-15s | %-15s | %-15s | %-15s | %s\n",
+                    listaPresencas.get(i).get(0), listaPresencas.get(i).get(1), listaPresencas.get(i).get(2),
+                    listaPresencas.get(i).get(3), listaPresencas.get(i).get(4), listaPresencas.get(i).get(5)));
+        }
+        content.append("-------------------------------------------------------------------------------------------\n");
+
+
+        // Create an alert with information type
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Lista de Presenças");
+        alert.setHeaderText(null);
+
+        // Create a TextArea to display the content
+        TextArea textArea = new TextArea(content.toString());
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+
+        // Set the content of the alert to the TextArea
+        alert.getDialogPane().setContent(textArea);
+
+        // Expand the TextArea to fill the available space
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        // Show the alert
+        alert.showAndWait();
+    }
+
+    public static void checkEventPresencesPopUp_list(ArrayList<ArrayList<String>> listaPresencas ) {
         StringBuilder content = new StringBuilder();
         content.append("Lista de Presencas\n");
 
@@ -299,30 +336,30 @@ public class PopUpCreator {
                 .orElse(null);
     }
 
-    public static void generateCSV1PopUp() {
+    public static String generateCSV1PopUp() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Gerar CSV");
         dialog.setHeaderText("Introduza o ID do evento:");
         dialog.setContentText("ID:");
 
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("ID DO EVENTO: " + result);
+                    System.out.println();
 
                     return result;
                 })
                 .orElse(null);
     }
 
-    public static void checkStudentPresencesPopUp() {
+    public static String checkStudentPresencesPopUp() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Consultar Presencas do Aluno");
         dialog.setHeaderText("Introduza o email:");
-        dialog.setContentText("EMAIL:");
+        dialog.setContentText("Email:");
 
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("Email: " + result);
+                    System.out.println();
 
                     return result;
                 })
@@ -366,28 +403,57 @@ public class PopUpCreator {
         alert.showAndWait();
     }
 
-    public static void generateSCV2PopUp() {
+    public static String generateSCV2PopUp() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Gerar CSV");
         dialog.setHeaderText("Introduza o email do aluno::");
         dialog.setContentText("EMAIL:");
 
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
-                    System.out.println("EMAIL: " + result);
+                    System.out.println();
 
                     return result;
                 })
                 .orElse(null);
     }
 
-    public static void deletePresencePopUp() {
 
+
+
+
+    public static String presencePopUp_idEvento() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Consultar presenças do evento");
+        dialog.setHeaderText("Introduza o ID do evento:");
+        dialog.setContentText("ID:");
+
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println();
+
+                    return result;
+                })
+                .orElse(null);
+    }
+    public static String presencePopUp_email() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Introduza o email");
+        dialog.setContentText("Email:");
+
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println();
+
+                    return result;
+                })
+                .orElse(null);
     }
 
-    public static void addPresencePopUp() {
 
-    }
+
+
+
 
     public static String editEventPopUp() {
         TextInputDialog dialog = new TextInputDialog();

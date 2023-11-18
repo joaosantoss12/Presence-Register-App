@@ -174,21 +174,33 @@ public class ProcessClientRequest extends Thread {
                             ArrayList<ArrayList<String>> presencesList = manageDB.checkPresencesEventID(requestClientServerAdmin.id);    // ID DO EVENTO
                             ArrayList<String> eventInfo = manageDB.checkEvent(requestClientServerAdmin.id);
 
-                            generateCSV(presencesList, eventInfo);
+                            if(generateCSV(presencesList, eventInfo)){
+                                response.response = "CSV gerado com sucesso!";
+                                response.resultado = true;
+                                oout.writeObject(response);
+                            }
+                            else{
+                                response.response = "Houve um erro ao gerar o ficheiro CSV!";
+                                response.resultado = false;
+                                oout.writeObject(response);
+                            }
 
-                            response.response = "CSV gerado com sucesso!";
-                            response.resultado = true;
-                            oout.writeObject(response);
+
                         }
                         case REQUESTS.ADMIN_REQUEST_GENERATE_CSV_STUDENT -> {
                             ArrayList<ArrayList<String>> presencesList = manageDB.checkPresences(requestClientServerAdmin.emailToManagePresence);    // ID DO EVENTO
                             ArrayList<String> studentInfo = manageDB.checkStudent(requestClientServerAdmin.emailToManagePresence);
 
-                            generateCSV2(presencesList, studentInfo);
-
-                            response.response = "CSV gerado com sucesso!";
-                            response.resultado = true;
-                            oout.writeObject(response);
+                            if(generateCSV2(presencesList, studentInfo)) {
+                                response.response = "CSV gerado com sucesso!";
+                                response.resultado = true;
+                                oout.writeObject(response);
+                            }
+                            else{
+                                response.response = "Houve um erro ao gerar o ficheiro CSV!";
+                                response.resultado = false;
+                                oout.writeObject(response);
+                            }
                         }
                     }
                 }
@@ -261,7 +273,7 @@ public class ProcessClientRequest extends Thread {
                                 response.response = "Dados alterados com sucesso!";
                                 response.resultado = true;
 
-                                ArrayList<String> list = manageDB.getClientData(requestClientServer.email);
+                                ArrayList<String> list = manageDB.getClientData(requestClientServer.novoEmail);
 
                                 response.clientData.addAll(list);
 
@@ -356,7 +368,7 @@ public class ProcessClientRequest extends Thread {
 
 
 
-    public void generateCSV(ArrayList<ArrayList<String>> presencesList, ArrayList<String> eventInfo){
+    public boolean generateCSV(ArrayList<ArrayList<String>> presencesList, ArrayList<String> eventInfo){
 
         String csvFile = CSV_FILES_PATH + "/" + eventInfo.get(0) + ".csv";
 
@@ -373,14 +385,16 @@ public class ProcessClientRequest extends Thread {
             }
 
             bw.flush();
+            
+            return true;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 
     public boolean generateCSV2(ArrayList<ArrayList<String>> presencesList, ArrayList<String> studentInfo){
 
-        String csvFile = CSV_FILES_PATH + "/" + studentInfo.get(0) + ".csv";
+        String csvFile = CSV_FILES_PATH + "/" + studentInfo.get(0) + "_byadmin" + ".csv";
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
             bw.write("\"Nome\";\"Número identificação\";\"Email\"\n");
