@@ -28,8 +28,9 @@ public class EditDataEventUI extends BorderPane {
 
     public EditDataEventUI(ManageConnections mc, String id) {
 
-        //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
-        //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
+        this.mc = mc;
+        this.id = id;
+
 
         createViews();
         registerHandlers();
@@ -111,15 +112,78 @@ public class EditDataEventUI extends BorderPane {
         });
 
         btnEditLocal.setOnAction(event -> {
-            PopUpCreator.editLocal();
+            if(mc.editEvent(id,2,PopUpCreator.editLocal())){
+                lblResultado.setText("Local alterado com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+            else{
+                lblResultado.setText("Houve um erro a editar o local do evento!\nVerifique se o evento já tem presenças registadas!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
         });
 
         btnEditData.setOnAction(event -> {
-            PopUpCreator.editData();
+            if(mc.editEvent(id,3,PopUpCreator.editData())){
+                lblResultado.setText("Data alterada com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+            else{
+                lblResultado.setText("Houve um erro a editar a data do evento!\nVerifique se o evento já tem presenças registadas!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
         });
 
         btnEditHourStart.setOnAction(event -> {
-            PopUpCreator.editHourStart();
+            if(mc.editEvent(id,4,PopUpCreator.editHourStart())){
+                lblResultado.setText("Hora de inicio alterada com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+            else{
+                lblResultado.setText("Houve um erro a editar a hora de inicio do evento!\nVerifique se o evento já tem presenças registadas!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
         });
 
         btnEditHourEnd.setOnAction(event -> {

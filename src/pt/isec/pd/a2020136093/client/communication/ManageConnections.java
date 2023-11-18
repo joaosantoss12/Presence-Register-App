@@ -418,7 +418,7 @@ public class ManageConnections {
         }
     }
 
-    public String addPresence(String idEvento, String emailAluno){
+    public boolean addPresence(String idEvento, String emailAluno){
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
 
         msg.msgCode = REQUESTS.ADMIN_REQUEST_ADD_PRESENCE;
@@ -442,7 +442,7 @@ public class ManageConnections {
             return response.resultado;
 
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 

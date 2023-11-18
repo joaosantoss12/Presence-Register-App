@@ -207,7 +207,32 @@ public class MenuAdminUI extends BorderPane {
         });
 
         btnGenerateCSV1.setOnAction(event->{
-            PopUpCreator.generateCSV1PopUp();
+            String id = PopUpCreator.generateCSV1PopUp();
+
+            if(mc.generateCSV_event(id)){
+                lblResultado.setText("Ficheiro CSV gerado com sucesso!");
+                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+
+                pause.play();
+            }
+            else{
+                lblResultado.setText("Houve um erro ao gerar o ficheiro CSV!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+
         });
 
 

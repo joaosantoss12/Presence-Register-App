@@ -151,14 +151,14 @@ public class PopUpCreator {
                 .orElse(null);
     }
 
-    public static void editHourStart() {
+    public static String editHourStart() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Atualizar Hora de Inicio");
         dialog.setHeaderText("Introduza a nova hora de inicio:");
         dialog.setContentText("Hora de Inicio:");
 
         // Traditional way to get the response value.
-        dialog.showAndWait()
+        return dialog.showAndWait()
                 .map(result -> {
                     System.out.println("Nova hora de inicio: " + result);
 
