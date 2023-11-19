@@ -85,11 +85,10 @@ public class Server {
          *      - No Netbeans: Properties -> Run -> VM Options -> -Djava.rmi.server.hostname=10.202.128.22 //O endereco usado e' apenas um exemplo
          */
 
-        Registry r = null;
 
         try{
             try{
-                r = LocateRegistry.createRegistry(RMI_PORT);
+                LocateRegistry.createRegistry(RMI_PORT);
                 System.out.println("Registry lançado!");
             }
             catch (RemoteException e) {
@@ -106,7 +105,7 @@ public class Server {
              * Regista o servico no rmiregistry local para que possam localiza'-lo, ou seja,
              * obter a sua referencia remota (endereco IP, porto de escuta, etc.).
              */
-            r.rebind("rmi://"+ "localhost" + "/" + RMI_NAME, rmiServer);
+            Naming.rebind("rmi://"+ "localhost" + "/" + RMI_NAME, rmiServer);
             System.out.println("Service RMI registado no registry!");
 
             /*

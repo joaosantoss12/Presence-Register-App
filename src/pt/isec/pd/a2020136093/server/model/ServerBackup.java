@@ -5,6 +5,7 @@ import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER_INTERFACE;
 import pt.isec.pd.a2020136093.server.threads.Multicast_ReadHearbeat;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.*;
 import java.rmi.Naming;
@@ -69,22 +70,39 @@ public class ServerBackup {
         do {
             try {
                 Thread.sleep(1000);
-                System.out.println("RMI_NAME: " + serverData.getRMI_NAME());
-
-                String registration = "rmi://" + "localhost" + "/" + serverData.getRMI_NAME();
-                RMI_SERVER_INTERFACE rmiServerInterface = (RMI_SERVER_INTERFACE) Naming.lookup(registration);
-
-                rmiServerInterface.printHello();
-
-            }catch (NotBoundException e) {
-                System.out.println("No remoteTime service available!");
-            } catch (RemoteException e) {
-                System.out.println("RMI Error - " + e);
-            } catch (Exception e) {
-                System.out.println("Error - " + e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
 
         }while(serverData.getRMI_NAME() == null);
+
+        try {
+            System.out.println("RMI_NAME: " + serverData.getRMI_NAME());
+
+            String registration = "rmi://" + "localhost" + "/" + serverData.getRMI_NAME();
+            RMI_SERVER_INTERFACE rmiServerInterface = (RMI_SERVER_INTERFACE) Naming.lookup(registration);
+
+            System.out.println("Registado com sucesso no serviço RMI do servidor principal!");
+
+            try(FileOutputStream localFileOutputStream = new FileOutputStream(DB_BACKUP_PATH + "/PD-2023-24-TP_BACKUP.db")) {
+                byte[] b;
+                long offset = 0;
+
+                while ((b = rmiServerInterface.getDatabaseCopy_chunk(offset)) != null) {
+                    localFileOutputStream.write(b);
+                    offset += b.length;
+                }
+                System.out.println("Cópia da base de dados do servidor principal concluida.");
+            }
+
+        }catch (NotBoundException e) {
+            System.out.println("No remoteTime service available!");
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            System.out.println("RMI Error - " + e);
+        } catch (Exception e) {
+            System.out.println("Error - " + e);
+        }
 
     }
 

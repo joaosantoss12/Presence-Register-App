@@ -5,6 +5,6 @@ import java.rmi.RemoteException;
 
 public interface RMI_SERVER_INTERFACE extends Remote {
 
-    public void printHello() throws RemoteException;
+    byte[] getDatabaseCopy_chunk(long offset) throws RemoteException;
 
 }
