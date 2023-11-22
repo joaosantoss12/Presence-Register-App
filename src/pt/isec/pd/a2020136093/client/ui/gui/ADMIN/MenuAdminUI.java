@@ -411,7 +411,7 @@ public class MenuAdminUI extends BorderPane {
                    });
                    pause.play();
                } else {
-                   lblResultado.setText("Houve um erro ao adicionar a presença!");
+                   lblResultado.setText("Presença já registada ou parâmetros inválidos!");
                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
                    lblResultado.setVisible(true);
 

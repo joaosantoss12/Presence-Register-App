@@ -135,7 +135,7 @@ public class RegisterUI extends BorderPane {
             }
             else{
                 lblRetorno.setVisible(true);
-                lblRetorno.setText("Houve um erro ao registar a conta!");
+                lblRetorno.setText("Email já registado!");
                 lblRetorno.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
 
                 PauseTransition pause = new PauseTransition(Duration.seconds(2));
