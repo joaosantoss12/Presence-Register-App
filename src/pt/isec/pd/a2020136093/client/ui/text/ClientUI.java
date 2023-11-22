@@ -318,9 +318,8 @@ public class ClientUI {
         String email = PAInput.readString("Email: ", true);
         String password = PAInput.readString("Password: ", true);
 
-        if(manageConnections.login(email, password))
+        if(manageConnections.login(email, password) == 0)
             logged = true;
-
        }
 
     private void register() throws IOException {

@@ -12,7 +12,8 @@ import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 public class LoginUI extends BorderPane {
     ManageConnections mc;
 
-    VBox vbox1, vbox2;
+    HBox hBox1;
+    HBox hbox_email, hbox_pass;
     TextField emailField;
     PasswordField passwordField;
 
@@ -21,6 +22,7 @@ public class LoginUI extends BorderPane {
 
     public LoginUI(ManageConnections mc) {
         this.mc = mc;
+
 
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
@@ -37,44 +39,49 @@ public class LoginUI extends BorderPane {
         lblTitle = new Label("LOGIN");
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
 
-        vbox1 = new VBox();
-        emailField = new TextField();
-        //emailField.setPromptText("Email");
-        emailField.setMaxWidth(690);
-        lblEmail = new Label("Email");
-        vbox1.getChildren().addAll(lblEmail, emailField);
-        vbox1.alignmentProperty().setValue(Pos.CENTER);
+        GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
 
-        vbox2 = new VBox();
-        passwordField = new PasswordField();
-        //passwordField.setPromptText("Password");
-        passwordField.setMaxWidth(690);
+        lblEmail = new Label("Email");
+        lblEmail.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        emailField = new TextField();
+        emailField.setMinWidth(200);
+
         lblPassword = new Label("Password");
-        vbox2.getChildren().addAll(lblPassword, passwordField);
-        vbox2.alignmentProperty().setValue(Pos.CENTER);
+        lblPassword.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        passwordField = new PasswordField();
+        passwordField.setMinWidth(150);
+
+        gridPane.add(lblEmail, 0, 0);
+        gridPane.add(emailField, 1, 0);
+        gridPane.add(lblPassword, 0, 1);
+        gridPane.add(passwordField, 1, 1);
 
         lblRetorno = new Label("");
         lblRetorno.setVisible(false);
 
 
-        btnLogin = createStyledButton("LOGIN");
-        btnLogin.setMinWidth(120);
-        btnBack = createStyledButton("VOLTAR");
-        btnBack.setMinWidth(120);
+        hBox1 = new HBox();
+        btnLogin = new Button("LOGIN");
+        btnLogin.getStyleClass().add("button");
+
+        btnBack = new Button("VOLTAR");
+        btnBack.getStyleClass().add("button");
+
+        hBox1.getChildren().addAll(btnLogin, btnBack);
+        hBox1.setSpacing(15);
+        hBox1.setAlignment(Pos.CENTER);
 
 
-        VBox vBox = new VBox(lblTitle, vbox1, vbox2, lblRetorno, btnLogin, btnBack);
+
+        VBox vBox = new VBox(lblTitle, gridPane, lblRetorno, hBox1);
         vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(15);
-        VBox.setMargin(btnLogin, new Insets(25, 0, 0, 0)); // Set top margin for the button
+        vBox.setSpacing(30);
+        VBox.setMargin(gridPane, new Insets(5, 0, 0, 0)); // Set top margin for the button
 
         this.setCenter(vBox);
-    }
-
-    private Button createStyledButton(String text) {
-        Button button = new Button(text);
-        button.setStyle(" -fx-text-fill: black; -fx-font-size: 16px; ");
-        return button;
     }
 
 
@@ -86,11 +93,9 @@ public class LoginUI extends BorderPane {
 
 
         btnLogin.setOnAction( event -> {
+            int retorno = mc.login(emailField.getText(), passwordField.getText());
 
-            if (mc.login(emailField.getText(), passwordField.getText())) {
-                /*lblRetorno.setVisible(true);
-                lblRetorno.setText("Login efetuado com sucesso!");
-                lblRetorno.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");*/
+            if (retorno == 0) {
 
                 lblRetorno.setVisible(true);
                 lblRetorno.setText("Login efetuado com sucesso! Entrando...");
@@ -109,12 +114,29 @@ public class LoginUI extends BorderPane {
                 });
                 pause.play();
 
+                emailField.setText("");
+                passwordField.setText("");
+
 
             }
             else {
                 lblRetorno.setVisible(true);
-                lblRetorno.setText("Credenciais erradas ou Conexão com servidor perdida!");
+                if(retorno == 1)
+                    lblRetorno.setText("Utilizador já logado!");
+                else if(retorno == 2)
+                    lblRetorno.setText("Credenciais erradas ou Servidor fechou a conexão!");
+
                 lblRetorno.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> {
+                    lblRetorno.setVisible(false);
+
+                });
+                pause.play();
+
+                emailField.setText("");
+                passwordField.setText("");
             }
 
 
@@ -125,9 +147,6 @@ public class LoginUI extends BorderPane {
             RootPane.setShowMainMenu(true);
         });
 
-
-
-        //ExitAlertUI.exitAlert(btnExit);
     }
 
 

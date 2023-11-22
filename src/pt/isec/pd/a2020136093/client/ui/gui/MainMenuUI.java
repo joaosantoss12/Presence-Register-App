@@ -35,12 +35,17 @@ public class MainMenuUI extends BorderPane {
         lblTitle = new Label("PRESENCE REGISTER");
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
 
-        btnLogin = createStyledButton("LOGIN");
+        btnLogin = new Button("LOGIN");
         btnLogin.setMinWidth(120);
-        btnRegister = createStyledButton("REGISTAR");
+        btnLogin.getStyleClass().add("button");
+
+        btnRegister = new Button("REGISTAR");
         btnRegister.setMinWidth(120);
-        btnExit = createStyledButton("SAIR");
+        btnRegister.getStyleClass().add("button");
+
+        btnExit = new Button("SAIR");
         btnExit.setMinWidth(120);
+        btnExit.getStyleClass().add("button");
 
         VBox vBox = new VBox(lblTitle, btnLogin, btnRegister, btnExit);
         vBox.setAlignment(Pos.CENTER);
@@ -49,14 +54,6 @@ public class MainMenuUI extends BorderPane {
 
         this.setCenter(vBox);
     }
-
-    private Button createStyledButton(String text) {
-        Button button = new Button(text);
-        button.setStyle("-fx-text-fill: black; -fx-font-size: 16px; ");
-        return button;
-    }
-
-
 
 
     private void registerHandlers() {

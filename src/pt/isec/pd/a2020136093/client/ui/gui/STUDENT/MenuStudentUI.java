@@ -1,6 +1,7 @@
 package pt.isec.pd.a2020136093.client.ui.gui.STUDENT;
 
 import javafx.animation.PauseTransition;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.PopUpCreator;
@@ -47,35 +49,35 @@ public class MenuStudentUI extends BorderPane {
         lblResultado = new Label("");
         lblResultado.setVisible(false);
 
-        btnEditData = createStyledButton("Editar dados de registo");
+        btnEditData = new Button("Editar dados de registo");
         btnEditData.setMinWidth(120);
+        btnEditData.getStyleClass().add("button");
 
-        btnSubmitCode = createStyledButton("Submeter codigo de presenca");
+        btnSubmitCode = new Button("Submeter código de presença");
         btnSubmitCode.setMinWidth(120);
+        btnSubmitCode.getStyleClass().add("button");
 
-        btnPresences = createStyledButton("Consultar presencas");
+        btnPresences = new Button("Consultar presenças");
         btnPresences.setMinWidth(120);
+        btnPresences.getStyleClass().add("button");
 
-        btnCSV = createStyledButton("Gerar ficheiro CSV (registo de presencas)");
+        btnCSV = new Button("Gerar ficheiro CSV (registo de presenças)");
         btnCSV.setMinWidth(120);
+        btnCSV.getStyleClass().add("button");
 
-        btnLogout = createStyledButton("Logout");
+        btnLogout = new Button("Logout");
         btnLogout.setMinWidth(120);
+        btnLogout.getStyleClass().add("button");
 
 
         VBox vBox = new VBox(lblTitle, btnEditData, btnSubmitCode, btnPresences, btnCSV, btnLogout, lblResultado);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
-        VBox.setMargin(btnEditData, new Insets(25, 0, 0, 0)); // Set top margin for the button
+        VBox.setMargin(btnEditData, new Insets(50, 0, 0, 0)); // Set top margin for the button
         VBox.setMargin(lblResultado, new Insets(50, 0, 0, 0)); // Set top margin for the button
+        VBox.setMargin(btnLogout, new Insets(55, 0, 0, 0)); // Set top margin for the button
 
         this.setCenter(vBox);
-    }
-
-    private Button createStyledButton(String text) {
-        Button button = new Button(text);
-        button.setStyle("-fx-text-fill: black; -fx-font-size: 16px; ");
-        return button;
     }
 
 
@@ -89,39 +91,43 @@ public class MenuStudentUI extends BorderPane {
 
         btnEditData.setOnAction(event -> {
             Stage stage = new Stage();
+
             Scene scene = new Scene(new EditDataUI(mc), 900, 725);
             //stage.getIcons().add(ImageManager.getImage("pacman-icon.png"));
             stage.setScene(scene);
             stage.setTitle("Editar dados da conta");
 
-            stage.setMinWidth(1000);
-            stage.setMinHeight(700);
+            stage.setMinWidth(1200);
+            stage.setMinHeight(900);
 
             stage.show();
         });
 
         btnSubmitCode.setOnAction(event -> {
-            if (mc.submitCode(PopUpCreator.sendPresenceCode())) {
-                lblResultado.setText("Codigo submetido com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String code = PopUpCreator.sendPresenceCode();
+            if(code != null) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else {
-                lblResultado.setText("Codigo invalido ou presença já registada!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.submitCode(PopUpCreator.sendPresenceCode())) {
+                    lblResultado.setText("Código submetido com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Código inválido ou presença já registada!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 
@@ -171,6 +177,12 @@ public class MenuStudentUI extends BorderPane {
         if(RootPane.showStudentMenu){
             this.setVisible(true);
             lblTitle.setText("Bem-vindo " + mc.getName());
+            Stage stage = (Stage) this.getScene().getWindow();
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    mc.logout();
+                }
+            });
         }
         else{
             this.setVisible(false);

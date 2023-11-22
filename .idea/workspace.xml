@@ -4,12 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="finished GUIs + ManageConnections">
+    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="fixed RMI">
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/rmi/RMI_CLIENT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/rmi/RMI_CLIENT_INTERFACE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/styles/style1.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PD-2023-24-TP.db" beforeDir="false" afterPath="$PROJECT_DIR$/PD-2023-24-TP.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup_dbs/PD-2023-24-TP_BACKUP.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/CSSManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/CSSManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/PopUpCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/PopUpCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RegisterUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RegisterUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/MenuStudentUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/MenuStudentUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/ServerBackup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/ServerBackup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/createDBscript.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/createDBscript.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/rmi/RMI_SERVER.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/rmi/RMI_SERVER.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/rmi/RMI_SERVER_INTERFACE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/rmi/RMI_SERVER_INTERFACE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" afterDir="false" />
     </list>
     <list id="6885a97c-d08f-4871-87ab-73b4fdf8244c" name="Changes by biama" comment="bia: finished GUIs + ManageConnections" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,26 +57,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/utilizador/Desktop/PD/Exercícios/ficha1/ex16 - RMI&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "last_opened_file_path": "C:/Users/utilizador/Desktop/PD/Trabalho-PEDRO",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src\pt\isec\pd\a2020136093\server\model\jdbc" />
@@ -65,7 +85,7 @@
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerMain_Backup">
+  <component name="RunManager" selected="Application.ClientMain">
     <configuration name="ClientMain (1)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.client.ClientMain" />
       <module name="TP_v2.0" />
@@ -122,10 +142,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerMain_Backup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerMain_Backup_DOIS" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.server.ServerMain_Backup" />
       <module name="TP_v2.0" />
-      <option name="PROGRAM_PARAMETERS" value="src/backup_dbs" />
+      <option name="PROGRAM_PARAMETERS" value="src/backup_dbs/DOIS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.isec.pd.a2020136093.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerMain_Backup_TRES" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.server.ServerMain_Backup" />
+      <module name="TP_v2.0" />
+      <option name="PROGRAM_PARAMETERS" value="src/backup_dbs/TRES" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.isec.pd.a2020136093.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerMain_Backup_UM" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.server.ServerMain_Backup" />
+      <module name="TP_v2.0" />
+      <option name="PROGRAM_PARAMETERS" value="src/backup_dbs/UM" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="pt.isec.pd.a2020136093.server.*" />
@@ -138,16 +186,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.ClientMain (1)" />
-      <item itemvalue="Application.ServerMain_Backup" />
+      <item itemvalue="Application.ServerMain_Backup_DOIS" />
+      <item itemvalue="Application.ServerMain_Backup_TRES" />
+      <item itemvalue="Application.ServerMain_Backup_UM" />
       <item itemvalue="Application.MainJFX" />
       <item itemvalue="Application.ClientMain" />
       <item itemvalue="Application.ServerMain" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerMain_Backup" />
-        <item itemvalue="Application.ServerMain" />
         <item itemvalue="Application.ClientMain" />
+        <item itemvalue="Application.ServerMain" />
+        <item itemvalue="Application.ServerMain_Backup_UM" />
         <item itemvalue="Application.MainJFX" />
       </list>
     </recent_temporary>
@@ -190,7 +240,13 @@
       <workItem from="1700264336948" duration="97000" />
       <workItem from="1700272508860" duration="6773000" />
       <workItem from="1700318445217" duration="6512000" />
-      <workItem from="1700360433488" duration="5491000" />
+      <workItem from="1700360433488" duration="5521000" />
+      <workItem from="1700491156983" duration="31000" />
+      <workItem from="1700495032435" duration="187000" />
+      <workItem from="1700496852946" duration="8502000" />
+      <workItem from="1700525313647" duration="845000" />
+      <workItem from="1700582270165" duration="2854000" />
+      <workItem from="1700590722315" duration="19075000" />
     </task>
     <task id="LOCAL-00001" summary="added features + updated old ones">
       <created>1698669978617</created>
@@ -255,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700324642690</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fixed RMI">
+      <created>1700366752880</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1700366752880</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +345,8 @@
     <MESSAGE value="RMI code (still not working properly)" />
     <MESSAGE value="finished GUIs + ManageConnections" />
     <MESSAGE value="bia: finished GUIs + ManageConnections" />
-    <option name="LAST_COMMIT_MESSAGE" value="bia: finished GUIs + ManageConnections" />
+    <MESSAGE value="fixed RMI" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed RMI" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

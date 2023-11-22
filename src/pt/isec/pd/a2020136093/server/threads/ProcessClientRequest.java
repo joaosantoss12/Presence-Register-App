@@ -1,5 +1,6 @@
 package pt.isec.pd.a2020136093.server.threads;
 
+import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
 import pt.isec.pd.a2020136093.data.EventsData;
 import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
 import pt.isec.pd.a2020136093.server.model.jdbc.ManageDB;
@@ -12,6 +13,7 @@ import java.io.*;
 import java.net.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
 
@@ -19,11 +21,15 @@ public class ProcessClientRequest extends Thread {
     private Socket nextClient;
     ManageDB manageDB;
     Heartbeat serverData;
+    ArrayList<String> loggedIn;
+    List<RMI_CLIENT_INTERFACE> observers;
 
-    public ProcessClientRequest(Socket nextClient, ManageDB manageDB, Heartbeat serverData) {
+    public ProcessClientRequest(Socket nextClient, ManageDB manageDB, Heartbeat serverData, ArrayList<String> loggedIn, List<RMI_CLIENT_INTERFACE> observers){
         this.nextClient = nextClient;
         this.manageDB = manageDB;
         this.serverData = serverData;
+        this.loggedIn = loggedIn;
+        this.observers = observers;
 
         try {
             nextClient.setSoTimeout(TIMEOUT_CLIENT_MILLISECONDS);   // TIMEOUT PARA DESCONECTAR CLIENTE INATIVO
@@ -216,6 +222,9 @@ public class ProcessClientRequest extends Thread {
                         case REQUESTS.CLIENT_REQUEST_LOGOUT -> {
                             response.response = "Utilizador deslogado com sucesso!";
                             response.resultado = true;
+
+                            loggedIn.remove(requestClientServer.email);
+
                             oout.writeObject(response);
 
                             nextClient.setSoTimeout(TIMEOUT_CLIENT_MILLISECONDS);
@@ -244,23 +253,33 @@ public class ProcessClientRequest extends Thread {
                         }
 
                         case REQUESTS.CLIENT_REQUEST_LOGIN -> {
-                            if (manageDB.login(requestClientServer.email, requestClientServer.password)) {
-
-                                // DISABLE SOCKET TIMEOUT
-                                nextClient.setSoTimeout(0);
-
-                                response.response = "Bem-vindo " + requestClientServer.email + "!";
-                                response.resultado = true;
-
-                                ArrayList<String> list = manageDB.getClientData(requestClientServer.email);
-
-                                response.clientData.addAll(list);
-
-                                oout.writeObject(response);
-                            } else {
-                                response.response = "Credenciais invalidas!";
+                            if(loggedIn.contains(requestClientServer.email)){
+                                response.response = "Utilizador já logado!";
                                 response.resultado = false;
                                 oout.writeObject(response);
+                            }
+                            else {
+                                if (manageDB.login(requestClientServer.email, requestClientServer.password)) {
+
+                                    // DISABLE SOCKET TIMEOUT
+                                    nextClient.setSoTimeout(0);
+
+                                    response.response = "Bem-vindo " + requestClientServer.email + "!";
+                                    response.resultado = true;
+
+                                    ArrayList<String> list = manageDB.getClientData(requestClientServer.email);
+
+                                    response.clientData.addAll(list);
+
+                                    loggedIn.add(requestClientServer.email);
+
+                                    oout.writeObject(response);
+
+                                } else {
+                                    response.response = "Credenciais invalidas!";
+                                    response.resultado = false;
+                                    oout.writeObject(response);
+                                }
                             }
                         }
 
@@ -360,6 +379,9 @@ public class ProcessClientRequest extends Thread {
             );
 
             datagramSocket.send(dpSend);
+
+            for(RMI_CLIENT_INTERFACE client : observers)
+                client.receiveNotificationAsync("Nova atualização da base de dados");
 
         } catch (IOException e) {
             throw new RuntimeException(e);

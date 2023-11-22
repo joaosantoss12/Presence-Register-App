@@ -1,20 +1,23 @@
 package pt.isec.pd.a2020136093.client.ui.gui;
 
+import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
 
 public class RegisterUI extends BorderPane {
     ManageConnections mc;
 
-    VBox vbox1, vbox2, vbox3, vbox4;
+    HBox hBox1;
+    HBox hbox1, hbox2, hbox3, hbox4;
     TextField nameField, emailField, passwordField, nIdentificacaoField;
 
-    Label lblTitle, lblName, lblEmail, lblPassword, lblNIdentificacao;
+    Label lblRetorno, lblTitle, lblName, lblEmail, lblPassword, lblNIdentificacao;
     Button btnRegister,btnBack;
 
     public RegisterUI(ManageConnections mc) {
@@ -35,60 +38,71 @@ public class RegisterUI extends BorderPane {
         lblTitle = new Label("REGISTAR NOVA CONTA");
         lblTitle.setStyle("-fx-text-fill: #333; -fx-font-size: 36px; -fx-font-weight: bold;");
 
-        vbox2 = new VBox();
-        emailField = new TextField();
-        //emailField.setPromptText("Email");
-        emailField.setMaxWidth(690);
+
+        GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+
         lblEmail = new Label("Email");
-        vbox2.getChildren().addAll(lblEmail, emailField);
-        vbox2.alignmentProperty().setValue(Pos.CENTER);
+        lblEmail.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        emailField = new TextField();
+        emailField.setMinWidth(200);
 
-        vbox3 = new VBox();
-        passwordField = new TextField();
-        //passwordField.setPromptText("Password");
-        passwordField.setMaxWidth(690);
+        gridPane.add(lblEmail, 0, 0);
+        gridPane.add(emailField, 1, 0);
+
+
         lblPassword = new Label("Password");
-        vbox3.getChildren().addAll(lblPassword, passwordField);
-        vbox3.alignmentProperty().setValue(Pos.CENTER);
+        lblPassword.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        passwordField = new PasswordField();
+        passwordField.setMinWidth(150);
 
-        vbox1 = new VBox();
-        nameField = new TextField();
-        //passwordField.setPromptText("Password");
-        nameField.setMaxWidth(690);
+        gridPane.add(lblPassword, 0, 1);
+        gridPane.add(passwordField, 1, 1);
+
+
         lblName = new Label("Nome");
-        vbox1.getChildren().addAll(lblName, nameField);
-        vbox1.alignmentProperty().setValue(Pos.CENTER);
+        lblName.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        nameField = new TextField();
+        nameField.setMinWidth(150);
 
-        vbox4 = new VBox();
+        gridPane.add(lblName, 0, 2);
+        gridPane.add(nameField, 1, 2);
+
+
+        lblNIdentificacao = new Label("Número\nIdentificação");
+        lblNIdentificacao.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
         nIdentificacaoField = new TextField();
-        //passwordField.setPromptText("Password");
-        nIdentificacaoField.setMaxWidth(690);
-        lblNIdentificacao = new Label("Número Identificação");
-        vbox4.getChildren().addAll(lblNIdentificacao, nIdentificacaoField);
-        vbox4.alignmentProperty().setValue(Pos.CENTER);
+        nIdentificacaoField.setMinWidth(120);
+
+        gridPane.add(lblNIdentificacao, 0, 3);
+        gridPane.add(nIdentificacaoField, 1, 3);
 
 
-        btnRegister = createStyledButton("REGISTAR");
+        lblRetorno = new Label("");
+        lblRetorno.setVisible(false);
+
+        hBox1 = new HBox();
+        btnRegister = new Button("REGISTAR");
         btnRegister.setMinWidth(120);
-        btnBack = createStyledButton("VOLTAR");
+        btnRegister.getStyleClass().add("button");
+
+        btnBack = new Button("VOLTAR");
         btnBack.setMinWidth(120);
+        btnBack.getStyleClass().add("button");
+        hBox1.getChildren().addAll(btnRegister,btnBack);
+        hBox1.setSpacing(15);
+        hBox1.setAlignment(Pos.CENTER);
 
 
-        VBox vBox = new VBox(lblTitle, vbox1, vbox2, vbox3, vbox4, btnRegister, btnBack);
+        VBox vBox = new VBox(lblTitle, gridPane, lblRetorno, hBox1);
         vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(15);
-        VBox.setMargin(btnRegister, new Insets(25, 0, 0, 0)); // Set top margin for the button
+        vBox.setSpacing(35);
+        VBox.setMargin(gridPane, new Insets(15, 0, 0, 0)); // Set top margin for the button
 
         this.setCenter(vBox);
     }
-
-    private Button createStyledButton(String text) {
-        Button button = new Button(text);
-        button.setStyle(" -fx-text-fill: black; -fx-font-size: 16px; ");
-        return button;
-    }
-
-
 
 
     private void registerHandlers() {
@@ -98,9 +112,44 @@ public class RegisterUI extends BorderPane {
 
         btnRegister.setOnAction( event -> {
 
-            RootPane.setShowRegister(false);
-            RootPane.setShowMainMenu(true);
+            if(mc.register(emailField.getText(), passwordField.getText(), nameField.getText(), nIdentificacaoField.getText())){
+                lblRetorno.setVisible(true);
+                lblRetorno.setText("Conta registada com sucesso!");
+                lblRetorno.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
 
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> {
+                    lblRetorno.setVisible(false);
+
+                    RootPane.setShowRegister(false);
+                    RootPane.setShowLogin(true);
+
+                });
+                pause.play();
+
+                emailField.setText("");
+                passwordField.setText("");
+                nameField.setText("");
+                nIdentificacaoField.setText("");
+
+            }
+            else{
+                lblRetorno.setVisible(true);
+                lblRetorno.setText("Houve um erro ao registar a conta!");
+                lblRetorno.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> {
+                    lblRetorno.setVisible(false);
+
+                    emailField.setText("");
+                    passwordField.setText("");
+                    nameField.setText("");
+                    nIdentificacaoField.setText("");
+
+                });
+                pause.play();
+            }
         });
 
         btnBack.setOnAction( event -> {
@@ -108,9 +157,6 @@ public class RegisterUI extends BorderPane {
             RootPane.setShowMainMenu(true);
         });
 
-
-
-        //ExitAlertUI.exitAlert(btnExit);
     }
 
 

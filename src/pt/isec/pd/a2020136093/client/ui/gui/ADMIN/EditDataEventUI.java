@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.CSSManager;
 import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.PopUpCreator;
 import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
 
@@ -27,10 +28,10 @@ public class EditDataEventUI extends BorderPane {
     Button btnEditName, btnEditLocal, btnEditData, btnEditHourStart, btnBack, btnEditHourEnd;
 
     public EditDataEventUI(ManageConnections mc, String id) {
-
         this.mc = mc;
         this.id = id;
 
+        CSSManager.applyCSS(this, "style1.css");
 
         createViews();
         registerHandlers();
@@ -47,23 +48,29 @@ public class EditDataEventUI extends BorderPane {
         lblResultado = new Label();
         lblResultado.setVisible(false);
 
-        btnEditName = createStyledButton("Editar nome");
+        btnEditName = new Button("Editar nome");
         btnEditName.setMinWidth(120);
+        btnEditName.getStyleClass().add("button");
 
-        btnEditLocal = createStyledButton("Editar local");
+        btnEditLocal = new Button("Editar local");
         btnEditLocal.setMinWidth(120);
+        btnEditLocal.getStyleClass().add("button");
 
-        btnEditData = createStyledButton("Editar data");
+        btnEditData = new Button("Editar data");
         btnEditData.setMinWidth(120);
+        btnEditData.getStyleClass().add("button");
 
-        btnEditHourStart = createStyledButton("Editar hora de inicio");
+        btnEditHourStart = new Button("Editar hora de inicio");
         btnEditHourStart.setMinWidth(120);
+        btnEditHourStart.getStyleClass().add("button");
 
-        btnEditHourEnd = createStyledButton("Editar hora de fim");
+        btnEditHourEnd = new Button("Editar hora de fim");
         btnEditHourEnd.setMinWidth(120);
+        btnEditHourEnd.getStyleClass().add("button");
 
-        btnBack = createStyledButton("Voltar");
+        btnBack = new Button("Voltar");
         btnBack.setMinWidth(120);
+        btnBack.getStyleClass().add("button");
 
 
         VBox vBox = new VBox(lblTitle, btnEditName, btnEditLocal, btnEditData, btnEditHourStart, btnEditHourEnd, lblResultado, btnBack);
@@ -75,139 +82,147 @@ public class EditDataEventUI extends BorderPane {
         this.setCenter(vBox);
     }
 
-    private Button createStyledButton(String text) {
-        Button button = new Button(text);
-        button.setStyle("-fx-text-fill: black; -fx-font-size: 16px; ");
-        return button;
-    }
-
-
-
 
     private void registerHandlers() {
 
         btnEditName.setOnAction(event -> {
-            if(mc.editEvent(id,1,PopUpCreator.editName())){
-                lblResultado.setText("Nome alterado com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String newName = PopUpCreator.editName(null);
+            if(newName != null && !newName.equals("")) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro a editar o nome do evento!\nVerifique se o evento já tem presenças registadas!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editEvent(id, 1, newName)) {
+                    lblResultado.setText("Nome alterado com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro a editar o nome do evento!\nVerifique se o evento já tem presenças registadas!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 
         btnEditLocal.setOnAction(event -> {
-            if(mc.editEvent(id,2,PopUpCreator.editLocal())){
-                lblResultado.setText("Local alterado com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String local = PopUpCreator.editLocal();
+            if(local != null && !local.equals("")){
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro a editar o local do evento!\nVerifique se o evento já tem presenças registadas!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editEvent(id, 2, local)) {
+                    lblResultado.setText("Local alterado com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro a editar o local do evento!\nVerifique se o evento já tem presenças registadas!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 
         btnEditData.setOnAction(event -> {
-            if(mc.editEvent(id,3,PopUpCreator.editData())){
-                lblResultado.setText("Data alterada com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String data = PopUpCreator.editData();
+            if(data != null && !data.equals("")) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro a editar a data do evento!\nVerifique se o evento já tem presenças registadas!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editEvent(id, 3, data)) {
+                    lblResultado.setText("Data alterada com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro a editar a data do evento!\nVerifique se o evento já tem presenças registadas!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 
         btnEditHourStart.setOnAction(event -> {
-            if(mc.editEvent(id,4,PopUpCreator.editHourStart())){
-                lblResultado.setText("Hora de inicio alterada com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String hourStart = PopUpCreator.editHourStart();
+            if(hourStart != null && !hourStart.equals("")) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro a editar a hora de inicio do evento!\nVerifique se o evento já tem presenças registadas!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editEvent(id, 4, hourStart)) {
+                    lblResultado.setText("Hora de inicio alterada com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro a editar a hora de inicio do evento!\nVerifique se o evento já tem presenças registadas!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
+
         });
 
         btnEditHourEnd.setOnAction(event -> {
-            if(mc.editEvent(id,5,PopUpCreator.editHourEnd())){
-                lblResultado.setText("Hora de fim alterada com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String hourEnd = PopUpCreator.editHourEnd();
+            if(hourEnd != null && !hourEnd.equals("")  ) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro a editar a hora de fim do evento!\nVerifique se o evento já tem presenças registadas!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editEvent(id, 5, hourEnd)) {
+                    lblResultado.setText("Hora de fim alterada com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro a editar a hora de fim do evento!\nVerifique se o evento já tem presenças registadas!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 

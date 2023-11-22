@@ -1,5 +1,6 @@
 package pt.isec.pd.a2020136093.server.model;
 
+import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
 import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
 import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER;
 import pt.isec.pd.a2020136093.server.threads.Multicast_SendHeartbeat;
@@ -12,6 +13,9 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
 
 import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
 
@@ -22,13 +26,28 @@ public class Server {
     private final String RMI_NAME;
     private final int RMI_PORT;
 
+    private ArrayList<String> loggedIn;
+
     Heartbeat serverData;
+
+    List<RMI_CLIENT_INTERFACE> observers;
 
     public Server(int port, String dbPath, String rmiName, int rmiPort) {
         this.PORT = port;
         this.DB_PATH = dbPath;
         this.RMI_NAME = rmiName;
         this.RMI_PORT = rmiPort;
+
+        this.loggedIn = new ArrayList<>();
+
+        this.observers = new ArrayList<>();
+
+        try {
+            printxd();
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         manageDB = new ManageDB(DB_PATH);
 
@@ -45,6 +64,11 @@ public class Server {
             System.out.println("Não foi possível conectar à base de dados");
             System.exit(-1);
         }
+    }
+
+    public void printxd(){
+        for(String s : loggedIn)
+            System.out.println("LOGGED IN: "+s);
     }
 
     public void start() {
@@ -98,7 +122,7 @@ public class Server {
             /*
              * Cria o servico.
              */
-            RMI_SERVER rmiServer = new RMI_SERVER();
+            RMI_SERVER rmiServer = new RMI_SERVER(observers);
             System.out.println("Service RMI criado! [" + rmiServer.getRef().remoteToString() + "]");
 
             /*
@@ -124,6 +148,7 @@ public class Server {
         }
 
 
+
         // ================================= CRIAR SERVER SOCKET E ACEITAR CLIENTES =================================
         try (ServerSocket socket = new ServerSocket(PORT)) {
 
@@ -131,7 +156,7 @@ public class Server {
 
             while (true) {
                 Socket nextClient = socket.accept();
-                new ProcessClientRequest(nextClient, manageDB, serverData).start();
+                new ProcessClientRequest(nextClient, manageDB, serverData, loggedIn, observers).start();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

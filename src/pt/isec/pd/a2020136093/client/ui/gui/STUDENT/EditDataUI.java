@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.CSSManager;
 import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.PopUpCreator;
 
 public class EditDataUI extends BorderPane {
@@ -21,11 +22,12 @@ public class EditDataUI extends BorderPane {
     Font titleFont, buttonsFont;
 
     Label lblTitle, lblResultado;
-    Button btnEditName, btnEditEmail, btnEditPassword, btnEditIDNumber, btnBack;
+    Button btnEditName, btnEditEmail, btnEditPassword, btnEditIDNumber, btnClose;
 
     public EditDataUI(ManageConnections mc) {
         this.mc = mc;
 
+        CSSManager.applyCSS(this, "style1.css");
         //titleFont = FontManager.loadFont("PAC-FONT.TTF",69);
         //buttonsFont = FontManager.loadFont("PressStart2P-Regular.ttf",12);
 
@@ -44,142 +46,154 @@ public class EditDataUI extends BorderPane {
         lblResultado = new Label("");
         lblResultado.setVisible(false);
 
-        btnEditName = createStyledButton("Editar nome");
+        btnEditName = new Button("Editar nome");
         btnEditName.setMinWidth(120);
-        btnEditEmail = createStyledButton("Editar email");
+        btnEditName.getStyleClass().add("button");
+
+        btnEditEmail = new Button("Editar email");
         btnEditEmail.setMinWidth(120);
-        btnEditPassword = createStyledButton("Editar password");
+        btnEditEmail.getStyleClass().add("button");
+
+        btnEditPassword = new Button("Editar password");
         btnEditPassword.setMinWidth(120);
-        btnEditIDNumber = createStyledButton("Editar numero de identificacao");
+        btnEditPassword.getStyleClass().add("button");
+
+        btnEditIDNumber = new Button("Editar numero de identificacao");
         btnEditIDNumber.setMinWidth(120);
+        btnEditIDNumber.getStyleClass().add("button");
 
-        btnBack = createStyledButton("Voltar");
-        btnBack.setMinWidth(120);
+        btnClose = new Button("Fechar");
+        btnClose.setMinWidth(120);
+        btnClose.getStyleClass().add("button");
 
 
-        VBox vBox = new VBox(lblTitle, btnEditName, btnEditEmail, btnEditPassword, btnEditIDNumber, lblResultado, btnBack );
+        VBox vBox = new VBox(lblTitle, btnEditName, btnEditEmail, btnEditPassword, btnEditIDNumber, lblResultado, btnClose);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(15);
-        VBox.setMargin(btnEditName, new Insets(25, 0, 0, 0)); // Set top margin for the button
-        VBox.setMargin(btnEditName, new Insets(50, 0, 0, 0)); // Set top margin for the button
+        VBox.setMargin(btnEditName, new Insets(55, 0, 0, 0)); // Set top margin for the button
+        VBox.setMargin(btnClose, new Insets(35, 0, 0, 0)); // Set top margin for the button
 
         this.setCenter(vBox);
     }
-
-    private Button createStyledButton(String text) {
-        Button button = new Button(text);
-        button.setStyle("-fx-text-fill: black; -fx-font-size: 16px; ");
-        return button;
-    }
-
-
 
 
     private void registerHandlers() {
 
         btnEditName.setOnAction(event -> {
-            if(mc.editData( 1, PopUpCreator.editName())){
-                lblResultado.setText("Nome alterado com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String nome = PopUpCreator.editName(mc.getName());
+            if(nome != null) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro ao alterar o nome!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editData(1, nome)) {
+                    lblResultado.setText("Nome alterado com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro ao alterar o nome!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 
         btnEditEmail.setOnAction(event -> {
-            if(mc.editData( 2, PopUpCreator.editEmail())){
-                lblResultado.setText("Email alterado com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String email = PopUpCreator.editEmail(mc.getEmail());
+            if(email != null && !email.equals("")) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro ao alterar o email!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editData(2, email)) {
+                    lblResultado.setText("Email alterado com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro ao alterar o email!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 
         btnEditPassword.setOnAction(event -> {
-            if(mc.editData( 3, PopUpCreator.editPassword())){
-                lblResultado.setText("Password alterada com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String password = PopUpCreator.editPassword(mc.getPassword());
+            if(password != null && !password.equals("")) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro ao alterar a password!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editData(3, password)) {
+                    lblResultado.setText("Password alterada com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro ao alterar a password!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 
         btnEditIDNumber.setOnAction(event -> {
-            if(mc.editData( 4, PopUpCreator.editIDNumber())){
-                lblResultado.setText("Número de Indentificação alterado com sucesso!");
-                lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+            String idNumber = PopUpCreator.editIDNumber(mc.getNIdentificacao());
+            if(idNumber != null && !idNumber.equals("")) {
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
-            }
-            else{
-                lblResultado.setText("Houve um erro ao alterar o número de identificação!");
-                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
-                lblResultado.setVisible(true);
+                if (mc.editData(4, idNumber)) {
+                    lblResultado.setText("Número de Indentificação alterado com sucesso!");
+                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
 
-                PauseTransition pause = new PauseTransition(Duration.seconds(3));
-                pause.setOnFinished(e -> {
-                    lblResultado.setVisible(false);
-                });
-                pause.play();
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                } else {
+                    lblResultado.setText("Houve um erro ao alterar o número de identificação!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 25px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
             }
         });
 
 
-        btnBack.setOnAction(event -> {
-            Stage stage = (Stage) btnBack.getScene().getWindow();
+        btnClose.setOnAction(event -> {
+            Stage stage = (Stage) btnClose.getScene().getWindow();
             stage.close();
         });
     }

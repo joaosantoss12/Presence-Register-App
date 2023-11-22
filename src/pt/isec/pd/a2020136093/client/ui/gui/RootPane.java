@@ -2,11 +2,18 @@ package pt.isec.pd.a2020136093.client.ui.gui;
 
 import javafx.scene.layout.*;
 import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT;
 import pt.isec.pd.a2020136093.client.ui.gui.ADMIN.MenuAdminUI;
+import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.CSSManager;
 import pt.isec.pd.a2020136093.client.ui.gui.STUDENT.MenuStudentUI;
+import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER_INTERFACE;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 
 public class RootPane extends BorderPane {
@@ -22,9 +29,6 @@ public class RootPane extends BorderPane {
     public RootPane(ManageConnections manageConnections){
         this.mc = manageConnections;
 
-        if(this.mc == null)
-            System.out.println("NULO NO ROOTPANE");
-
         pcs = new PropertyChangeSupport(this);
 
         createViews();
@@ -33,14 +37,28 @@ public class RootPane extends BorderPane {
     }
 
     private void createViews(){
-        //CSSManager.applyCSS(this,"styles.css");
+        CSSManager.applyCSS(this, "style1.css");
+
+        MenuAdminUI menuAdminUI = new MenuAdminUI(mc);
+
+        try {
+            RMI_CLIENT rmiClient = new RMI_CLIENT(menuAdminUI);
+
+            Registry r = LocateRegistry.getRegistry("localhost");
+
+            RMI_SERVER_INTERFACE remoteRef = (RMI_SERVER_INTERFACE) r.lookup(r.list()[0]);
+            remoteRef.addObserver(rmiClient);
+
+        } catch (RemoteException | NotBoundException e) {
+            throw new RuntimeException(e);
+        }
 
         StackPane stackPane = new StackPane(
                 new MainMenuUI(mc),
                 new LoginUI(mc),
                 new RegisterUI(mc),
                 new MenuStudentUI(mc),
-                new MenuAdminUI(mc)
+                menuAdminUI
         );
 
         this.setCenter(stackPane);

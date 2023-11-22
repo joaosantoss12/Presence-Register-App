@@ -1,13 +1,19 @@
 package pt.isec.pd.a2020136093.server.model.rmi;
 
+import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
+
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
-public class RMI_SERVER extends UnicastRemoteObject implements RMI_SERVER_INTERFACE{
-    public RMI_SERVER() throws RemoteException {
-
+public class RMI_SERVER extends UnicastRemoteObject implements RMI_SERVER_INTERFACE {
+    List<RMI_CLIENT_INTERFACE> observers;
+    public RMI_SERVER(List<RMI_CLIENT_INTERFACE> observers) throws RemoteException {
+        this.observers = observers;
     }
 
     @Override
@@ -42,10 +48,12 @@ public class RMI_SERVER extends UnicastRemoteObject implements RMI_SERVER_INTERF
                  */
                 byte[] aux = new byte[nbytes];
 
+
                 /*
                  * Copia os bytes obtidos do ficheiro de fileChunck para aux
                  */
                 System.arraycopy(fileChunk, 0, aux, 0, nbytes);
+
 
                 return aux;
             }
@@ -55,4 +63,24 @@ public class RMI_SERVER extends UnicastRemoteObject implements RMI_SERVER_INTERF
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public /*synchronized*/ void addObserver(RMI_CLIENT_INTERFACE observer) throws RemoteException {
+        synchronized (observers){
+            if(!observers.contains(observer)) {
+                observers.add(observer);
+                System.out.println("Observer adicionado");
+            }
+        }
+    }
+
+    @Override
+    public /*synchronized*/ void removeObserver(RMI_CLIENT_INTERFACE observer) throws RemoteException {
+        synchronized (observers){
+            if(observers.remove(observer)) {
+                System.out.println("Observer removido");
+            }
+        }
+    }
+
 }

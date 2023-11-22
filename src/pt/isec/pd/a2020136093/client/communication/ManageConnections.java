@@ -45,7 +45,7 @@ public class ManageConnections {
         }
     }
 
-    public void register(String email, String password, String name, String nIdentificacao) {
+    public boolean register(String email, String password, String name, String nIdentificacao) {
         REQUEST_CLIENT_TO_SERVER msg = new REQUEST_CLIENT_TO_SERVER();
 
         msg.msgCode = REQUESTS.CLIENT_REQUEST_REGISTER;
@@ -70,12 +70,15 @@ public class ManageConnections {
                 System.out.println(response.response);
             }
 
+            return response.resultado;
+
         } catch (Exception e) {
             System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
+            return false;
         }
     }
 
-    public boolean login(String email, String password) {
+    public int login(String email, String password) {
         REQUEST_CLIENT_TO_SERVER msg = new REQUEST_CLIENT_TO_SERVER();
 
         msg.msgCode = REQUESTS.CLIENT_REQUEST_LOGIN;
@@ -107,13 +110,19 @@ public class ManageConnections {
                 clientData.setNIdentificacao(response.clientData.get(4));
             }
 
-            return response.resultado;
+            if(!response.resultado){
+                if(response.response.equals("Utilizador já logado!"))
+                    return 1;   // JA LOGADO
+                else
+                    return 2;   // CREDENCIAIS ERRADAS OU SERVIDOR FECHOU CONEXAO
+            }
+            else
+                return 0;   // LOGOU
 
         } catch (Exception e) {
             System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
+            return -1;
         }
-
-        return false;
     }
 
 

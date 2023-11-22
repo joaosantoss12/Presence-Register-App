@@ -7,7 +7,7 @@ PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
 -- Criar tabela de versão da base de dados
-CREATE TABLE IF NOT EXISTS db_version (version INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS db_version (version INTEGER NOT NULL UNIQUE, PRIMARY KEY (version));
 
 -- Table: accounts
 CREATE TABLE IF NOT EXISTS accounts (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,name TEXT NOT NULL,email TEXT NOT NULL,password TEXT NOT NULL,admin BOOLEAN NOT NULL DEFAULT (false),nIdentificacao INTEGER NOT NULL);
