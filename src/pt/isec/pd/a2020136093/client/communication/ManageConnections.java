@@ -136,6 +136,8 @@ public class ManageConnections {
         msg.timeStart = timeStart;
         msg.timeEnd = timeEnd;
 
+        msg.isAdmin = isAdmin();
+
         try{
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -165,6 +167,8 @@ public class ManageConnections {
 
         msg.msgCode = REQUESTS.ADMIN_REQUEST_EDIT_EVENT;
         msg.id = Integer.parseInt(idEvento);
+
+        msg.isAdmin = isAdmin();
 
         checkEvents();
 
@@ -225,6 +229,8 @@ public class ManageConnections {
         msg.msgCode = REQUESTS.ADMIN_REQUEST_DELETE_EVENT;
         msg.id = Integer.parseInt(idEvento);
 
+        msg.isAdmin = isAdmin();
+
         try{
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -253,6 +259,9 @@ public class ManageConnections {
     public ArrayList<ArrayList<String>> checkEvents() {
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
         msg.msgCode = REQUESTS.ADMIN_REQUEST_CHECK_EVENTS;
+
+        //if(clientData.getAdmin() != null)
+            //msg.isAdmin = isAdmin();
 
         try{
 
@@ -314,6 +323,8 @@ public class ManageConnections {
                 msg.id = Integer.parseInt(eventoID);
                 msg.eventCode = code;
 
+                msg.isAdmin = isAdmin();
+
                 //Serializa a string TIME_REQUEST para o OutputStream associado a socket
                 oout.writeObject(msg);
                 oout.flush();
@@ -344,6 +355,8 @@ public class ManageConnections {
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
         msg.msgCode = REQUESTS.ADMIN_REQUEST_CHECK_PRESENCES_EVENT;
         msg.id = Integer.parseInt(id);
+
+        msg.isAdmin = isAdmin();
 
         try{
 
@@ -377,6 +390,8 @@ public class ManageConnections {
         msg.msgCode = REQUESTS.CLIENT_REQUEST_CHECK_PRESENCES;
         msg.email = email;
 
+        msg.isAdmin = isAdmin();
+
         try {
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -406,6 +421,8 @@ public class ManageConnections {
         msg.id = Integer.parseInt(idEvento);
         msg.emailToManagePresence = emailAluno;
 
+        msg.isAdmin = isAdmin();
+
         try {
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -434,6 +451,8 @@ public class ManageConnections {
         msg.id = Integer.parseInt(idEvento);
         msg.emailToManagePresence = emailAluno;
 
+        msg.isAdmin =isAdmin();
+
         try {
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -461,6 +480,8 @@ public class ManageConnections {
         msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CSV_EVENT;
         msg.id = Integer.parseInt(idEvento);
 
+        msg.isAdmin = isAdmin();
+
         try {
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -487,6 +508,8 @@ public class ManageConnections {
         msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CSV_STUDENT;
         msg.emailToManagePresence = email;
 
+        msg.isAdmin = isAdmin();
+
         try {
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -512,6 +535,8 @@ public class ManageConnections {
 
         msg.msgCode = REQUESTS.CLIENT_REQUEST_GENERATE_CSV_STUDENT;
         msg.email = clientData.getEmail();
+
+        msg.isAdmin = isAdmin();
 
         try {
 
@@ -552,6 +577,8 @@ public class ManageConnections {
         msg.email = clientData.getEmail();
         msg.password = clientData.getPassword();
         msg.nIdentificacao = clientData.getNIdentificacao();
+
+        msg.isAdmin = isAdmin();
 
         switch (index) {
             case 1 -> {
@@ -606,6 +633,8 @@ public class ManageConnections {
         msg.email = clientData.getEmail();
         msg.eventCode = code;
 
+        msg.isAdmin = isAdmin();
+
         try {
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -636,6 +665,8 @@ public class ManageConnections {
         msg.msgCode = REQUESTS.CLIENT_REQUEST_CHECK_PRESENCES;
         msg.email = clientData.getEmail();
 
+        msg.isAdmin = isAdmin();
+
         try {
 
             //Serializa a string TIME_REQUEST para o OutputStream associado a socket
@@ -665,6 +696,7 @@ public class ManageConnections {
 
         msg.msgCode = REQUESTS.CLIENT_REQUEST_LOGOUT;
         msg.email = clientData.getEmail();
+
 
         try {
 

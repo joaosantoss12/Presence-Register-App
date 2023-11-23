@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class REQUEST_CLIENT_TO_SERVER implements Serializable {
     public static final long serialVersionUID = 1L;
 
+    public boolean isAdmin = false;
+
     public int msgCode;
     public String name;
     public String email;

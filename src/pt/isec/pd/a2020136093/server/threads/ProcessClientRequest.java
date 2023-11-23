@@ -70,7 +70,7 @@ public class ProcessClientRequest extends Thread {
                 RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = new RESPONSE_SERVER_TO_CLIENT_OR_ADMIN();
 
                 // ADMIN
-                if (requestClientServerAdmin != null) {
+                if (requestClientServerAdmin != null && requestClientServerAdmin.isAdmin) {
                     switch (requestClientServerAdmin.msgCode) {
                         case REQUESTS.ADMIN_REQUEST_CREATE_EVENT -> {
                             if (manageDB.addNewEvent(requestClientServerAdmin.name, requestClientServerAdmin.local, requestClientServerAdmin.date, requestClientServerAdmin.timeStart, requestClientServerAdmin.timeEnd)) {
@@ -224,7 +224,7 @@ public class ProcessClientRequest extends Thread {
 
 
                 // ALUNO
-                else if (requestClientServer != null) {
+                else if (requestClientServer != null && (!requestClientServer.isAdmin)) {
 
                     switch (requestClientServer.msgCode) {
                         case REQUESTS.CLIENT_REQUEST_LOGOUT -> {

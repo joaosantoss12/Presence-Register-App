@@ -213,55 +213,136 @@ public class PopUpCreator {
     }
 
     public static void checkStudentPresencesPopUp_list(ArrayList<ArrayList<String>> listaPresencas){
-        GridPane gridPane = new GridPane();
-        gridPane.setHgap(15);
-        gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(10, 10, 10, 10));
+        // Create a TableView
+        TableView<ArrayList<String>> tableView = new TableView<>();
 
-        gridPane.addRow(0, new Label("ID"), new Label("Nome"), new Label("Email"), new Label("Local"), new Label("Data"), new Label("Hora de inicio"));
+        // Create columns for the TableView
+        String[] columnHeaders = {"ID", "Nome", "Local", "Data", "Hora de inicio", "Hora de fim"};
 
-        for(int i=0; i<listaPresencas.size(); i++){
-            ArrayList<String> presence = listaPresencas.get(i);
-            for(int j=0; j<presence.size(); j++){
-                gridPane.add(new Label(presence.get(j)), j, i+1);
-            }
+        for (int i = 0; i < columnHeaders.length; i++) {
+            TableColumn<ArrayList<String>, String> column = new TableColumn<>(columnHeaders[i]);
+            final int columnIndex = i;
+            column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(columnIndex)));
+            tableView.getColumns().add(column);
         }
+
+        // Create an ObservableList to hold the data
+        ObservableList<ArrayList<String>> presencesData = FXCollections.observableArrayList(listaPresencas);
+        FilteredList<ArrayList<String>> filteredData = new FilteredList<>(presencesData, p -> true);
+
+        // Set the items of the TableView
+        tableView.setItems(filteredData);
+
+        // Set the preferred width of the TableView (adjust as needed)
+        tableView.setPrefWidth(900);
+
+        // Create a TextField for filtering
+        TextField filterTextField = new TextField();
+        filterTextField.setPromptText("Critérios / Filtros");
+
+        // Add a listener to the filter TextField to update the TableView based on user input
+        filterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(event -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Convert event data to lowercase for case-insensitive filtering
+                String filterText = newValue.toLowerCase();
+
+                // Check if any column contains the filter text
+                for (String value : event) {
+                    if (value.toLowerCase().contains(filterText)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            });
+        });
+
+        // Create a VBox to hold the TextField and TableView
+        VBox vBox = new VBox(filterTextField, tableView);
+        vBox.setSpacing(25);
+
+        tableView.setPadding(new Insets(10, 10, 10, 10));
 
         // Create an alert with information type
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Registo de Presenças");
         alert.setHeaderText(null);
 
-        // Set the content of the alert to the GridPane
-        alert.getDialogPane().setContent(gridPane);
+        // Set the content of the alert to the TableView
+        alert.getDialogPane().setContent(vBox);
 
         // Show the alert
         alert.showAndWait();
     }
 
     public static void checkEventPresencesPopUp_list(ArrayList<ArrayList<String>> listaPresencas ) {
-        GridPane gridPane = new GridPane();
-        gridPane.setHgap(15);
-        gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(10, 10, 10, 10));
+        // Create a TableView
+        TableView<ArrayList<String>> tableView = new TableView<>();
 
-        gridPane.addRow(0, new Label("Nome"), new Label("Email"), new Label("nIdentificacao"));
+        // Create columns for the TableView
+        String[] columnHeaders = {"Nome", "Email", "Número Identificação"};
 
-        for (int i = 0; i < listaPresencas.size(); i++) {
-            ArrayList<String> presence = listaPresencas.get(i);
-            for (int j = 0; j < presence.size(); j++) {
-                gridPane.add(new Label(presence.get(j)), j, i + 1);
-            }
+
+        for (int i = 0; i < columnHeaders.length; i++) {
+            TableColumn<ArrayList<String>, String> column = new TableColumn<>(columnHeaders[i]);
+            final int columnIndex = i;
+            column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(columnIndex)));
+            tableView.getColumns().add(column);
         }
 
 
+// Create an ObservableList to hold the data
+        ObservableList<ArrayList<String>> presencesData = FXCollections.observableArrayList(listaPresencas);
+        FilteredList<ArrayList<String>> filteredData = new FilteredList<>(presencesData, p -> true);
+
+        // Set the items of the TableView
+        tableView.setItems(filteredData);
+
+        // Set the preferred width of the TableView (adjust as needed)
+        tableView.setPrefWidth(900);
+
+        // Create a TextField for filtering
+        TextField filterTextField = new TextField();
+        filterTextField.setPromptText("Critérios / Filtros");
+
+        // Add a listener to the filter TextField to update the TableView based on user input
+        filterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(event -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Convert event data to lowercase for case-insensitive filtering
+                String filterText = newValue.toLowerCase();
+
+                // Check if any column contains the filter text
+                for (String value : event) {
+                    if (value.toLowerCase().contains(filterText)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            });
+        });
+
+        // Create a VBox to hold the TextField and TableView
+        VBox vBox = new VBox(filterTextField, tableView);
+        vBox.setSpacing(25);
+
+        tableView.setPadding(new Insets(10, 10, 10, 10));
+
         // Create an alert with information type
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Lista de Presenças");
+        alert.setTitle("Registo de Presenças");
         alert.setHeaderText(null);
 
-        // Set the content of the alert to the GridPane
-        alert.getDialogPane().setContent(gridPane);
+        // Set the content of the alert to the TableView
+        alert.getDialogPane().setContent(vBox);
 
         // Show the alert
         alert.showAndWait();

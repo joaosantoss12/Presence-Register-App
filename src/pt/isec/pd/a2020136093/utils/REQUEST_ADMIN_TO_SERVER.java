@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class REQUEST_ADMIN_TO_SERVER implements Serializable {
     public static final long serialVersionUID = 1L;
 
+    public boolean isAdmin = true;
+
     public int msgCode;
     public int id;
     public String name;

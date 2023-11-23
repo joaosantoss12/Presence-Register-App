@@ -233,11 +233,11 @@ public class MenuAdminUI extends BorderPane {
             if(id != null) {
 
                 if (mc.deleteEvent(id)) {
-                    lblResultado.setText("Evento apagado com sucesso!");
+                    lblResultado.setText("Evento apagado com sucesso! Atualizando...");
                     lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -247,7 +247,7 @@ public class MenuAdminUI extends BorderPane {
                     lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -262,21 +262,22 @@ public class MenuAdminUI extends BorderPane {
             if(id != null) {
 
                 if (mc.generateEventCode(id)) {
-                    lblResultado.setText("Codigo gerado com sucesso!");
+                    lblResultado.setText("Codigo gerado com sucesso! Atualizando...");
                     lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
                     pause.play();
-                } else {
+                }
+                else {
                     lblResultado.setText("Houve um erro ao gerar o código do evento!");
                     lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -301,11 +302,11 @@ public class MenuAdminUI extends BorderPane {
             if(id != null) {
 
                 if (mc.generateCSV_event(id)) {
-                    lblResultado.setText("Ficheiro CSV gerado com sucesso!");
+                    lblResultado.setText("Ficheiro CSV gerado com sucesso! Atualizando...");
                     lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -316,7 +317,7 @@ public class MenuAdminUI extends BorderPane {
                     lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -342,11 +343,11 @@ public class MenuAdminUI extends BorderPane {
             if(email != null) {
 
                 if (mc.generateCSV_student(email)) {
-                    lblResultado.setText("Ficheiro CSV gerado com sucesso!");
+                    lblResultado.setText("Ficheiro CSV gerado com sucesso! Atualizando...");
                     lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -357,7 +358,7 @@ public class MenuAdminUI extends BorderPane {
                     lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -372,11 +373,11 @@ public class MenuAdminUI extends BorderPane {
             if(id != null && email != null) {
 
                 if (mc.deletePresence(id, email)) {
-                    lblResultado.setText("Presença apagada com sucesso!");
+                    lblResultado.setText("Presença apagada com sucesso! Atualizando...");
                     lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -386,7 +387,7 @@ public class MenuAdminUI extends BorderPane {
                     lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 
-                    PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
                     pause.setOnFinished(e -> {
                         lblResultado.setVisible(false);
                     });
@@ -401,11 +402,11 @@ public class MenuAdminUI extends BorderPane {
            if(id != null && email != null) {
 
                if (mc.addPresence(id, email)) {
-                   lblResultado.setText("Presença adicionada com sucesso!");
+                   lblResultado.setText("Presença adicionada com sucesso! Atualizando...");
                    lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
                    lblResultado.setVisible(true);
 
-                   PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                   PauseTransition pause = new PauseTransition(Duration.seconds(2));
                    pause.setOnFinished(e -> {
                        lblResultado.setVisible(false);
                    });
@@ -415,7 +416,7 @@ public class MenuAdminUI extends BorderPane {
                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
                    lblResultado.setVisible(true);
 
-                   PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                   PauseTransition pause = new PauseTransition(Duration.seconds(2));
                    pause.setOnFinished(e -> {
                        lblResultado.setVisible(false);
                    });
@@ -452,8 +453,12 @@ public class MenuAdminUI extends BorderPane {
     }
 
     public void refresh_async(){
-        this.getChildren().clear();
-        createViews();
-        registerHandlers();
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        pause.setOnFinished(e -> {
+            this.getChildren().clear();
+            createViews();
+            registerHandlers();
+        });
+        pause.play();
     }
 }
