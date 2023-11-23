@@ -183,8 +183,9 @@ public class ClientUI {
 
     private void gerarCodigoEvento() {
         String idEvento = PAInput.readString("ID do evento: ", true);
+        String timeEvento = PAInput.readString("Tempo de duração do código (em minutos): ", true);
 
-        manageConnections.generateEventCode(idEvento);
+        manageConnections.generateEventCode(idEvento, timeEvento);
     }
 
     private void consultarPresencasEvento() {

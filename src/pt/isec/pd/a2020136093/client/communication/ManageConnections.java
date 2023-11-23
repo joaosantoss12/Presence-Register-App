@@ -310,46 +310,41 @@ public class ManageConnections {
         return null;
     }
 
-    public boolean generateEventCode(String eventoID){
+    public boolean generateEventCode(String eventoID, String time){
         Random random = new Random();
         int code = random.nextInt(999999-100000+1)+100000;
 
-        boolean done = false;
-        do {
-            try {
+        try {
 
-                REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
-                msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CODE;
-                msg.id = Integer.parseInt(eventoID);
-                msg.eventCode = code;
+            REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();
+            msg.msgCode = REQUESTS.ADMIN_REQUEST_GENERATE_CODE;
+            msg.id = Integer.parseInt(eventoID);
+            msg.eventCode = code;
+            msg.eventTime = Integer.parseInt(time);
 
-                msg.isAdmin = isAdmin();
+            msg.isAdmin = isAdmin();
 
-                //Serializa a string TIME_REQUEST para o OutputStream associado a socket
-                oout.writeObject(msg);
-                oout.flush();
+            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            oout.writeObject(msg);
+            oout.flush();
 
-                //Deserializa a resposta recebida em socket
-                RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
+            //Deserializa a resposta recebida em socket
+            RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
-                if (response == null) {
-                    System.out.println("O servidor nao enviou qualquer respota antes de"
-                            + " fechar aligacao TCP!");
-                }
-                else {
-                    System.out.println(response.response);
-                }
-
-                if(response.resultado)
-                    done = true;
-
-            } catch(Exception e){
-                System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
-                return false;
+            if (response == null) {
+                System.out.println("O servidor nao enviou qualquer respota antes de"
+                        + " fechar aligacao TCP!");
             }
-        }while(!done);
+            else {
+                System.out.println(response.response);
+            }
 
-        return true;
+            return response.resultado;
+
+        } catch(Exception e){
+            System.out.println("Ocorreu um erro no acesso ao socket:\n\t" + e);
+            return false;
+        }
     }
     public ArrayList<ArrayList<String>> checkPresencesEvent(String id){
         REQUEST_ADMIN_TO_SERVER msg = new REQUEST_ADMIN_TO_SERVER();

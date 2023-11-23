@@ -17,6 +17,8 @@ public class REQUEST_ADMIN_TO_SERVER implements Serializable {
 
     public String emailToManagePresence;
 
+    public int eventTime;
+
 
     public int eventCode;
 }

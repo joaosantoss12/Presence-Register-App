@@ -5,18 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updated project">
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/threadCodigos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/Codigo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PD-2023-24-TP.db" beforeDir="false" afterPath="$PROJECT_DIR$/PD-2023-24-TP.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/Halloween.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/João_byadmin.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/FontManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/ImageManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/MenuStudentUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/MenuStudentUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/data/CONSTANTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/data/CONSTANTS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/PopUpCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/PopUpCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/ManageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/ManageDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/REQUEST_ADMIN_TO_SERVER.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/REQUEST_ADMIN_TO_SERVER.java" afterDir="false" />
     </list>
     <list id="6885a97c-d08f-4871-87ab-73b4fdf8244c" name="Changes by biama" comment="bia: finished GUIs + ManageConnections" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -206,7 +206,8 @@
       <workItem from="1700590722315" duration="21362000" />
       <workItem from="1700663418973" duration="12000" />
       <workItem from="1700681287411" duration="10824000" />
-      <workItem from="1700750790073" duration="3437000" />
+      <workItem from="1700750790073" duration="3710000" />
+      <workItem from="1700756441273" duration="4797000" />
     </task>
     <task id="LOCAL-00001" summary="added features + updated old ones">
       <created>1698669978617</created>
@@ -299,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700742800308</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="updated project">
+      <created>1700755592380</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1700755592380</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

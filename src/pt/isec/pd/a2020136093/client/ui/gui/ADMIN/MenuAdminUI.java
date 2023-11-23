@@ -259,9 +259,11 @@ public class MenuAdminUI extends BorderPane {
 
         btnGenerateCode.setOnAction(event->{
             String id = PopUpCreator.generateCodePopUp();
-            if(id != null) {
+            String tempo = PopUpCreator.generateCodePopUp_tempo();
 
-                if (mc.generateEventCode(id)) {
+            if(id != null && tempo != null) {
+
+                if (mc.generateEventCode(id,tempo)) {
                     lblResultado.setText("Codigo gerado com sucesso! Atualizando...");
                     lblResultado.setStyle("-fx-text-fill: green; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
@@ -273,7 +275,7 @@ public class MenuAdminUI extends BorderPane {
                     pause.play();
                 }
                 else {
-                    lblResultado.setText("Houve um erro ao gerar o código do evento!");
+                    lblResultado.setText("Houve um erro ao gerar o código do evento!\n[Verique se o evento já se econtra ativo]");
                     lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
                     lblResultado.setVisible(true);
 

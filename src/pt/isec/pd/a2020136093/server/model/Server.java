@@ -7,6 +7,7 @@ import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
 import pt.isec.pd.a2020136093.server.threads.Multicast_SendHeartbeat;
 import pt.isec.pd.a2020136093.server.threads.ProcessClientRequest;
 import pt.isec.pd.a2020136093.server.model.jdbc.ManageDB;
+import pt.isec.pd.a2020136093.server.threads.threadCodigos;
 
 import java.io.*;
 import java.net.*;
@@ -52,7 +53,7 @@ public class Server {
             e.printStackTrace();
         }
 
-        manageDB = new ManageDB(DB_PATH);
+        manageDB = new ManageDB(DB_PATH, observers_backups, observers_clients);
 
         if (manageDB.connectDB()) {
             System.out.println("Conectado à base de dados");

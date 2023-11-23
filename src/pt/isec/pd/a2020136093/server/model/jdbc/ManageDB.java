@@ -1,22 +1,90 @@
 package pt.isec.pd.a2020136093.server.model.jdbc;
 
+import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
+import pt.isec.pd.a2020136093.server.model.ServerBackup;
 import pt.isec.pd.a2020136093.server.model.data.CONSTANTS;
+import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
+import pt.isec.pd.a2020136093.server.threads.threadCodigos;
+import pt.isec.pd.a2020136093.utils.Codigo;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.RemoteException;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ManageDB {
     private final String dbPath;
+    private List<RMI_SERVER_BACKUP_INTERFACE> observers_backups;
+    private List<RMI_CLIENT_INTERFACE> observers_clients;
 
-    public ManageDB(String dbPath) {
+    public ManageDB(String dbPath, List<RMI_SERVER_BACKUP_INTERFACE> observers_backups, List<RMI_CLIENT_INTERFACE> observers_clients) {
         this.dbPath = dbPath;
+        this.observers_backups = observers_backups;
+        this.observers_clients = observers_clients;
     }
 
-    public boolean connectDB() {
+    public void removeCodigo(Codigo codigo) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+             Statement statement = connection.createStatement()) {
+
+            String generateCode = "UPDATE events SET code = NULL WHERE id = '" + codigo.getCodigo() + "'";
+            statement.executeUpdate(generateCode);
+
+            send_to_RMI();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void send_to_RMI() {
+        if(observers_backups.size() != 0) {
+            List<RMI_SERVER_BACKUP_INTERFACE> observersToRemove = new ArrayList<>();
+
+            for (RMI_SERVER_BACKUP_INTERFACE svBackup : observers_backups) {
+                try {
+                    if(ServerBackup.get_backup_dbVersion() != getDB_version()) {
+                        observersToRemove.add(svBackup);
+                    }
+                    else{
+                        svBackup.receiveDBUpdate();
+                    }
+                }
+                catch (RemoteException e) {
+                    System.out.println("Observador server_backup inacessivel removido");
+                    observersToRemove.add(svBackup);
+                }
+            }
+
+            observers_backups.removeAll(observersToRemove);
+        }
+
+
+        if(observers_clients.size() != 0) {
+            List<RMI_CLIENT_INTERFACE> observersToRemove = new ArrayList<>();
+
+            for (RMI_CLIENT_INTERFACE client : observers_clients) {
+                try {
+                    client.receiveNotificationAsync("Nova atualização da base de dados");
+                }
+                catch (RemoteException e) {
+                    System.out.println("Observador cliente inacessivel removido");
+                    observersToRemove.add(client);
+                }
+            }
+
+            observers_clients.removeAll(observersToRemove);
+        }
+    }
+
+
+        public boolean connectDB() {
         try {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
             return true;
@@ -215,7 +283,7 @@ public class ManageDB {
         }
     }
 
-    public boolean generateCode(int eventId, int eventCode) {
+    public boolean generateCode(int eventId, int eventCode, int tempo) {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
              Statement statement = connection.createStatement()) {
 
@@ -232,9 +300,26 @@ public class ManageDB {
             if (!resultSet.next())
                 return false;
 
+            String timeStart = resultSet.getString("timeStart");
+            String timeEnd = resultSet.getString("timeEnd");
+
+            // VERIFICAR DATA
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDateTime now = LocalDateTime.now();
+            if(dtf.format(now).compareTo(resultSet.getString("date")) != 0)
+                return false;
+
+            // VERIFICAR HORA
+            dtf = DateTimeFormatter.ofPattern("HH:mm");
+            now = LocalDateTime.now();
+            if (dtf.format(now).compareTo(timeStart) < 0 || dtf.format(now).compareTo(timeEnd) > 0)
+                return false;
+
 
             String generateCode = "UPDATE events SET code = '" + eventCode + "' WHERE id = '" + eventId + "'";
             statement.executeUpdate(generateCode);
+
+            new threadCodigos(this,new Codigo(eventId,tempo)).start();
 
             return true;
         } catch (SQLException e) {
@@ -416,6 +501,8 @@ public class ManageDB {
             int idEvento = Integer.parseInt(resultSet_code.getString("id"));
             int nPresences = Integer.parseInt(resultSet_code.getString("nPresences"));
 
+
+
             String checkEmail = "SELECT * FROM accounts WHERE email = '" + email + "'";
             ResultSet resultSet_email = statement.executeQuery(checkEmail);
 
@@ -524,3 +611,4 @@ public class ManageDB {
         }
     }
 }
+

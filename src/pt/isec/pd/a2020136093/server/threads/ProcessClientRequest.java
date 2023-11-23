@@ -128,7 +128,7 @@ public class ProcessClientRequest extends Thread {
                             oout.writeObject(response);
                         }
                         case REQUESTS.ADMIN_REQUEST_GENERATE_CODE -> {
-                            if(manageDB.generateCode(requestClientServerAdmin.id, requestClientServerAdmin.eventCode)){
+                            if(manageDB.generateCode(requestClientServerAdmin.id, requestClientServerAdmin.eventCode, requestClientServerAdmin.eventTime)){
                                 manageDB.updateDB_version();
                                 serverData.updateServerDBVersion(manageDB.getDB_version());
                                 sendHearbeat_updatedDB();
@@ -138,7 +138,7 @@ public class ProcessClientRequest extends Thread {
                                 oout.writeObject(response);
                             }
                             else {
-                                response.response = "Houve um erro ou código repetido!";
+                                response.response = "O evento não está ativo!";
                                 response.resultado = false;
                                 oout.writeObject(response);
                             }
@@ -363,7 +363,6 @@ public class ProcessClientRequest extends Thread {
             System.err.println("Erro: " + e.getMessage());
         }
     }
-
 
 
     // FUNÇAO PARA ENVIAR HEARTBEAT SEMPRE QUE HA UM UPDATE NA DB

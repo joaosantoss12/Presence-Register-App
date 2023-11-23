@@ -543,4 +543,19 @@ public class PopUpCreator {
                 })
                 .orElse(null);
     }
+
+    public static String generateCodePopUp_tempo() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Gerar Codigo");
+        dialog.setHeaderText("Introduza o tempo de validade do codigo");
+        dialog.setContentText("Tempo:");
+
+        return dialog.showAndWait()
+                .map(result -> {
+                    System.out.println();
+
+                    return result;
+                })
+                .orElse(null);
+    }
 }
