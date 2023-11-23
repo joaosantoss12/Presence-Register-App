@@ -3,6 +3,7 @@ package pt.isec.pd.a2020136093.server.model;
 import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
 import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
 import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER;
+import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
 import pt.isec.pd.a2020136093.server.threads.Multicast_SendHeartbeat;
 import pt.isec.pd.a2020136093.server.threads.ProcessClientRequest;
 import pt.isec.pd.a2020136093.server.model.jdbc.ManageDB;
@@ -12,10 +13,8 @@ import java.net.*;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
 
@@ -30,7 +29,10 @@ public class Server {
 
     Heartbeat serverData;
 
-    List<RMI_CLIENT_INTERFACE> observers;
+    RMI_SERVER rmiServer;
+
+    List<RMI_CLIENT_INTERFACE> observers_clients;
+    List<RMI_SERVER_BACKUP_INTERFACE> observers_backups;
 
     public Server(int port, String dbPath, String rmiName, int rmiPort) {
         this.PORT = port;
@@ -40,7 +42,8 @@ public class Server {
 
         this.loggedIn = new ArrayList<>();
 
-        this.observers = new ArrayList<>();
+        this.observers_clients = new ArrayList<>();
+        this.observers_backups = new ArrayList<>();
 
         try {
             printxd();
@@ -122,7 +125,7 @@ public class Server {
             /*
              * Cria o servico.
              */
-            RMI_SERVER rmiServer = new RMI_SERVER(observers);
+            rmiServer = new RMI_SERVER(observers_clients, observers_backups);
             System.out.println("Service RMI criado! [" + rmiServer.getRef().remoteToString() + "]");
 
             /*
@@ -156,7 +159,7 @@ public class Server {
 
             while (true) {
                 Socket nextClient = socket.accept();
-                new ProcessClientRequest(nextClient, manageDB, serverData, loggedIn, observers).start();
+                new ProcessClientRequest(nextClient, manageDB, serverData, loggedIn, observers_clients, observers_backups, rmiServer).start();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

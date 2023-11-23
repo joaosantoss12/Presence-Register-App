@@ -1,7 +1,9 @@
 package pt.isec.pd.a2020136093.server.model;
 
+import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT;
 import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
 import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER_INTERFACE;
+import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP;
 import pt.isec.pd.a2020136093.server.threads.Multicast_ReadHearbeat;
 
 import java.io.File;
@@ -11,18 +13,22 @@ import java.net.*;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.sql.*;
 
 import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
 import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.NETWORK_INTERFACE_NAME;
 
 public class ServerBackup {
-
+    RMI_SERVER_BACKUP rmiBackup;
     private final String DB_BACKUP_PATH;
+    static String DB_BACKUP_PATH_STATIC;
     Heartbeat serverData;
 
     public ServerBackup(String dbPath) {
         this.DB_BACKUP_PATH = dbPath;
-
+        DB_BACKUP_PATH_STATIC = dbPath;
     }
 
     public void start() {
@@ -76,34 +82,36 @@ public class ServerBackup {
 
         }while(serverData.getRMI_NAME() == null);
 
+
         try {
-            System.out.println("RMI_NAME: " + serverData.getRMI_NAME());
+            rmiBackup = new RMI_SERVER_BACKUP(DB_BACKUP_PATH, serverData.getRMI_NAME());
 
-            String registration = "rmi://" + "localhost" + "/" + serverData.getRMI_NAME();
-            RMI_SERVER_INTERFACE rmiServerInterface = (RMI_SERVER_INTERFACE) Naming.lookup(registration);
+            Registry r = LocateRegistry.getRegistry("localhost");
 
-            System.out.println("Registado com sucesso no serviço RMI do servidor principal!");
+            RMI_SERVER_INTERFACE remoteRef = (RMI_SERVER_INTERFACE) r.lookup(r.list()[0]);
+            remoteRef.addObserver_backups(rmiBackup);
 
-            try(FileOutputStream localFileOutputStream = new FileOutputStream(DB_BACKUP_PATH + "/PD-2023-24-TP_BACKUP.db")) {
-                byte[] b;
-                long offset = 0;
-
-                while ((b = rmiServerInterface.getDatabaseCopy_chunk(offset)) != null) {
-                    localFileOutputStream.write(b);
-                    offset += b.length;
-                }
-                System.out.println("Cópia da base de dados do servidor principal concluida.");
-            }
-
-        }catch (NotBoundException e) {
-            System.out.println("No remoteTime service available!");
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            System.out.println("RMI Error - " + e);
-        } catch (Exception e) {
-            System.out.println("Error - " + e);
+        } catch (RemoteException | NotBoundException e) {
+            throw new RuntimeException(e);
         }
-
     }
 
+    public static int get_backup_dbVersion(){
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + DB_BACKUP_PATH_STATIC + "/PD-2023-24-TP_BACKUP.db");
+             Statement statement = connection.createStatement()
+        ) {
+
+            String checkDB = "SELECT version FROM db_version";
+            ResultSet resultSet = statement.executeQuery(checkDB);
+
+            if(resultSet == null)
+                return -1;
+
+            System.out.println("Versão da base de dados server backup: " + resultSet.getInt("version"));
+
+            return resultSet.getInt("version");
+        } catch (SQLException e) {
+            return -99; // bd nao criada ainda
+        }
+    }
 }

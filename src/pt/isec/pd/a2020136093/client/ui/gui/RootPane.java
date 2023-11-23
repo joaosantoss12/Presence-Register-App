@@ -47,7 +47,7 @@ public class RootPane extends BorderPane {
             Registry r = LocateRegistry.getRegistry("localhost");
 
             RMI_SERVER_INTERFACE remoteRef = (RMI_SERVER_INTERFACE) r.lookup(r.list()[0]);
-            remoteRef.addObserver(rmiClient);
+            remoteRef.addObserver_clients(rmiClient);
 
         } catch (RemoteException | NotBoundException e) {
             throw new RuntimeException(e);

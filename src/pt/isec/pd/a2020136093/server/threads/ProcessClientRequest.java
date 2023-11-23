@@ -2,8 +2,11 @@ package pt.isec.pd.a2020136093.server.threads;
 
 import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
 import pt.isec.pd.a2020136093.data.EventsData;
+import pt.isec.pd.a2020136093.server.model.ServerBackup;
 import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
 import pt.isec.pd.a2020136093.server.model.jdbc.ManageDB;
+import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER;
+import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
 import pt.isec.pd.a2020136093.utils.REQUESTS;
 import pt.isec.pd.a2020136093.utils.REQUEST_CLIENT_TO_SERVER;
 import pt.isec.pd.a2020136093.utils.REQUEST_ADMIN_TO_SERVER;
@@ -11,6 +14,7 @@ import pt.isec.pd.a2020136093.utils.RESPONSE_SERVER_TO_CLIENT_OR_ADMIN;
 
 import java.io.*;
 import java.net.*;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +26,18 @@ public class ProcessClientRequest extends Thread {
     ManageDB manageDB;
     Heartbeat serverData;
     ArrayList<String> loggedIn;
-    List<RMI_CLIENT_INTERFACE> observers;
+    List<RMI_CLIENT_INTERFACE> observers_clients;
+    List<RMI_SERVER_BACKUP_INTERFACE> observers_backups;
+    RMI_SERVER rmiServer;
 
-    public ProcessClientRequest(Socket nextClient, ManageDB manageDB, Heartbeat serverData, ArrayList<String> loggedIn, List<RMI_CLIENT_INTERFACE> observers){
+    public ProcessClientRequest(Socket nextClient, ManageDB manageDB, Heartbeat serverData, ArrayList<String> loggedIn, List<RMI_CLIENT_INTERFACE> observers_clients, List<RMI_SERVER_BACKUP_INTERFACE> observers_backups, RMI_SERVER rmiServer){
         this.nextClient = nextClient;
         this.manageDB = manageDB;
         this.serverData = serverData;
         this.loggedIn = loggedIn;
-        this.observers = observers;
+        this.observers_clients = observers_clients;
+        this.observers_backups = observers_backups;
+        this.rmiServer = rmiServer;
 
         try {
             nextClient.setSoTimeout(TIMEOUT_CLIENT_MILLISECONDS);   // TIMEOUT PARA DESCONECTAR CLIENTE INATIVO
@@ -356,6 +364,7 @@ public class ProcessClientRequest extends Thread {
 
 
 
+    // FUNÇAO PARA ENVIAR HEARTBEAT SEMPRE QUE HA UM UPDATE NA DB
     public void sendHearbeat_updatedDB(){
         DatagramSocket datagramSocket;
 
@@ -380,8 +389,43 @@ public class ProcessClientRequest extends Thread {
 
             datagramSocket.send(dpSend);
 
-            for(RMI_CLIENT_INTERFACE client : observers)
-                client.receiveNotificationAsync("Nova atualização da base de dados");
+            if(observers_backups.size() != 0) {
+                List<RMI_SERVER_BACKUP_INTERFACE> observersToRemove = new ArrayList<>();
+
+                for (RMI_SERVER_BACKUP_INTERFACE svBackup : observers_backups) {
+                    try {
+                        if(ServerBackup.get_backup_dbVersion() != manageDB.getDB_version()) {
+                            observersToRemove.add(svBackup);
+                        }
+                        else{
+                            svBackup.receiveDBUpdate();
+                        }
+                    }
+                    catch (RemoteException e) {
+                        System.out.println("Observador server_backup inacessivel removido");
+                        observersToRemove.add(svBackup);
+                    }
+                }
+
+                observers_backups.removeAll(observersToRemove);
+            }
+
+
+            if(observers_clients.size() != 0) {
+                List<RMI_CLIENT_INTERFACE> observersToRemove = new ArrayList<>();
+
+                for (RMI_CLIENT_INTERFACE client : observers_clients) {
+                    try {
+                        client.receiveNotificationAsync("Nova atualização da base de dados");
+                    }
+                    catch (RemoteException e) {
+                        System.out.println("Observador cliente inacessivel removido");
+                        observersToRemove.add(client);
+                    }
+                }
+
+                observers_clients.removeAll(observersToRemove);
+            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);

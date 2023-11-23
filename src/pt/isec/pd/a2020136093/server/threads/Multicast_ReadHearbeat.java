@@ -1,5 +1,6 @@
 package pt.isec.pd.a2020136093.server.threads;
 
+import pt.isec.pd.a2020136093.server.model.ServerBackup;
 import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
 
 import java.io.ByteArrayInputStream;
@@ -72,6 +73,17 @@ public class Multicast_ReadHearbeat extends Thread {
                         serverData_backup.setRMI_PORT(serverData.getRMI_PORT());
 
                         timeout_current_seconds = 0;
+
+
+                        if(serverData.getServerDBVersion() != ServerBackup.get_backup_dbVersion()){
+                            if(ServerBackup.get_backup_dbVersion() == -99)
+                                continue;
+                            System.out.println("VERSÃO DA BASE DE DADOS DO SERVIDOR PRINCIPAL DIFERENTE DA VERSÃO DA BASE DE DADOS DO SERVIDOR DE BACKUP!");
+                            System.exit(-1);
+                        }
+                        else{
+                            System.out.println("VERSÕES IGUAIS!");
+                        }
                     }
 
 

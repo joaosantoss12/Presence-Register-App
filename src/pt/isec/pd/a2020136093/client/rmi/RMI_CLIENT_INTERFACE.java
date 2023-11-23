@@ -1,6 +1,5 @@
 package pt.isec.pd.a2020136093.client.rmi;
 
-import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
