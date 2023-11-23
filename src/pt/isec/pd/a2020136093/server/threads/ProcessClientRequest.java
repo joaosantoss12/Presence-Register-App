@@ -70,7 +70,7 @@ public class ProcessClientRequest extends Thread {
                 RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = new RESPONSE_SERVER_TO_CLIENT_OR_ADMIN();
 
                 // ADMIN
-                if (requestClientServerAdmin != null && requestClientServerAdmin.isAdmin) {
+                if (requestClientServerAdmin != null ) {
                     switch (requestClientServerAdmin.msgCode) {
                         case REQUESTS.ADMIN_REQUEST_CREATE_EVENT -> {
                             if (manageDB.addNewEvent(requestClientServerAdmin.name, requestClientServerAdmin.local, requestClientServerAdmin.date, requestClientServerAdmin.timeStart, requestClientServerAdmin.timeEnd)) {
@@ -188,25 +188,27 @@ public class ProcessClientRequest extends Thread {
                             ArrayList<ArrayList<String>> presencesList = manageDB.checkPresencesEventID(requestClientServerAdmin.id);    // ID DO EVENTO
                             ArrayList<String> eventInfo = manageDB.checkEvent(requestClientServerAdmin.id);
 
-                            if(generateCSV(presencesList, eventInfo)){
-                                response.response = "CSV gerado com sucesso!";
+                            String csv = generateCSV(presencesList, eventInfo);
+                            if(csv != null) {
+                                response.response = csv;
                                 response.resultado = true;
                                 oout.writeObject(response);
                             }
+
                             else{
                                 response.response = "Houve um erro ao gerar o ficheiro CSV!";
                                 response.resultado = false;
                                 oout.writeObject(response);
                             }
 
-
                         }
                         case REQUESTS.ADMIN_REQUEST_GENERATE_CSV_STUDENT -> {
                             ArrayList<ArrayList<String>> presencesList = manageDB.checkPresences(requestClientServerAdmin.emailToManagePresence);    // ID DO EVENTO
                             ArrayList<String> studentInfo = manageDB.checkStudent(requestClientServerAdmin.emailToManagePresence);
 
-                            if(generateCSV2(presencesList, studentInfo)) {
-                                response.response = "CSV gerado com sucesso!";
+                            String csv = generateCSV2(presencesList, studentInfo);
+                            if(csv != null) {
+                                response.response = csv;
                                 response.resultado = true;
                                 oout.writeObject(response);
                             }
@@ -224,7 +226,7 @@ public class ProcessClientRequest extends Thread {
 
 
                 // ALUNO
-                else if (requestClientServer != null && (!requestClientServer.isAdmin)) {
+                else if (requestClientServer != null) {
 
                     switch (requestClientServer.msgCode) {
                         case REQUESTS.CLIENT_REQUEST_LOGOUT -> {
@@ -338,9 +340,9 @@ public class ProcessClientRequest extends Thread {
                             ArrayList<ArrayList<String>> presencesList = manageDB.checkPresences(requestClientServer.email);    // ID DO EVENTO
                             ArrayList<String> studentInfo = manageDB.checkStudent(requestClientServer.email);
 
-                            if(generateCSV2(presencesList, studentInfo)) {
-
-                                response.response = "CSV gerado com sucesso!";
+                            String csv = generateCSV2(presencesList, studentInfo);
+                            if(csv != null) {
+                                response.response = csv;
                                 response.resultado = true;
                                 oout.writeObject(response);
                             }
@@ -434,51 +436,47 @@ public class ProcessClientRequest extends Thread {
 
 
 
-    public boolean generateCSV(ArrayList<ArrayList<String>> presencesList, ArrayList<String> eventInfo){
+    public String generateCSV(ArrayList<ArrayList<String>> presencesList, ArrayList<String> eventInfo){
+        try{
+            StringBuilder sb = new StringBuilder();
 
-        String csvFile = CSV_FILES_PATH + "/" + eventInfo.get(0) + ".csv";
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
-            bw.write("\"Designação\";\"" + eventInfo.get(0) + "\"\n");
-            bw.write("\"Local\";\"" + eventInfo.get(1) + "\"\n");
-            bw.write("\"Data\";\"" + eventInfo.get(2) + "\"\n");
-            bw.write("\"Hora início\";\"" + eventInfo.get(3) + "\"\n");
-            bw.write("\"Hora fim\";\"" + eventInfo.get(4) + "\"\n");
-            bw.write("\"Nome\";\"Número identificação\";\"Email\"\n");
+            sb.append("\"Designação\";\"").append(eventInfo.get(0)).append("\"\n");
+            sb.append("\"Local\";\"").append(eventInfo.get(1)).append("\"\n");
+            sb.append("\"Data\";\"").append(eventInfo.get(2)).append("\"\n");
+            sb.append("\"Hora início\";\"").append(eventInfo.get(3)).append("\"\n");
+            sb.append("\"Hora fim\";\"").append(eventInfo.get(4)).append("\"\n");
+            sb.append("\"Nome\";\"Número identificação\";\"Email\"\n");
 
             for (ArrayList<String> l : presencesList) {
-                bw.write("\"" + l.get(0) + "\";\"" + l.get(1) + "\";\"" + l.get(2) + "\"\n");
+                sb.append("\"").append(l.get(0)).append("\";\"").append(l.get(1)).append("\";\"").append(l.get(2)).append("\"\n");
             }
-
-            bw.flush();
             
-            return true;
-        } catch (IOException e) {
-            return false;
+            return sb.toString();
+        }
+        catch (Exception e) {
+            return null;
         }
     }
 
-    public boolean generateCSV2(ArrayList<ArrayList<String>> presencesList, ArrayList<String> studentInfo){
+    public String generateCSV2(ArrayList<ArrayList<String>> presencesList, ArrayList<String> studentInfo){
 
-        String csvFile = CSV_FILES_PATH + "/" + studentInfo.get(0) + "_byadmin" + ".csv";
+        StringBuilder sb = new StringBuilder();
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
-            bw.write("\"Nome\";\"Número identificação\";\"Email\"\n");
+        try {
+            sb.append("\"Nome\";\"Número identificação\";\"Email\"\n");
 
-            bw.write("\"" + studentInfo.get(0) + "\";\"" + studentInfo.get(2) + "\";\"" + studentInfo.get(1) + "\"\n");
+            sb.append("\"").append(studentInfo.get(0)).append("\";\"").append(studentInfo.get(2)).append("\";\"").append(studentInfo.get(1)).append("\"\n");
 
 
-            bw.write("\"Designação\";\"Local\";\"Data\";\"Hora início\"\n");
+            sb.append("\"Designação\";\"Local\";\"Data\";\"Hora início\"\n");
             for (ArrayList<String> l : presencesList) {
-                bw.write("\"" + l.get(1) + "\";\"" + l.get(2) + "\";\"" + l.get(3) + "\";\"" + l.get(4) + "\"\n");
+                sb.append("\"").append(l.get(1)).append("\";\"").append(l.get(2)).append("\";\"").append(l.get(3)).append("\";\"").append(l.get(4)).append("\"\n");
             }
 
 
-            bw.flush();
-
-            return true;
-        } catch (IOException e) {
-            return false;
+            return sb.toString();
+        } catch (Exception e) {
+            return null;
         }
     }
 }

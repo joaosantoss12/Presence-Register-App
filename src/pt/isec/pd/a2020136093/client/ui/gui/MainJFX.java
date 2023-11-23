@@ -30,8 +30,8 @@ public class MainJFX extends Application {
         stage.setScene(scene);
         stage.setTitle(title);
 
-        stage.setMinWidth(1200);
-        stage.setMinHeight(900);
+        stage.setWidth(1000);
+        stage.setHeight(700);
         //stage.setFullScreen(true);
 
         stage.show();

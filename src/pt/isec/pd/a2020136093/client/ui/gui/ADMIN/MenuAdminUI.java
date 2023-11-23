@@ -204,8 +204,8 @@ public class MenuAdminUI extends BorderPane {
             stage.setScene(scene);
             stage.setTitle("Criar novo evento");
 
-            stage.setMinWidth(1000);
-            stage.setMinHeight(700);
+            stage.setWidth(1000);
+            stage.setHeight(700);
 
             stage.show();
         });
@@ -221,8 +221,8 @@ public class MenuAdminUI extends BorderPane {
                 stage.setScene(scene);
                 stage.setTitle("Editar dados do evento");
 
-                stage.setMinWidth(1000);
-                stage.setMinHeight(700);
+                stage.setWidth(1000);
+                stage.setHeight(700);
 
                 stage.show();
             }
@@ -293,7 +293,21 @@ public class MenuAdminUI extends BorderPane {
 
                 ArrayList<ArrayList<String>> listaPresencas = mc.checkPresencesEvent(id);
 
-                PopUpCreator.checkEventPresencesPopUp_list(listaPresencas);
+                if(listaPresencas.size() == 0){
+                    lblResultado.setText("Evento não existe ou sem presenças registadas!");
+                    lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
+                    lblResultado.setVisible(true);
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                    pause.setOnFinished(e -> {
+                        lblResultado.setVisible(false);
+                    });
+                    pause.play();
+                }
+                else {
+
+                    PopUpCreator.checkEventPresencesPopUp_list(listaPresencas);
+                }
             }
         });
 
@@ -333,8 +347,21 @@ public class MenuAdminUI extends BorderPane {
             String email = PopUpCreator.checkStudentPresencesPopUp();
 
             ArrayList<ArrayList<String>> listaPresencas_doAluno = mc.checkPresences2(email);
+            if(listaPresencas_doAluno.size() == 0){
+                lblResultado.setText("Aluno não existe ou sem presenças registadas!");
+                lblResultado.setStyle("-fx-text-fill: red; -fx-font-size: 16px; -fx-font-weight: bold;");
+                lblResultado.setVisible(true);
 
-            PopUpCreator.checkStudentPresencesPopUp_list(listaPresencas_doAluno);
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> {
+                    lblResultado.setVisible(false);
+                });
+                pause.play();
+            }
+            else {
+
+                PopUpCreator.checkStudentPresencesPopUp_list(listaPresencas_doAluno);
+            }
 
 
         });

@@ -7,13 +7,13 @@ import pt.isec.pd.a2020136093.utils.RESPONSE_SERVER_TO_CLIENT_OR_ADMIN;
 import pt.isec.pd.a2020136093.client.data.ClientData;
 import pt.isec.pd.a2020136093.data.EventsList;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
+
+import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.CSV_FILES_PATH_SERVER;
 
 public class ManageConnections {
     private static final int TIMEOUT = 10;
@@ -491,10 +491,14 @@ public class ManageConnections {
             //Deserializa a resposta recebida em socket
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
-            if (response == null) {
-                System.out.println("O servidor nao enviou qualquer respota antes de"
-                        + " fechar aligacao TCP!");
+            String csvFile = CSV_FILES_PATH_SERVER + "/" + idEvento + ".csv";
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
+                bw.write(response.response);
+
+                bw.flush();
             }
+
 
             return response.resultado;
         } catch (IOException | ClassNotFoundException e) {
@@ -519,10 +523,14 @@ public class ManageConnections {
             //Deserializa a resposta recebida em socket
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
-            if (response == null) {
-                System.out.println("O servidor nao enviou qualquer respota antes de"
-                        + " fechar aligacao TCP!");
+            String csvFile = CSV_FILES_PATH_SERVER + "/" + email + ".csv";
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
+                bw.write(response.response);
+
+                bw.flush();
             }
+
 
             return response.resultado;
         } catch (IOException | ClassNotFoundException e) {
@@ -546,11 +554,14 @@ public class ManageConnections {
 
             //Deserializa a resposta recebida em socket
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
+            String csvFile = CSV_FILES_PATH_SERVER + "/" + clientData.getEmail() + ".csv";
 
-            if (response == null) {
-                System.out.println("O servidor nao enviou qualquer respota antes de"
-                        + " fechar aligacao TCP!");
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
+                bw.write(response.response);
+
+                bw.flush();
             }
+
 
             return response.resultado;
         } catch (IOException | ClassNotFoundException e) {

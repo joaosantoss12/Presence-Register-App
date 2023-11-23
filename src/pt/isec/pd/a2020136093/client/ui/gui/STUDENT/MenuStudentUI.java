@@ -97,8 +97,8 @@ public class MenuStudentUI extends BorderPane {
             stage.setScene(scene);
             stage.setTitle("Editar dados da conta");
 
-            stage.setMinWidth(1200);
-            stage.setMinHeight(900);
+            stage.setWidth(1000);
+            stage.setHeight(700);
 
             stage.show();
         });

@@ -1,7 +1,7 @@
 package pt.isec.pd.a2020136093.server.model.data;
 
 public class CONSTANTS {
-    public final static String CSV_FILES_PATH = "src/files";
+    public final static String CSV_FILES_PATH_SERVER = "src/files";
     public final static String DATABASE_CREATE_SCRIPT_PATH = "src/pt/isec/pd/a2020136093/server/model/jdbc/createDBscript.sql";
     public final static int TIMEOUT_CLIENT_MILLISECONDS = 10 * 1000;
 
