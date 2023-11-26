@@ -29,7 +29,7 @@ public class Multicast_ReadHearbeat extends Thread {
                     ++timeout_current_seconds;
 
                     if (timeout_current_seconds == TIMETOUT_SERVER_BACKUP) {
-                        System.out.println("Não foi recebido nenhum 'HEARBEAT' do servidor principal em 30 segundos!");
+                        System.out.println("\nNão foi recebido nenhum 'HEARBEAT' do servidor principal em 30 segundos!");
                         System.exit(-1);
                     }
 
@@ -55,28 +55,29 @@ public class Multicast_ReadHearbeat extends Thread {
             while (!timeout) {
 
                 pkt = new DatagramPacket(new byte[MAX_SIZE], MAX_SIZE);
+                //MulticastSocket recebe o pacote
                 s.receive(pkt);
 
+                //Abre o pacote
                 try (ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(pkt.getData(), 0, pkt.getLength()))) {
-
+                    //Lê o objeto
                     obj = in.readObject();
 
                     if (obj instanceof Heartbeat) {
 
                         serverData = (Heartbeat) obj;
 
-                        System.out.println();
-                        System.out.print("RECEIVED HEARTBEAT FROM " + serverData.getServerIP() + ":" + serverData.getServerPort());
+                        System.out.print("\nRECEIVED HEARTBEAT FROM " + serverData.getServerIP() + ":" + serverData.getServerPort());
                         System.out.println("\n[INFO]\n-> DatabaseVersion: " + serverData.getServerDBVersion() + " RMI_NAME: " + serverData.getRMI_NAME() + " RMI_PORT: " + serverData.getRMI_PORT());
 
+                        //Vai preencher o 'serverdata' do backup que estava vazio com info importante
                         serverData_backup.setRMI_NAME(serverData.getRMI_NAME());
                         serverData_backup.setRMI_PORT(serverData.getRMI_PORT());
 
                         timeout_current_seconds = 0;
 
-
                         if(serverData.getServerDBVersion() != ServerBackup.get_backup_dbVersion()){
-                            if(ServerBackup.get_backup_dbVersion() == -99)
+                            if(ServerBackup.get_backup_dbVersion() == -99) //Se for a primeira vez que o servidor de backup recebe um heartbeat, ignora pois n tem a db criada
                                 continue;
                             System.out.println("VERSÃO DA BASE DE DADOS DO SERVIDOR PRINCIPAL DIFERENTE DA VERSÃO DA BASE DE DADOS DO SERVIDOR DE BACKUP!");
                             System.exit(-1);

@@ -44,19 +44,17 @@ public class ManageDB {
     }
 
     private void send_to_RMI() {
-        if(observers_backups.size() != 0) {
+        if (observers_backups.size() != 0) {
             List<RMI_SERVER_BACKUP_INTERFACE> observersToRemove = new ArrayList<>();
 
             for (RMI_SERVER_BACKUP_INTERFACE svBackup : observers_backups) {
                 try {
-                    if(ServerBackup.get_backup_dbVersion() != getDB_version()) {
+                    if (ServerBackup.get_backup_dbVersion() != getDB_version()) {
                         observersToRemove.add(svBackup);
-                    }
-                    else{
+                    } else {
                         svBackup.receiveDBUpdate();
                     }
-                }
-                catch (RemoteException e) {
+                } catch (RemoteException e) {
                     System.out.println("Observador server_backup inacessivel removido");
                     observersToRemove.add(svBackup);
                 }
@@ -66,14 +64,13 @@ public class ManageDB {
         }
 
 
-        if(observers_clients.size() != 0) {
+        if (observers_clients.size() != 0) {
             List<RMI_CLIENT_INTERFACE> observersToRemove = new ArrayList<>();
 
             for (RMI_CLIENT_INTERFACE client : observers_clients) {
                 try {
                     client.receiveNotificationAsync("Nova atualização da base de dados");
-                }
-                catch (RemoteException e) {
+                } catch (RemoteException e) {
                     System.out.println("Observador cliente inacessivel removido");
                     observersToRemove.add(client);
                 }
@@ -84,7 +81,8 @@ public class ManageDB {
     }
 
 
-        public boolean connectDB() {
+    public boolean connectDB() {
+        //Tenta estabelecer ligação à base de dados
         try {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
             return true;
@@ -102,7 +100,7 @@ public class ManageDB {
             String checkDB = "SELECT version FROM db_version";
             ResultSet resultSet = statement.executeQuery(checkDB);
 
-            if(resultSet == null)
+            if (resultSet == null)
                 return -1;
 
             return resultSet.getInt("version");
@@ -130,16 +128,19 @@ public class ManageDB {
         }
     }
 
-    public void createDB()  {
+    public void createDB() {
+        //Conexão feita com a classe DriverManager. Objecto statement para executar queries
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
              Statement statement = connection.createStatement()) {
 
             List<String> sqlScript = Files.readAllLines(Paths.get(CONSTANTS.DATABASE_CREATE_SCRIPT_PATH));
 
             for (String script : sqlScript) {
+                //Ignorar comentários no script sql
                 if (script.startsWith("--"))
                     continue;
 
+                //Tentar executar cada linha do script sql
                 try {
                     statement.executeUpdate(script);
                 } catch (SQLException e) {
@@ -147,9 +148,11 @@ public class ManageDB {
                 }
             }
 
+            //Verifica se a tabela existe
             String checkDBVersion = "SELECT * FROM db_version";
             ResultSet resultSet = statement.executeQuery(checkDBVersion);
-            if(!resultSet.next()) {
+            //Se não houver resultados, adicionamos o valor de "version" = 0
+            if (!resultSet.next()) {
                 String insertDBVersion = "INSERT INTO db_version (version) VALUES (0)";
                 statement.executeUpdate(insertDBVersion);
             }
@@ -218,8 +221,7 @@ public class ManageDB {
                 return false;
 
             String nPresences = resultSet.getString("nPresences");
-            // VERIFICAR SE ESTAMOS A ALTERAR O TIMESTART OU O TIMEEND E SE HÁ PRESENÇAS (NAO PERMITIDO)
-            if (Integer.parseInt(nPresences) > 0 && (resultSet.getString("timeStart").equals(timeStart) || resultSet.getString("timeEnd").equals(timeEnd)))
+            if (Integer.parseInt(nPresences) > 0 && (!resultSet.getString("timeStart").equals(timeStart) || !resultSet.getString("timeEnd").equals(timeEnd)))
                 return false;
 
             String editEvent = "UPDATE events SET name = '" + name + "', local = '" + local + "', date = '" + date + "', timeStart = '" + timeStart + "', timeEnd = '" + timeEnd + "' WHERE id = '" + idEvento + "'";
@@ -306,7 +308,7 @@ public class ManageDB {
             // VERIFICAR DATA
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDateTime now = LocalDateTime.now();
-            if(dtf.format(now).compareTo(resultSet.getString("date")) != 0)
+            if (dtf.format(now).compareTo(resultSet.getString("date")) != 0)
                 return false;
 
             // VERIFICAR HORA
@@ -319,7 +321,7 @@ public class ManageDB {
             String generateCode = "UPDATE events SET code = '" + eventCode + "' WHERE id = '" + eventId + "'";
             statement.executeUpdate(generateCode);
 
-            new threadCodigos(this,new Codigo(eventId,tempo)).start();
+            new threadCodigos(this, new Codigo(eventId, tempo)).start();
 
             return true;
         } catch (SQLException e) {
@@ -357,7 +359,7 @@ public class ManageDB {
         }
     }
 
-    public boolean deletePresence(int eventID, String email){
+    public boolean deletePresence(int eventID, String email) {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
              Statement statement = connection.createStatement()) {
 
@@ -393,7 +395,7 @@ public class ManageDB {
         }
     }
 
-    public boolean addPresence(int eventID, String email){
+    public boolean addPresence(int eventID, String email) {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
              Statement statement = connection.createStatement()) {
 
@@ -428,13 +430,6 @@ public class ManageDB {
             throw new RuntimeException(e);
         }
     }
-
-
-
-
-
-
-
 
 
     // ALUNO
@@ -489,7 +484,7 @@ public class ManageDB {
         }
     }
 
-    public boolean submitCode(String email, String code){
+    public boolean submitCode(String email, String code) {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
              Statement statement = connection.createStatement()) {
 
@@ -502,7 +497,6 @@ public class ManageDB {
             int nPresences = Integer.parseInt(resultSet_code.getString("nPresences"));
 
 
-
             String checkEmail = "SELECT * FROM accounts WHERE email = '" + email + "'";
             ResultSet resultSet_email = statement.executeQuery(checkEmail);
 
@@ -511,7 +505,7 @@ public class ManageDB {
 
             // VERIFICAR SE JA TEM PRESENÇA
             String checkPresence = "SELECT * FROM accounts_events WHERE account_id = '" + idAccount + "' AND event_id = '" + idEvento + "'";
-            if(statement.executeQuery(checkPresence).next())
+            if (statement.executeQuery(checkPresence).next())
                 return false;
 
             String addRegisteredPresence = "INSERT INTO accounts_events (account_id, event_id) VALUES ('" + idAccount + "', '" + idEvento + "')";
@@ -562,8 +556,6 @@ public class ManageDB {
     }
 
 
-
-
     // NOT A REQUEST, ONLY GETTING INFO FOR CSV
     public ArrayList<String> checkEvent(int idEvent) {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
@@ -589,7 +581,7 @@ public class ManageDB {
         }
     }
 
-    public ArrayList<String> checkStudent(String email){
+    public ArrayList<String> checkStudent(String email) {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
              Statement statement = connection.createStatement()) {
 

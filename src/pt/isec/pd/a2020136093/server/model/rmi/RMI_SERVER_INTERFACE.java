@@ -11,9 +11,9 @@ public interface RMI_SERVER_INTERFACE extends Remote {
     byte[] getDatabaseCopy_chunk(long offset) throws RemoteException;
 
     public void addObserver_backups(RMI_SERVER_BACKUP_INTERFACE observer) throws RemoteException;
-    public void removeObserver_backups(RMI_SERVER_BACKUP_INTERFACE observer) throws RemoteException;
+    //public void removeObserver_backups(RMI_SERVER_BACKUP_INTERFACE observer) throws RemoteException;
 
     public void addObserver_clients(RMI_CLIENT_INTERFACE observer) throws RemoteException;
-    public void removeObserver_clients(RMI_CLIENT_INTERFACE observer) throws RemoteException;
+    //public void removeObserver_clients(RMI_CLIENT_INTERFACE observer) throws RemoteException;
 
 }

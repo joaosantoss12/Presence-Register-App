@@ -61,9 +61,11 @@ public class ProcessClientRequest extends Thread {
 
                 Object receivedObject = oin.readObject();
 
+                //Lê o objecto enviado pelo cliente e determina se é uma solicitação de admin ou de estudante
                 if (receivedObject instanceof REQUEST_CLIENT_TO_SERVER) {
                     requestClientServer = (REQUEST_CLIENT_TO_SERVER) receivedObject;
-                } else if (receivedObject instanceof REQUEST_ADMIN_TO_SERVER) {
+                }
+                else if (receivedObject instanceof REQUEST_ADMIN_TO_SERVER) {
                     requestClientServerAdmin = (REQUEST_ADMIN_TO_SERVER) receivedObject;
                 }
 

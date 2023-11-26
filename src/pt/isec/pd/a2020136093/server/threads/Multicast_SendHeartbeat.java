@@ -32,14 +32,15 @@ public class Multicast_SendHeartbeat extends Thread {
 
                 oos.writeObject(serverData);
 
+                //Converte o serverData para um array de bytes
                 byte[] msgBytes = baos.toByteArray();
 
-                InetAddress ipServer = InetAddress.getByName(MULTICAST_IP);
+                InetAddress ipMulticast = InetAddress.getByName(MULTICAST_IP);
 
                 DatagramPacket dpSend = new DatagramPacket(
                         msgBytes,
                         msgBytes.length,
-                        ipServer,
+                        ipMulticast,
                         MULTICAST_PORT
                 );
 

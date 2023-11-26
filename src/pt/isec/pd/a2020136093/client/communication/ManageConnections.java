@@ -39,7 +39,6 @@ public class ManageConnections {
             oin = new ObjectInputStream(socket.getInputStream());
             oout = new ObjectOutputStream(socket.getOutputStream());
 
-            //new ClientThread_CheckTCPConnection(socket).start();  DA ERRO POIS ACEDE AO SOCKET TBM
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -56,11 +55,13 @@ public class ManageConnections {
 
         try{
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler a resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -87,11 +88,13 @@ public class ManageConnections {
 
         try{
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler a resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -140,11 +143,13 @@ public class ManageConnections {
 
         try{
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler a resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -202,11 +207,13 @@ public class ManageConnections {
 
         try{
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -233,11 +240,13 @@ public class ManageConnections {
 
         try{
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -265,11 +274,13 @@ public class ManageConnections {
 
         try{
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -324,11 +335,13 @@ public class ManageConnections {
 
             msg.isAdmin = isAdmin();
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -355,11 +368,13 @@ public class ManageConnections {
 
         try{
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -389,11 +404,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -420,11 +437,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -450,11 +469,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -479,11 +500,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             String csvFile = CSV_FILES_PATH_SERVER + "/" + idEvento + ".csv";
@@ -511,11 +534,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             String csvFile = CSV_FILES_PATH_SERVER + "/" + email + ".csv";
@@ -543,11 +568,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
             String csvFile = CSV_FILES_PATH_SERVER + "/" + clientData.getEmail() + ".csv";
 
@@ -603,11 +630,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -643,11 +672,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -675,11 +706,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {
@@ -706,11 +739,13 @@ public class ManageConnections {
 
         try {
 
-            //Serializa a string TIME_REQUEST para o OutputStream associado a socket
+            //Serializa a class REQUEST_CLIENT_TO_SERVER para o OutputStream associado a socket
+            //Envia mensagem para o servidor
             oout.writeObject(msg);
             oout.flush();
 
             //Deserializa a resposta recebida em socket
+            //Tenta ler resposta do servidor
             RESPONSE_SERVER_TO_CLIENT_OR_ADMIN response = (RESPONSE_SERVER_TO_CLIENT_OR_ADMIN) oin.readObject();
 
             if (response == null) {

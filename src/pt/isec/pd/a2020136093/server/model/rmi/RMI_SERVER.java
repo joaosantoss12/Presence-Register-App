@@ -13,6 +13,7 @@ public class RMI_SERVER extends UnicastRemoteObject implements RMI_SERVER_INTERF
     List<RMI_CLIENT_INTERFACE> observers_clients;
     List<RMI_SERVER_BACKUP_INTERFACE> observers_backups;
 
+    //Recebe lista de observers vazias
     public RMI_SERVER(List<RMI_CLIENT_INTERFACE> observers_clients, List<RMI_SERVER_BACKUP_INTERFACE> observers_backups) throws RemoteException {
         this.observers_clients = observers_clients;
         this.observers_backups = observers_backups;
@@ -79,14 +80,14 @@ public class RMI_SERVER extends UnicastRemoteObject implements RMI_SERVER_INTERF
             }
         }
     }
-    @Override
-    public /*synchronized*/ void removeObserver_backups(RMI_SERVER_BACKUP_INTERFACE observer) throws RemoteException {
+    /*@Override
+    public /*synchronized*/ /*void removeObserver_backups(RMI_SERVER_BACKUP_INTERFACE observer) throws RemoteException {
         synchronized (observers_backups){
             if(observers_backups.remove(observer)) {
                 //System.out.println("Observer removido");
             }
         }
-    }
+    }*/
 
 
 
@@ -102,13 +103,13 @@ public class RMI_SERVER extends UnicastRemoteObject implements RMI_SERVER_INTERF
         }
     }
 
-    @Override
-    public /*synchronized*/ void removeObserver_clients(RMI_CLIENT_INTERFACE observer) throws RemoteException {
+    /*@Override
+    public /*synchronized*/ /*void removeObserver_clients(RMI_CLIENT_INTERFACE observer) throws RemoteException {
         synchronized (observers_clients){
             if(observers_clients.remove(observer)) {
                 //System.out.println("Observer removido");
             }
         }
-    }
+    }*/
 
 }

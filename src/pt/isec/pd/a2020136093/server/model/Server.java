@@ -46,13 +46,6 @@ public class Server {
         this.observers_clients = new ArrayList<>();
         this.observers_backups = new ArrayList<>();
 
-        try {
-            printxd();
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         manageDB = new ManageDB(DB_PATH, observers_backups, observers_clients);
 
         if (manageDB.connectDB()) {
@@ -70,19 +63,17 @@ public class Server {
         }
     }
 
-    public void printxd(){
-        for(String s : loggedIn)
-            System.out.println("LOGGED IN: "+s);
-    }
-
     public void start() {
 
         // ================================= MULTICAST =================================
         MulticastSocket multicastSocket;
         try {
+            //Converte a string IP para um objeto InetAddress
             InetAddress group = InetAddress.getByName(MULTICAST_IP);
             int port = MULTICAST_PORT;
+            //Cria um objeto NetworkInterface para definir a interface de rede
             NetworkInterface nif;
+            //Converte a string NETWORK_INTERFACE_NAME para um objeto NetworkInterface
             try{
                 nif = NetworkInterface.getByInetAddress(InetAddress.getByName(NETWORK_INTERFACE_NAME));
             } catch (SocketException | UnknownHostException e) {
@@ -116,6 +107,7 @@ public class Server {
 
         try{
             try{
+                //Cria um registry local onde vão ser registados os serviços RMI
                 LocateRegistry.createRegistry(RMI_PORT);
                 System.out.println("Registry lançado!");
             }
@@ -159,7 +151,9 @@ public class Server {
             System.out.println("Server: " + InetAddress.getLocalHost().getHostAddress() + " iniciado na porta " + PORT);
 
             while (true) {
+                //Referência para o socket do cliente que se conectou
                 Socket nextClient = socket.accept();
+                //Para cada cliente que se conecta, cria uma thread para o atender
                 new ProcessClientRequest(nextClient, manageDB, serverData, loggedIn, observers_clients, observers_backups, rmiServer).start();
             }
         } catch (IOException e) {
