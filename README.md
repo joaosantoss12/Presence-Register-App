@@ -2,6 +2,7 @@
 Java Application with the goal to register presences in events 📝
 
 There are three main apps: 
+
 Main Server:
 - Launch a ServerSocket and accept connections
 - Creates and updates a main database
