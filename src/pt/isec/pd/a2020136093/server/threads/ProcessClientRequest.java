@@ -397,12 +397,7 @@ public class ProcessClientRequest extends Thread {
 
                 for (RMI_SERVER_BACKUP_INTERFACE svBackup : observers_backups) {
                     try {
-                        if(ServerBackup.get_backup_dbVersion() != manageDB.getDB_version()) {
-                            observersToRemove.add(svBackup);
-                        }
-                        else{
-                            svBackup.receiveDBUpdate();
-                        }
+                        svBackup.receiveDBUpdate();
                     }
                     catch (RemoteException e) {
                         System.out.println("Observador server_backup inacessivel removido");
