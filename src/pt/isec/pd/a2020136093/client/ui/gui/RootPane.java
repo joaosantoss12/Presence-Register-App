@@ -1,12 +1,12 @@
 package pt.isec.pd.a2020136093.client.ui.gui;
 
 import javafx.scene.layout.*;
-import pt.isec.pd.a2020136093.tp1.client.communication.ManageConnections;
-import pt.isec.pd.a2020136093.tp1.client.rmi.RMI_CLIENT;
-import pt.isec.pd.a2020136093.tp1.client.ui.gui.ADMIN.MenuAdminUI;
-import pt.isec.pd.a2020136093.tp1.client.ui.gui.RESOURCES.CSSManager;
-import pt.isec.pd.a2020136093.tp1.client.ui.gui.STUDENT.MenuStudentUI;
-import pt.isec.pd.a2020136093.tp1.server.model.rmi.RMI_SERVER_INTERFACE;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT;
+import pt.isec.pd.a2020136093.client.ui.gui.ADMIN.MenuAdminUI;
+import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.CSSManager;
+import pt.isec.pd.a2020136093.client.ui.gui.STUDENT.MenuStudentUI;
+import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER_INTERFACE;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

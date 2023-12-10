@@ -1,13 +1,13 @@
 package pt.isec.pd.a2020136093.server.threads;
 
-import pt.isec.pd.a2020136093.tp1.server.model.data.Heartbeat;
+import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.*;
 
-import static pt.isec.pd.a2020136093.tp1.server.model.data.CONSTANTS.*;
+import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
 
 public class Multicast_SendHeartbeat extends Thread {
     private final Heartbeat serverData;

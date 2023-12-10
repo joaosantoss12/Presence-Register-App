@@ -1,6 +1,6 @@
 package pt.isec.pd.a2020136093.utils;
 
-import pt.isec.pd.a2020136093.tp1.data.EventsList;
+import pt.isec.pd.a2020136093.data.EventsList;
 
 import java.io.Serializable;
 import java.util.ArrayList;

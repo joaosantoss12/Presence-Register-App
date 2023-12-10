@@ -1,9 +1,9 @@
 package pt.isec.pd.a2020136093.client;
 
 import javafx.application.Application;
-import pt.isec.pd.a2020136093.tp1.client.communication.ManageConnections;
-import pt.isec.pd.a2020136093.tp1.client.ui.gui.MainJFX;
-import pt.isec.pd.a2020136093.tp1.client.ui.text.ClientUI;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.ui.gui.MainJFX;
+import pt.isec.pd.a2020136093.client.ui.text.ClientUI;
 
 public class ClientMain {
     public static ManageConnections mc;

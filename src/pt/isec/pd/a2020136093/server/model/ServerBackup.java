@@ -1,9 +1,9 @@
 package pt.isec.pd.a2020136093.server.model;
 
-import pt.isec.pd.a2020136093.tp1.server.model.data.Heartbeat;
-import pt.isec.pd.a2020136093.tp1.server.model.rmi.RMI_SERVER_INTERFACE;
-import pt.isec.pd.a2020136093.tp1.server.rmi_backup.RMI_SERVER_BACKUP;
-import pt.isec.pd.a2020136093.tp1.server.threads.Multicast_ReadHearbeat;
+import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
+import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER_INTERFACE;
+import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP;
+import pt.isec.pd.a2020136093.server.threads.Multicast_ReadHearbeat;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,8 +14,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.*;
 
-import static pt.isec.pd.a2020136093.tp1.server.model.data.CONSTANTS.*;
-import static pt.isec.pd.a2020136093.tp1.server.model.data.CONSTANTS.NETWORK_INTERFACE_NAME;
+import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
+import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.NETWORK_INTERFACE_NAME;
 
 public class ServerBackup {
     RMI_SERVER_BACKUP rmiBackup;

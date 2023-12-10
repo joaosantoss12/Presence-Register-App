@@ -5,10 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updates">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2023_16_46_[Changes_by_joaom]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2023_16_46__Changes_by_joaom_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PD-2023-24-TP.db" beforeDir="false" afterPath="$PROJECT_DIR$/PD-2023-24-TP.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/rmi/RMI_CLIENT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/rmi/RMI_CLIENT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/CreateNewEventUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/EditDataEventUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/LoginUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainJFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/MainMenuUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RegisterUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RegisterUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RootPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/EditDataUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/MenuStudentUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/STUDENT/MenuStudentUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/ServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/ServerMain_Backup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/ServerMain_Backup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/ServerBackup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/ServerBackup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/ManageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/ManageDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/rmi_backup/RMI_SERVER_BACKUP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/rmi_backup/RMI_SERVER_BACKUP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/Multicast_ReadHearbeat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/Multicast_ReadHearbeat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/Multicast_SendHeartbeat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/Multicast_SendHeartbeat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/threadCodigos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/threadCodigos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/RESPONSE_SERVER_TO_CLIENT_OR_ADMIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/RESPONSE_SERVER_TO_CLIENT_OR_ADMIN.java" afterDir="false" />
     </list>
     <list id="6885a97c-d08f-4871-87ab-73b4fdf8244c" name="Changes by biama" comment="bia: finished GUIs + ManageConnections" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +64,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Users/utilizador/Desktop/PD-23-24-F1-TP-G14 (1)/TP_v2.0",
+    "last_opened_file_path": "C:/Users/utilizador/Desktop/PD/Trabalho_Prático/TP_v2.0/src/pt/isec/pd/a2020136093",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,6 +79,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src\pt\isec\pd\a2020136093" />
+      <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src" />
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src\pt\isec\pd\a2020136093\server\model\jdbc" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -210,6 +233,7 @@
       <workItem from="1701197305641" duration="30000" />
       <workItem from="1701339327574" duration="366000" />
       <workItem from="1701343788372" duration="28000" />
+      <workItem from="1702171850982" duration="304000" />
     </task>
     <task id="LOCAL-00001" summary="added features + updated old ones">
       <created>1698669978617</created>
@@ -330,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701339604003</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="updates">
+      <created>1702171922374</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1702171922374</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

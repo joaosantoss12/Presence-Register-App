@@ -7,8 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import pt.isec.pd.a2020136093.tp1.client.communication.ManageConnections;
-import pt.isec.pd.a2020136093.tp1.client.ui.gui.RESOURCES.PopUpCreator;
+import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.PopUpCreator;
 
 public class MainMenuUI extends BorderPane {
     ManageConnections mc;

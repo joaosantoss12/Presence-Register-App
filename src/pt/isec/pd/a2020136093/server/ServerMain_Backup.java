@@ -1,6 +1,6 @@
 package pt.isec.pd.a2020136093.server;
 
-import pt.isec.pd.a2020136093.tp1.server.model.ServerBackup;
+import pt.isec.pd.a2020136093.server.model.ServerBackup;
 
 public class ServerMain_Backup {
     public static void main(String[] args) {

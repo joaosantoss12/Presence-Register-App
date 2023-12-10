@@ -1,7 +1,7 @@
 package pt.isec.pd.a2020136093.server.threads;
 
-import pt.isec.pd.a2020136093.tp1.server.model.ServerBackup;
-import pt.isec.pd.a2020136093.tp1.server.model.data.Heartbeat;
+import pt.isec.pd.a2020136093.server.model.ServerBackup;
+import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
 
-import static pt.isec.pd.a2020136093.tp1.server.model.data.CONSTANTS.TIMETOUT_SERVER_BACKUP;
+import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.TIMETOUT_SERVER_BACKUP;
 
 public class Multicast_ReadHearbeat extends Thread {
     public static int MAX_SIZE = 1000;

@@ -1,6 +1,6 @@
 package pt.isec.pd.a2020136093.server;
 
-import pt.isec.pd.a2020136093.tp1.server.model.Server;
+import pt.isec.pd.a2020136093.server.model.Server;
 
 
 public class ServerMain {

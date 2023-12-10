@@ -1,7 +1,7 @@
 package pt.isec.pd.a2020136093.server.model.rmi;
 
-import pt.isec.pd.a2020136093.tp1.client.rmi.RMI_CLIENT_INTERFACE;
-import pt.isec.pd.a2020136093.tp1.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
+import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
+import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
 
 import java.io.FileInputStream;
 import java.io.IOException;
