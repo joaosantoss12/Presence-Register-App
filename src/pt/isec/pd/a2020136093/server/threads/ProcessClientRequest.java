@@ -1,16 +1,15 @@
 package pt.isec.pd.a2020136093.server.threads;
 
-import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
-import pt.isec.pd.a2020136093.data.EventsData;
-import pt.isec.pd.a2020136093.server.model.ServerBackup;
-import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
-import pt.isec.pd.a2020136093.server.model.jdbc.ManageDB;
-import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER;
-import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
-import pt.isec.pd.a2020136093.utils.REQUESTS;
-import pt.isec.pd.a2020136093.utils.REQUEST_CLIENT_TO_SERVER;
-import pt.isec.pd.a2020136093.utils.REQUEST_ADMIN_TO_SERVER;
-import pt.isec.pd.a2020136093.utils.RESPONSE_SERVER_TO_CLIENT_OR_ADMIN;
+import pt.isec.pd.a2020136093.tp1.client.rmi.RMI_CLIENT_INTERFACE;
+import pt.isec.pd.a2020136093.tp1.data.EventsData;
+import pt.isec.pd.a2020136093.tp1.server.model.data.Heartbeat;
+import pt.isec.pd.a2020136093.tp1.server.model.jdbc.ManageDB;
+import pt.isec.pd.a2020136093.tp1.server.model.rmi.RMI_SERVER;
+import pt.isec.pd.a2020136093.tp1.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
+import pt.isec.pd.a2020136093.tp1.utils.REQUESTS;
+import pt.isec.pd.a2020136093.tp1.utils.REQUEST_CLIENT_TO_SERVER;
+import pt.isec.pd.a2020136093.tp1.utils.REQUEST_ADMIN_TO_SERVER;
+import pt.isec.pd.a2020136093.tp1.utils.RESPONSE_SERVER_TO_CLIENT_OR_ADMIN;
 
 import java.io.*;
 import java.net.*;
@@ -19,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
+import static pt.isec.pd.a2020136093.tp1.server.model.data.CONSTANTS.*;
 
 public class ProcessClientRequest extends Thread {
     private Socket nextClient;

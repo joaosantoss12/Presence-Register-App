@@ -1,12 +1,11 @@
 package pt.isec.pd.a2020136093.client.ui.text;
 
 
-import pt.isec.pd.a2020136093.client.communication.ManageConnections;
-import pt.isec.pd.a2020136093.client.utils.PAInput;
+import pt.isec.pd.a2020136093.tp1.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.tp1.client.utils.PAInput;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ClientUI {
     ManageConnections manageConnections;

@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updated project">
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/threadCodigos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/Codigo.java" afterDir="false" />
+    <list default="true" id="ac147293-9815-4a92-a8c1-5ccb3bfc00be" name="Changes" comment="updates">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2023_16_46_[Changes_by_joaom]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_11_2023_16_46__Changes_by_joaom_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PD-2023-24-TP.db" beforeDir="false" afterPath="$PROJECT_DIR$/PD-2023-24-TP.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/communication/ManageConnections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/ADMIN/MenuAdminUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/PopUpCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/gui/RESOURCES/PopUpCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/client/ui/text/ClientUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/ManageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/model/jdbc/ManageDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/server/threads/ProcessClientRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/REQUEST_ADMIN_TO_SERVER.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/isec/pd/a2020136093/utils/REQUEST_ADMIN_TO_SERVER.java" afterDir="false" />
     </list>
     <list id="6885a97c-d08f-4871-87ab-73b4fdf8244c" name="Changes by biama" comment="bia: finished GUIs + ManageConnections" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,26 +36,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/utilizador/Desktop/GPS/GitLab project/gps_g14&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "last_opened_file_path": "C:/Users/utilizador/Desktop/PD-23-24-F1-TP-G14 (1)/TP_v2.0",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src\pt\isec\pd\a2020136093\server\model\jdbc" />
@@ -72,7 +64,7 @@
       <recent name="C:\Users\utilizador\Desktop\PD\Trabalho_Prático\TP_v2.0\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientMain">
+  <component name="RunManager" selected="Application.ServerMain_Backup">
     <configuration name="ClientMain (1)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.client.ClientMain" />
       <module name="TP_v2.0" />
@@ -90,7 +82,7 @@
     <configuration name="ClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.client.ClientMain" />
       <module name="TP_v2.0" />
-      <option name="PROGRAM_PARAMETERS" value="172.25.224.1 6969" />
+      <option name="PROGRAM_PARAMETERS" value="localhost 6969" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="pt.isec.pd.a2020136093.client.*" />
@@ -132,7 +124,7 @@
     <configuration name="ServerMain_Backup" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="pt.isec.pd.a2020136093.server.ServerMain_Backup" />
       <module name="TP_v2.0" />
-      <option name="PROGRAM_PARAMETERS" value="src/backup_dbs/UM" />
+      <option name="PROGRAM_PARAMETERS" value="src/backup_dbs/DOIS" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="pt.isec.pd.a2020136093.server.*" />
@@ -152,9 +144,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServerMain_Backup" />
         <item itemvalue="Application.ClientMain" />
         <item itemvalue="Application.ServerMain" />
-        <item itemvalue="Application.ServerMain_Backup" />
         <item itemvalue="Application.MainJFX" />
       </list>
     </recent_temporary>
@@ -207,7 +199,17 @@
       <workItem from="1700663418973" duration="12000" />
       <workItem from="1700681287411" duration="10824000" />
       <workItem from="1700750790073" duration="3710000" />
-      <workItem from="1700756441273" duration="4797000" />
+      <workItem from="1700756441273" duration="4831000" />
+      <workItem from="1700761893324" duration="14000" />
+      <workItem from="1700836718271" duration="5932000" />
+      <workItem from="1700876664803" duration="2592000" />
+      <workItem from="1700994830816" duration="4312000" />
+      <workItem from="1701021240317" duration="279000" />
+      <workItem from="1701044682097" duration="207000" />
+      <workItem from="1701095625527" duration="3108000" />
+      <workItem from="1701197305641" duration="30000" />
+      <workItem from="1701339327574" duration="366000" />
+      <workItem from="1701343788372" duration="28000" />
     </task>
     <task id="LOCAL-00001" summary="added features + updated old ones">
       <created>1698669978617</created>
@@ -307,7 +309,28 @@
       <option name="project" value="LOCAL" />
       <updated>1700755592380</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="updated project">
+      <created>1700761463919</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1700761463919</updated>
+    </task>
+    <task id="LOCAL-00016" summary="comments">
+      <created>1700998060679</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1700998060679</updated>
+    </task>
+    <task id="LOCAL-00017" summary="updates">
+      <created>1701339604003</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701339604003</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +351,6 @@
     <MESSAGE value="added features + updated old ones" />
     <MESSAGE value="UPDATES" />
     <MESSAGE value="started GUI code" />
-    <MESSAGE value="updates" />
     <MESSAGE value="updates on UI and manage connections" />
     <MESSAGE value="bia: updated UIs and manage connections class" />
     <MESSAGE value="RMI code (still not working properly)" />
@@ -337,7 +359,9 @@
     <MESSAGE value="fixed RMI" />
     <MESSAGE value="updated UI errors" />
     <MESSAGE value="updated project" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated project" />
+    <MESSAGE value="comments" />
+    <MESSAGE value="updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

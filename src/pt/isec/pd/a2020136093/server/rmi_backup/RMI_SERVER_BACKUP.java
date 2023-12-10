@@ -1,6 +1,6 @@
 package pt.isec.pd.a2020136093.server.rmi_backup;
 
-import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER_INTERFACE;
+import pt.isec.pd.a2020136093.tp1.server.model.rmi.RMI_SERVER_INTERFACE;
 
 import java.io.FileOutputStream;
 import java.rmi.Naming;

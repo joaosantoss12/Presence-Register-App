@@ -1,13 +1,12 @@
 package pt.isec.pd.a2020136093.server.model;
 
-import pt.isec.pd.a2020136093.client.rmi.RMI_CLIENT_INTERFACE;
-import pt.isec.pd.a2020136093.server.model.data.Heartbeat;
-import pt.isec.pd.a2020136093.server.model.rmi.RMI_SERVER;
-import pt.isec.pd.a2020136093.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
-import pt.isec.pd.a2020136093.server.threads.Multicast_SendHeartbeat;
-import pt.isec.pd.a2020136093.server.threads.ProcessClientRequest;
-import pt.isec.pd.a2020136093.server.model.jdbc.ManageDB;
-import pt.isec.pd.a2020136093.server.threads.threadCodigos;
+import pt.isec.pd.a2020136093.tp1.client.rmi.RMI_CLIENT_INTERFACE;
+import pt.isec.pd.a2020136093.tp1.server.model.data.Heartbeat;
+import pt.isec.pd.a2020136093.tp1.server.model.rmi.RMI_SERVER;
+import pt.isec.pd.a2020136093.tp1.server.rmi_backup.RMI_SERVER_BACKUP_INTERFACE;
+import pt.isec.pd.a2020136093.tp1.server.threads.Multicast_SendHeartbeat;
+import pt.isec.pd.a2020136093.tp1.server.threads.ProcessClientRequest;
+import pt.isec.pd.a2020136093.tp1.server.model.jdbc.ManageDB;
 
 import java.io.*;
 import java.net.*;
@@ -17,7 +16,7 @@ import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.*;
+import static pt.isec.pd.a2020136093.tp1.server.model.data.CONSTANTS.*;
 
 public class Server {
     ManageDB manageDB;

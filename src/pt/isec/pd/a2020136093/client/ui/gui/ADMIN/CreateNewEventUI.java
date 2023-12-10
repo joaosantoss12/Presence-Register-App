@@ -10,9 +10,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import pt.isec.pd.a2020136093.client.communication.ManageConnections;
-import pt.isec.pd.a2020136093.client.ui.gui.RESOURCES.CSSManager;
-import pt.isec.pd.a2020136093.client.ui.gui.RootPane;
+import pt.isec.pd.a2020136093.tp1.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.tp1.client.ui.gui.RESOURCES.CSSManager;
 
 public class CreateNewEventUI extends BorderPane {
     ManageConnections mc;

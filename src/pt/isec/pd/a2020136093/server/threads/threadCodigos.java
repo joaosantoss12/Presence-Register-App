@@ -1,9 +1,7 @@
 package pt.isec.pd.a2020136093.server.threads;
 
-import pt.isec.pd.a2020136093.server.model.jdbc.ManageDB;
-import pt.isec.pd.a2020136093.utils.Codigo;
-
-import java.util.ArrayList;
+import pt.isec.pd.a2020136093.tp1.server.model.jdbc.ManageDB;
+import pt.isec.pd.a2020136093.tp1.utils.Codigo;
 
 public class threadCodigos extends Thread{
     ManageDB manageDB;

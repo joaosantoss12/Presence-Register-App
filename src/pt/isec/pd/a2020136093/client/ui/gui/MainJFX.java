@@ -1,11 +1,10 @@
 package pt.isec.pd.a2020136093.client.ui.gui;
 
-import com.sun.tools.javac.Main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pt.isec.pd.a2020136093.client.ClientMain;
-import pt.isec.pd.a2020136093.client.communication.ManageConnections;
+import pt.isec.pd.a2020136093.tp1.client.ClientMain;
+import pt.isec.pd.a2020136093.tp1.client.communication.ManageConnections;
 
 public class MainJFX extends Application {
 

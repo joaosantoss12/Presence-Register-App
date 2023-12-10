@@ -1,7 +1,7 @@
 package pt.isec.pd.a2020136093.client.rmi;
 
 import javafx.application.Platform;
-import pt.isec.pd.a2020136093.client.ui.gui.ADMIN.MenuAdminUI;
+import pt.isec.pd.a2020136093.tp1.client.ui.gui.ADMIN.MenuAdminUI;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

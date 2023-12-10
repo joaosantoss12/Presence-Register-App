@@ -1,11 +1,11 @@
 package pt.isec.pd.a2020136093.client.communication;
 
-import pt.isec.pd.a2020136093.utils.REQUESTS;
-import pt.isec.pd.a2020136093.utils.REQUEST_CLIENT_TO_SERVER;
-import pt.isec.pd.a2020136093.utils.REQUEST_ADMIN_TO_SERVER;
-import pt.isec.pd.a2020136093.utils.RESPONSE_SERVER_TO_CLIENT_OR_ADMIN;
-import pt.isec.pd.a2020136093.client.data.ClientData;
-import pt.isec.pd.a2020136093.data.EventsList;
+import pt.isec.pd.a2020136093.tp1.utils.REQUESTS;
+import pt.isec.pd.a2020136093.tp1.utils.REQUEST_CLIENT_TO_SERVER;
+import pt.isec.pd.a2020136093.tp1.utils.REQUEST_ADMIN_TO_SERVER;
+import pt.isec.pd.a2020136093.tp1.utils.RESPONSE_SERVER_TO_CLIENT_OR_ADMIN;
+import pt.isec.pd.a2020136093.tp1.client.data.ClientData;
+import pt.isec.pd.a2020136093.tp1.data.EventsList;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -13,7 +13,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static pt.isec.pd.a2020136093.server.model.data.CONSTANTS.CSV_FILES_PATH_SERVER;
+import static pt.isec.pd.a2020136093.tp1.server.model.data.CONSTANTS.CSV_FILES_PATH_SERVER;
 
 public class ManageConnections {
     private static final int TIMEOUT = 10;
